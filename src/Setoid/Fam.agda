@@ -63,5 +63,4 @@ record Fam₁
       → (open Fam₀ hiding (fib))
       → ∀ {i₀ i₁}
       → (ρ : S.homᵗ I₀ (i₀ , i₁))
-      →  fib i₀ ∘₀ coe Ψ₀ ρ
-      ⇒₁ coe Ψ₁ (idx $₁ ρ) ∘₀ fib i₁
+      → (fib i₀ ∘₀ coe Ψ₀ ρ) ⇒₁ (coe Ψ₁ (idx $₁ ρ) ∘₀ fib i₁)
