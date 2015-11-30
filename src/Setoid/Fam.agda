@@ -35,14 +35,11 @@ record Fam₀
     → fib i₁ S.Map.⇒₀ᵗ fib i₀
   coe ρ = G.Map._$₁_ fam ρ
 
-  field
-    irr
-      : ∀ {i₀ i₁}
-      → (ρ₀ ρ₁ : S.homᵗ I (i₀ , i₁))
-      → coe ρ₀ S.Map.⇒₁ coe ρ₁
-
   fib₀ : ∀ i → Set ℓ₁ᵒ
   fib₀ i = S.obj (fib i)
+
+  fib₁ : ∀ {i} (ψ₀ ψ₁ : fib₀ i) → Set ℓ₁ʰ
+  fib₁ {i} ψ₀ ψ₁ = S.homᵗ (fib i) (ψ₀ , ψ₁)
 
   coe₀
     : ∀ {i₀ i₁}
@@ -54,20 +51,21 @@ record Fam₀
     : ∀ {i₀ i₁} {ψ₀ ψ₁ : fib₀ i₁}
     → (ρ : S.homᵗ I (i₀ , i₁))
     → (σ : S.homᵗ (fib i₁) (ψ₀ , ψ₁))
-    → S.homᵗ (fib i₀) (coe₀ ρ ψ₀ , coe₀ ρ ψ₁)
+    → fib₁ (coe₀ ρ ψ₀) (coe₀ ρ ψ₁)
   coe₁ ρ σ = coe ρ S.Map.$₁ σ
 
   irr₀
-    : ∀ {i₀ i₁} {ψ : fib₀ i₁}
-    → (ρ₀ ρ₁ : S.homᵗ I (i₀ , i₁))
-    → S.homᵗ (fib i₀) (coe₀ ρ₀ ψ , coe₀ ρ₁ ψ)
-  irr₀ ρ₀ ρ₁ = S.Map.com₁ (irr ρ₀ ρ₁)
+    : ∀ {i₀ i₁}
+    → (ρ₀ ρ₁ : S.homᵗ I (i₁ , i₀))
+    → {ψ : fib₀ i₀}
+    → fib₁ (coe₀ ρ₀ ψ) (coe₀ ρ₁ ψ)
+  irr₀ ρ₀ ρ₁ = S.Map.com₁ (G.Map._$₂_ fam _)
 
   coh-idn
     : ∀ {i}
     → (ρ : S.homᵗ I (i , i))
     → {ψ : fib₀ i}
-    → S.homᵗ (fib i) (coe₀ ρ ψ , ψ)
+    → fib₁ (coe₀ ρ ψ) ψ
   coh-idn ρ {ψ} =
     S.cmpᵗ (fib _) (S.Map.com₁ (G.Map.idn fam) {ψ} , irr₀ _ _)
 
@@ -77,7 +75,7 @@ record Fam₀
     → (ρ₁ : S.homᵗ I (i₂ , i₁))
     → (ρ₀ : S.homᵗ I (i₁ , i₀))
     → {ψ : fib₀ i₀}
-    → S.homᵗ (fib i₂) (coe₀ ρ ψ , (coe₀ ρ₁ T.Map.∘ coe₀ ρ₀) ψ)
+    → fib₁ (coe₀ ρ ψ) ((coe₀ ρ₁ T.Map.∘ coe₀ ρ₀) ψ)
   coh-cmp ρ ρ₁ ρ₀ {ψ} =
     S.cmpᵗ (fib _) (S.Map.com₁ (G.Map.cmp fam ρ₁ ρ₀) {ψ} , irr₀ _ _)
 
@@ -115,7 +113,7 @@ S.obj (∐ A B) =
 S.homᵗ (∐ A B) ((a₀ , b₀) , (a₁ , b₁)) =
   let open Fam₀ in
   T.Ten.∐ (S.homᵗ A (a₁ , a₀)) λ σ →
-    S.homᵗ (fib B a₁) (coe₀ B σ b₀ , b₁)
+    fib₁ B (coe₀ B σ b₀) b₁
 S.idnᵗ (∐ A B) {a , b} _ =
   let open Fam₀ in
   S.idnᵗ A _ , coh-idn B (S.idnᵗ A _)
