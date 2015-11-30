@@ -54,30 +54,28 @@ record Fam₀
     → fib₁ (coe₀ ρ ψ₀) (coe₀ ρ ψ₁)
   coe₁ ρ σ = coe ρ S.Map.$₁ σ
 
-  irr₀
-    : ∀ {i₀ i₁}
-    → (ρ₀ ρ₁ : S.homᵗ I (i₁ , i₀))
-    → {ψ : fib₀ i₀}
-    → fib₁ (coe₀ ρ₀ ψ) (coe₀ ρ₁ ψ)
-  irr₀ ρ₀ ρ₁ = S.Map.com₁ (G.Map._$₂_ fam _)
-
-  coh-idn
+  idn
     : ∀ {i}
     → (ρ : S.homᵗ I (i , i))
     → {ψ : fib₀ i}
-    → fib₁ (coe₀ ρ ψ) ψ
-  coh-idn ρ {ψ} =
-    S.cmpᵗ (fib _) (S.Map.com₁ (G.Map.idn fam) {ψ} , irr₀ _ _)
+    → fib₁ (coe₀ (S.idnᵗ I T.*) ψ) ψ
+  idn ρ {ψ} = S.Map.com₁ (G.Map.idn fam)
 
-  coh-cmp
+  cmp
     : ∀ {i₀ i₁ i₂}
     → (ρ : S.homᵗ I (i₂ , i₀))
     → (ρ₁ : S.homᵗ I (i₂ , i₁))
     → (ρ₀ : S.homᵗ I (i₁ , i₀))
     → {ψ : fib₀ i₀}
-    → fib₁ (coe₀ ρ ψ) ((coe₀ ρ₁ T.Map.∘ coe₀ ρ₀) ψ)
-  coh-cmp ρ ρ₁ ρ₀ {ψ} =
-    S.cmpᵗ (fib _) (S.Map.com₁ (G.Map.cmp fam ρ₁ ρ₀) {ψ} , irr₀ _ _)
+    → fib₁ (coe₀ (S.cmpᵗ I (ρ₀ , ρ₁)) ψ) (coe₀ ρ₁ (coe₀ ρ₀ ψ))
+  cmp ρ ρ₁ ρ₀ {ψ} = S.Map.com₁ (G.Map.cmp fam ρ₁ ρ₀)
+
+  irr
+    : ∀ {i₀ i₁}
+    → (ρ₀ ρ₁ : S.homᵗ I (i₁ , i₀))
+    → {ψ : fib₀ i₀}
+    → fib₁ (coe₀ ρ₀ ψ) (coe₀ ρ₁ ψ)
+  irr ρ₀ ρ₁ = S.Map.com₁ (G.Map._$₂_ fam _)
 
 record Fam₁
   ..{ℓ₀₀ᵒ ℓ₀₀ʰ ℓ₀₁ᵒ ℓ₀₁ʰ ℓ₁₀ᵒ ℓ₁₀ʰ ℓ₁₁ᵒ ℓ₁₁ʰ}
@@ -116,27 +114,27 @@ S.homᵗ (∐ A B) ((a₀ , b₀) , (a₁ , b₁)) =
     fib₁ B (coe₀ B σ b₀) b₁
 S.idnᵗ (∐ A B) {a , b} _ =
   let open Fam₀ in
-  S.idnᵗ A _ , coh-idn B (S.idnᵗ A _)
+  S.idnᵗ A _ , idn B (S.idnᵗ A _)
 S.cmpᵗ (∐ A B) ((qᵃ , qᵇ) , (pᵃ , pᵇ)) =
   let open Fam₀ in
     S.cmpᵗ A (pᵃ , qᵃ)
   , S.cmpᵗ (fib B _)
     ( S.cmpᵗ (fib B _) (qᵇ , coe₁ B qᵃ pᵇ)
-    , coh-cmp B (S.cmpᵗ A (pᵃ , qᵃ)) qᵃ pᵃ
+    , cmp B (S.cmpᵗ A (pᵃ , qᵃ)) qᵃ pᵃ
     )
 S.invᵗ (∐ A B) (pᵃ , pᵇ) =
   let open Fam₀ in
     S.invᵗ A pᵃ
   , S.cmpᵗ (fib B _)
     ( S.cmpᵗ (fib B _)
-      ( coh-idn B (S.idnᵗ A T.*)
+      ( idn B (S.idnᵗ A T.*)
       , S.invᵗ (fib B _)
         ( S.cmpᵗ (fib B _)
-          ( coh-cmp B
+          ( cmp B
             (S.cmpᵗ A (pᵃ , S.invᵗ A pᵃ))
             (S.invᵗ A pᵃ)
             pᵃ
-          , irr₀ B _ _
+          , irr B _ _
           )
         )
       )
