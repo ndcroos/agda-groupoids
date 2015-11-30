@@ -77,7 +77,7 @@ record Fam₀
     → (ρ₁ : S.homᵗ I (i₂ , i₁))
     → (ρ₀ : S.homᵗ I (i₁ , i₀))
     → {ψ : fib₀ i₀}
-    → S.homᵗ (fib i₂) (coe₀ ρ ψ , coe₀ ρ₁ (coe₀ ρ₀ ψ))
+    → S.homᵗ (fib i₂) (coe₀ ρ ψ , (coe₀ ρ₁ T.Map.∘ coe₀ ρ₀) ψ)
   coh-cmp ρ ρ₁ ρ₀ {ψ} =
     S.cmpᵗ (fib _) (S.Map.com₁ (G.Map.cmp fam ρ₁ ρ₀) {ψ} , irr₀ _ _)
 
