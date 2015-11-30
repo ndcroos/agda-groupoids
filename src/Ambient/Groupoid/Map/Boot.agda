@@ -36,13 +36,13 @@ record _⇒₀ᵗ_
   _$₂_ = λ {_ _ f g} → S.Map._$₁_ -$₁ˢ- {f} {g}
 
   field
-    .idn
+    idn
       : ∀ {a}
       → S.homᵗ (G.homˢ B (_$₀_ a , _$₀_ a))
           ( -$₁ˢ- S.Map.$₀ (G.idnˢ A {a} S.Map.$₀ T.𝟙.*)
           , G.idnˢ B {_$₀_ a} S.Map.$₀ T.𝟙.*
           )
-    .cmp
+    cmp
       : ∀ {a b c}
       → (g : S.obj (G.homˢ A (b , c)))
       → (f : S.obj (G.homˢ A (a , b)))
