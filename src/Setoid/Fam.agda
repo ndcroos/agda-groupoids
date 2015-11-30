@@ -121,25 +121,26 @@ S.idnᵗ (∐ A B) {a , b} _ =
   S.idnᵗ A _ , coh-idn B (S.idnᵗ A _)
 S.cmpᵗ (∐ A B) ((qᵃ , qᵇ) , (pᵃ , pᵇ)) =
   let open Fam₀ in
-  S.cmpᵗ A (pᵃ , qᵃ)
+    S.cmpᵗ A (pᵃ , qᵃ)
   , S.cmpᵗ (fib B _)
     ( S.cmpᵗ (fib B _) (qᵇ , coe₁ B qᵃ pᵇ)
     , coh-cmp B (S.cmpᵗ A (pᵃ , qᵃ)) qᵃ pᵃ
     )
 S.invᵗ (∐ A B) (pᵃ , pᵇ) =
   let open Fam₀ in
-  S.invᵗ A pᵃ
+    S.invᵗ A pᵃ
   , S.cmpᵗ (fib B _)
     ( S.cmpᵗ (fib B _)
-        ( coh-idn B (S.idnᵗ A T.*)
-        , S.invᵗ (fib B _)
-          (S.cmpᵗ (fib B _)
-            ( coh-cmp B
-              (S.cmpᵗ A (pᵃ , S.invᵗ A pᵃ))
-                (S.invᵗ A pᵃ) pᵃ
-            , irr₀ B _ _
-            )
+      ( coh-idn B (S.idnᵗ A T.*)
+      , S.invᵗ (fib B _)
+        ( S.cmpᵗ (fib B _)
+          ( coh-cmp B
+            (S.cmpᵗ A (pᵃ , S.invᵗ A pᵃ))
+            (S.invᵗ A pᵃ)
+            pᵃ
+          , irr₀ B _ _
           )
         )
+      )
     , S.invᵗ (fib B _) (coe₁ B (S.invᵗ A pᵃ) pᵇ)
     )
