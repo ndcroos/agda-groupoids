@@ -12,8 +12,6 @@ import Groupoids.Ambient.Groupoid.Initial
 import Groupoids.Ambient.Groupoid.Op
 import Groupoids.Ambient.Groupoid.Tensor
 import Groupoids.Ambient.Groupoid.Terminal
-import Groupoids.Groupoid.Closed
-import Groupoids.Groupoid.Monoidal
 
 module ≡ where
   open import Groupoids.Ambient.Groupoid.Discrete public

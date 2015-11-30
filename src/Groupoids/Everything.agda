@@ -38,24 +38,18 @@ import Groupoids.Ambient.Type.Terminal
 
 import Groupoids.Category
 import Groupoids.Category.Instances.SETOID
-import Groupoids.Category.Instances.SETOID.Closed
-import Groupoids.Category.Instances.SETOID.Monoidal
 import Groupoids.Category.Iso
 import Groupoids.Category.Reasoning
 import Groupoids.Category.Yoneda
 
 import Groupoids.Groupoid
 import Groupoids.Groupoid.Bifunctor
-import Groupoids.Groupoid.Closed
 import Groupoids.Groupoid.Dinatural
-import Groupoids.Groupoid.Enriched
 import Groupoids.Groupoid.Instances.GROUPOID
 import Groupoids.Groupoid.Instances.SETOID
 import Groupoids.Groupoid.Iso
-import Groupoids.Groupoid.Monoidal
 import Groupoids.Groupoid.Presheaf
 import Groupoids.Groupoid.Profunctor
-import Groupoids.Groupoid.VirtualDouble
 
 import Groupoids.Preorder
 import Groupoids.Preorder.Reasoning
