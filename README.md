@@ -1,11 +1,13 @@
 # agda-groupoids
 
-Groupoids in Agda with no postulates
+Groupoids in Agda
 
 ### Description
 
-This formalization of groupoids is developed in an enriched style
-where hom sets are replaced by hom setoids and setoid respectful
-morphisms are used for composition, identity, inverse, etc. This
-development does not use any postulates such as "functional
-extensionality" or the univalence axiom.
+This formalization of groupoids is developed in the e-categorical fashion using setoids. Everything is stratified using level parameters and nothing is postulated.
+
+#### Related Libraries
+
+* [agda-groupoids-cosmoi](https://github.com/freebroccolo/agda-groupoids-cosmoi)
+* [agda-groupoids-enriched](https://github.com/freebroccolo/agda-groupoids-enriched)
+* [agda-groupoids-fibred](https://github.com/freebroccolo/agda-groupoids-fibred)
