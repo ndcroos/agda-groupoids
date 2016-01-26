@@ -5,5 +5,5 @@ Groupoids in Agda
 ### Description
 
 This is a theory of groupoids developed using coinductive `(n, r)`-globular hom
-complexes (quivers). The approach be understood as both a generalization and
+complexes (quivers). The approach can be understood as both a generalization and
 simplification of the setoid-enriched approach to formal groupoids.
