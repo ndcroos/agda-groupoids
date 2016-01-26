@@ -1,0 +1,6 @@
+[submodule "modules/agda-prelude"]
+	path = modules/agda-prelude
+	url = git://github.com/freebroccolo/agda-prelude.git
+[submodule "modules/agda-globular-objects"]
+	path = modules/agda-globular-objects
+	url = git://github.com/freebroccolo/agda-globular-objects.git
