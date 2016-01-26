@@ -1,3 +1,5 @@
 name: groupoids
 include:
   .
+  ../modules/agda-prelude/src
+  ../modules/agda-globular-objects/src
