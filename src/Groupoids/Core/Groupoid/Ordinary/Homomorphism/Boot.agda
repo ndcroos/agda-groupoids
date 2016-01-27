@@ -84,7 +84,7 @@ module ⇒₀ where
     → Fun₀ A C
   cmp G F = seq F G
 
-open ⇒₀
+open ⇒₀ public
   using (Fun₀)
   using (ap₀₀)
   using (ap₀₁)
@@ -202,7 +202,7 @@ module ⇒₁ where
     → Fun₁ F H
   cmp β α = seq α β
 
-open ⇒₁
+open ⇒₁ public
   using (Fun₁)
   using (ap₁₀)
   using (ap₁₁)
