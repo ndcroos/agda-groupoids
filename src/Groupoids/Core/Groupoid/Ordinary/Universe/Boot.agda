@@ -14,13 +14,11 @@ record 𝔘 n (r : Fin 2) ..ℓ : Set (lsuc ℓ) where
     [_] : Gph (2+ n) (⊆nat∞ r) ℓ
   complex = [_]
   field
-    lvl : Type complex (2+ n)
-  open Gph public
-  open Cell complex
-
+    lvl : Type [_] (2+ n)
   isGpd : Set
   isGpd = r T.≡ ze
-
+  open Gph public
+  open Cell complex
   field
     idn₀
       : {a : ·}
