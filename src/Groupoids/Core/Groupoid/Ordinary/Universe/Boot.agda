@@ -6,17 +6,17 @@ open import Groupoids.Common
 open 𝔊
   hiding (_▸_)
 
-record 𝔘 n (r : Fin 2) ..ℓ : Set (lsuc ℓ) where
+record 𝔘 (n r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   no-eta-equality
   infix 3 [_]
   open Fin
   field
-    [_] : Gph (2+ n) (⊆nat∞ r) ℓ
+    [_] : Gph (2+ n) r ℓ
   complex = [_]
   field
     lvl : Type [_] (2+ n)
   isGpd : Set
-  isGpd = r T.≡ ze
+  isGpd = r T.≡ 0
   open Gph public
   open Cell complex
   field
@@ -159,3 +159,5 @@ record 𝔘 n (r : Fin 2) ..ℓ : Set (lsuc ℓ) where
 
   {-# DISPLAY cell A i a b = A ▸ i ⊢ a ↝ b #-}
   {-# DISPLAY cell A 0 = A ▸ #-}
+
+open 𝔘 public
