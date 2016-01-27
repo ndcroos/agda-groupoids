@@ -11,6 +11,7 @@ import Groupoids.Core.Groupoid.Ordinary.Construction.Opposite
 import Groupoids.Core.Groupoid.Ordinary.Construction.Path
 import Groupoids.Core.Groupoid.Ordinary.Homomorphism
 import Groupoids.Core.Groupoid.Ordinary.Homomorphism.Boot
+import Groupoids.Core.Groupoid.Ordinary.Isomorphism
 import Groupoids.Core.Groupoid.Ordinary.Monoidal.Copower
 import Groupoids.Core.Groupoid.Ordinary.Monoidal.Diagonal
 import Groupoids.Core.Groupoid.Ordinary.Monoidal.Exponential
