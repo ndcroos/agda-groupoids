@@ -18,7 +18,7 @@ record 𝔘 (n r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   isGpd : Set
   isGpd = r T.≡ 0
   open Gph public
-  open Cell complex
+  open Cell {𝒢 = complex}
   field
     idn₀
       : {a : ·}
@@ -161,3 +161,52 @@ record 𝔘 (n r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   {-# DISPLAY cell A 0 = A ▸ #-}
 
 open 𝔘 public
+
+module _ where
+  infix 2 _⟓*_
+  infix 2 _⟓_
+  infix 2 _⟔_
+  infix 4 _⁻¹
+
+  _⟓_ : Display
+  _⟓_ = record {}
+
+  _⟔_ : Display
+  _⟔_ = record {}
+
+  _⁻¹ : Display
+  _⁻¹ = record {}
+
+  _⟓*_ : Display
+  _⟓*_ = record {}
+
+  _⁻¹* : Display
+  _⁻¹* = record {}
+
+  open 𝔘
+  open Cell
+
+  {-# DISPLAY · {𝒢 = 𝒢} = 𝒢 ▸ #-}
+  {-# DISPLAY _⊢_↝_ {𝒢 = 𝒢} i a b = 𝒢 ▸ i ⊢ a ↝ b #-}
+  {-# DISPLAY _⊢_↝_ {𝒢 = 𝒢} i {a}{b} f g = 𝒢 ▸ i ⊢ f ↝ g #-}
+  {-# DISPLAY _⊢_↝_ {𝒢 = 𝒢} i {a}{b}{f}{g} α β = 𝒢 ▸ i ⊢ α ↝ β #-}
+
+  {-# DISPLAY idn₀ A = ↻ #-}
+  {-# DISPLAY idn₁ A = ↻ #-}
+
+  {-# DISPLAY seq₀ A f g = f ⟓ g #-}
+  {-# DISPLAY seq₁ A α β = α ⟓ β #-}
+
+  {-# DISPLAY cmp₀ A g f = g ⟔ f #-}
+  {-# DISPLAY cmp₁ A β α = β ⟔ α #-}
+
+  {-# DISPLAY inv₀ A f = f ⁻¹ #-}
+  {-# DISPLAY inv₁ A α = α ⁻¹ #-}
+
+  {-# DISPLAY seq₀* A β α = α ⟓* β #-}
+  {-# DISPLAY inv₀* A α = α ⁻¹* #-}
+
+open 𝔊 public
+  using (⊢_)
+  using (_↝_)
+open 𝔊.Cell public
