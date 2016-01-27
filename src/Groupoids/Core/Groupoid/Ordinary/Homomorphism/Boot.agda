@@ -159,7 +159,7 @@ module ⇒₁ where
     → {B : 𝔘 n r ℓ₁}
     → {F G : Fun₀ A B}
     → (α : Fun₁ F G)
-    → {≜ : r T.≡ ze}
+    → {≜ : r T.≡ 0}
     → Fun₁ G F
   ap₁₀ (inv {B = B} α {T.≡.idn}) a =
     inv₀ B (ap₁₀ α a) {T.≡.idn}
