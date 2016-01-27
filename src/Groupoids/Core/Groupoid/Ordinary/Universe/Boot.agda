@@ -17,6 +17,10 @@ record 𝔘 n (r : Fin 2) ..ℓ : Set (lsuc ℓ) where
     lvl : Type complex (2+ n)
   open Gph public
   open Cell complex
+
+  isGpd : Set
+  isGpd = r T.≡ ze
+
   field
     idn₀
       : {a : ·}
@@ -29,7 +33,7 @@ record 𝔘 n (r : Fin 2) ..ℓ : Set (lsuc ℓ) where
     inv₀
       : {a b : ·}
       → (f : 1 ⊢ a ↝ b)
-      → {≜ : r T.≡ ze}
+      → {≜ : isGpd}
       → 1 ⊢ b ↝ a
   field
     seq₀*
@@ -43,7 +47,7 @@ record 𝔘 n (r : Fin 2) ..ℓ : Set (lsuc ℓ) where
       : {a b : ·}
       → {f g : 1 ⊢ a ↝ b}
       → (α : 2 ⊢ f ↝ g)
-      → {≜ : r T.≡ ze}
+      → {≜ : isGpd}
       → 2 ⊢ inv₀ f {≜} ↝ inv₀ g {≜}
   field
     ⊢λ₀
@@ -63,12 +67,12 @@ record 𝔘 n (r : Fin 2) ..ℓ : Set (lsuc ℓ) where
     ⊢λ₀⁻¹
       : {a b : ·}
       → {f : 1 ⊢ a ↝ b}
-      → {≜ : r T.≡ ze}
+      → {≜ : isGpd}
       → 2 ⊢ seq₀ (inv₀ f {≜}) f ↝ idn₀
     ⊢ρ₀⁻¹
       : {a b : ·}
       → {f : 1 ⊢ a ↝ b}
-      → {≜ : r T.≡ ze}
+      → {≜ : isGpd}
       → 2 ⊢ seq₀ f (inv₀ f {≜}) ↝ idn₀
   field
     idn₁
