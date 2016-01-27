@@ -5,12 +5,17 @@ module Groupoids.Everything where
 import Groupoids.Common
 import Groupoids.Core.Groupoid.Ordinary
 import Groupoids.Core.Groupoid.Ordinary.Construction.Chaotic
+import Groupoids.Core.Groupoid.Ordinary.Construction.Comma
 import Groupoids.Core.Groupoid.Ordinary.Construction.Core
+import Groupoids.Core.Groupoid.Ordinary.Construction.Coslice
 import Groupoids.Core.Groupoid.Ordinary.Construction.Free
+import Groupoids.Core.Groupoid.Ordinary.Construction.Glueing
+import Groupoids.Core.Groupoid.Ordinary.Construction.Grothendieck
 import Groupoids.Core.Groupoid.Ordinary.Construction.Lift
 import Groupoids.Core.Groupoid.Ordinary.Construction.Localization
 import Groupoids.Core.Groupoid.Ordinary.Construction.Opposite
 import Groupoids.Core.Groupoid.Ordinary.Construction.Path
+import Groupoids.Core.Groupoid.Ordinary.Construction.Slice
 import Groupoids.Core.Groupoid.Ordinary.Homomorphism
 import Groupoids.Core.Groupoid.Ordinary.Homomorphism.Boot
 import Groupoids.Core.Groupoid.Ordinary.Isomorphism
