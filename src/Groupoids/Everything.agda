@@ -8,6 +8,7 @@ import Groupoids.Core.Groupoid.Ordinary.Construction.Chaotic
 import Groupoids.Core.Groupoid.Ordinary.Construction.Core
 import Groupoids.Core.Groupoid.Ordinary.Construction.Free
 import Groupoids.Core.Groupoid.Ordinary.Construction.Lift
+import Groupoids.Core.Groupoid.Ordinary.Construction.Localization
 import Groupoids.Core.Groupoid.Ordinary.Construction.Opposite
 import Groupoids.Core.Groupoid.Ordinary.Construction.Path
 import Groupoids.Core.Groupoid.Ordinary.Homomorphism
