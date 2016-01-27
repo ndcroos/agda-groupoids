@@ -5,6 +5,7 @@ module Groupoids.Everything where
 import Groupoids.Common
 import Groupoids.Core.Groupoid.Ordinary
 import Groupoids.Core.Groupoid.Ordinary.Construction.Chaotic
+import Groupoids.Core.Groupoid.Ordinary.Construction.Core
 import Groupoids.Core.Groupoid.Ordinary.Construction.Free
 import Groupoids.Core.Groupoid.Ordinary.Construction.Lift
 import Groupoids.Core.Groupoid.Ordinary.Construction.Opposite
