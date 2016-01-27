@@ -160,36 +160,16 @@ record 𝔘 (n r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   {-# DISPLAY cell A i a b = A ▸ i ⊢ a ↝ b #-}
   {-# DISPLAY cell A 0 = A ▸ #-}
 
-open 𝔘 public
-
-module _ where
   infix 2 _⟓*_
   infix 2 _⟓_
   infix 2 _⟔_
   infix 4 _⁻¹
 
-  _⟓_ : Display
-  _⟓_ = record {}
-
-  _⟔_ : Display
-  _⟔_ = record {}
-
-  _⁻¹ : Display
-  _⁻¹ = record {}
-
-  _⟓*_ : Display
-  _⟓*_ = record {}
-
-  _⁻¹* : Display
-  _⁻¹* = record {}
-
-  open 𝔘
-  open Cell
-
-  {-# DISPLAY · {𝒢 = 𝒢} = 𝒢 ▸ #-}
-  {-# DISPLAY _⊢_↝_ {𝒢 = 𝒢} i a b = 𝒢 ▸ i ⊢ a ↝ b #-}
-  {-# DISPLAY _⊢_↝_ {𝒢 = 𝒢} i {a}{b} f g = 𝒢 ▸ i ⊢ f ↝ g #-}
-  {-# DISPLAY _⊢_↝_ {𝒢 = 𝒢} i {a}{b}{f}{g} α β = 𝒢 ▸ i ⊢ α ↝ β #-}
+  _⟓_ = #display
+  _⟔_ = #display
+  _⁻¹ = #display
+  _⟓*_ = #display
+  _⁻¹* = #display
 
   {-# DISPLAY idn₀ A = ↻ #-}
   {-# DISPLAY idn₁ A = ↻ #-}
@@ -205,7 +185,15 @@ module _ where
 
   {-# DISPLAY seq₀* A β α = α ⟓* β #-}
   {-# DISPLAY inv₀* A α = α ⁻¹* #-}
+open 𝔘 public
 
+module _ where
+  open 𝔘
+  open Cell
+  {-# DISPLAY · {𝒢 = 𝒢} = 𝒢 ▸ #-}
+  {-# DISPLAY _⊢_↝_ {𝒢 = 𝒢} i a b = 𝒢 ▸ i ⊢ a ↝ b #-}
+  {-# DISPLAY _⊢_↝_ {𝒢 = 𝒢} i {a}{b} f g = 𝒢 ▸ i ⊢ f ↝ g #-}
+  {-# DISPLAY _⊢_↝_ {𝒢 = 𝒢} i {a}{b}{f}{g} α β = 𝒢 ▸ i ⊢ α ↝ β #-}
 open 𝔊 public
   using (⊢_)
   using (_↝_)
