@@ -9,7 +9,6 @@ open import Groupoids.Core.Groupoid.Ordinary.Universe.Boot
 -- FIXME: this should probably go in globular-objects
 module _ where
   open 𝔊
-  open ≅
 
   mutual
     𝟙↝· : ∀ {n r i}..{ℓ} → 𝔊.Type {n = n}{r} (𝟙↑ {ℓ = ℓ}) i
@@ -20,8 +19,6 @@ module _ where
     [Type].π ([𝟙↝·] i) = 𝟙↝·
 
 module _ where
-  open 𝔊
-    using (⇈_)
   open ≅
 
   [_]/≅

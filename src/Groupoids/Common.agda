@@ -5,6 +5,12 @@ module Groupoids.Common where
 open import Globular.Common public
   hiding (_▸_)
 open import Globular public
+open 𝔊 public
+  using (∀↝·)
+  using (⇈_)
+
+open T public
+  using (ι) -- ⊔⇑
 
 infixr 3 _⊙_
 
