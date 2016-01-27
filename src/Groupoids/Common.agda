@@ -14,8 +14,8 @@ open T public
 
 infixr 3 _⊙_
 
-pattern 1+ n = su (ℕ∞.ι n)
-pattern 2+ n = 1+ (su (ℕ∞.ι n))
+pattern 1+[_] n = su (ℕ∞.ι n)
+pattern 2+[_] n = 1+[ su (ℕ∞.ι n) ]
 
 _⊙_ : Display
 _⊙_ = record {}

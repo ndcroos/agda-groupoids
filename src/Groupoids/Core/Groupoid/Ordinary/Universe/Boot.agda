@@ -11,10 +11,10 @@ record 𝔘 (n r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   infix 3 [_]
   open Fin
   field
-    [_] : Gph (2+ n) r ℓ
+    [_] : Gph 2+[ n ] r ℓ
   complex = [_]
   field
-    lvl : Type [_] (2+ n)
+    lvl : Type [_] 2+[ n ]
   isGpd : Set
   isGpd = r T.≡ 0
   open Gph public
