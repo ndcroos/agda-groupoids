@@ -27,7 +27,6 @@ module ⇒₀ where
   ↻ (⇇ (⇇ [ A ⇒₀ B ] _ _) _ _) = *
   ↻ (⇇ [ A ⇒₀ B ] F G) {α} = ι λ a → ↻ (B ▸ 1 ⊩ ap₀₀ F a ↝ ap₀₀ G a)
   ↻ [ A ⇒₀ B ] = ⇒₁.idn
-  lvl (A ⇒₀ B) = ⇈ ⇈ ⇈ ∀↝·
   idn₀ (A ⇒₀ B) = ⇒₁.idn
   seq₀ (A ⇒₀ B) = ⇒₁.seq
   inv₀ (A ⇒₀ B) α {≜} = ⇒₁.inv α {≜}

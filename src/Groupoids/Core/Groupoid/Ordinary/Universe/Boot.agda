@@ -13,8 +13,6 @@ record 𝔘 (n r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   field
     [_] : Gph 2+[ n ] r ℓ
   complex = [_]
-  field
-    lvl : Type [_] 2+[ n ]
   isGpd : Set
   isGpd = r T.≡ 0
   open Gph public
