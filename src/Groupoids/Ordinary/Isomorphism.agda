@@ -29,8 +29,8 @@ module ≅ where
       → A ⊢ a ≅ a
     » idn = idn₀ A
     « idn = idn₀ A
-    ⊢»« idn = ⊢λ₀ A
-    ⊢«» idn = ⊢ρ₀ A
+    ⊢»« idn = ⊢idn₀-λ A
+    ⊢«» idn = ⊢idn₀-ρ A
 
     seq
       : ∀ {a b c}
@@ -43,29 +43,29 @@ module ≅ where
       (seq₀ A «[ g ] «[ f ])
     ⊢»« (seq f g) =
       (seq₁ A
-        (⊢α₀ A)
+        (⊢seq₀-α A)
         (seq₁ A
-          (seq₀*λ A
+          (seq₀*-λ A
             (seq₁ A
               (inv₁ A
-                (⊢α₀ A))
+                (⊢seq₀-α A))
             (seq₁ A
-              (seq₀*ρ A
+              (seq₀*-ρ A
                 (⊢»« g))
-            (⊢ρ₀ A))))
+            (⊢idn₀-ρ A))))
           (⊢»« f)))
     ⊢«» (seq f g) =
       seq₁ A
-        (⊢α₀ A)
+        (⊢seq₀-α A)
         (seq₁ A
-          (seq₀*λ A
+          (seq₀*-λ A
             (seq₁ A
               (inv₁ A
-                (⊢α₀ A))
+                (⊢seq₀-α A))
               (seq₁ A
-                (seq₀*ρ A
+                (seq₀*-ρ A
                   (⊢«» f))
-                (⊢ρ₀ A))))
+                (⊢idn₀-ρ A))))
           (⊢«» g))
 
     inv

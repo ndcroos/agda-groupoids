@@ -18,11 +18,11 @@ module ⊗ where
   inv₀ (A ⊗ B) (f , g) {≜} = inv₀ A f {≜} , inv₀ B g {≜}
   seq₀* (A ⊗ B) (α₀ , β₀)(α₁ , β₁) = seq₀* A α₀ α₁ , seq₀* B β₀ β₁
   inv₀* (A ⊗ B) (α , β) {≜} = inv₀* A α {≜} , inv₀* B β {≜}
-  ⊢λ₀ (A ⊗ B) = ⊢λ₀ A , ⊢λ₀ B
-  ⊢ρ₀ (A ⊗ B) = ⊢ρ₀ A , ⊢ρ₀ B
-  ⊢α₀ (A ⊗ B) = ⊢α₀ A , ⊢α₀ B
-  ⊢λ₀⁻¹ (A ⊗ B) {≜ = ≜} = ⊢λ₀⁻¹ A {≜ = ≜} , ⊢λ₀⁻¹ B {≜ = ≜}
-  ⊢ρ₀⁻¹ (A ⊗ B) {≜ = ≜} = ⊢ρ₀⁻¹ A {≜ = ≜} , ⊢ρ₀⁻¹ B {≜ = ≜}
+  ⊢idn₀-λ (A ⊗ B) = ⊢idn₀-λ A , ⊢idn₀-λ B
+  ⊢idn₀-ρ (A ⊗ B) = ⊢idn₀-ρ A , ⊢idn₀-ρ B
+  ⊢seq₀-α (A ⊗ B) = ⊢seq₀-α A , ⊢seq₀-α B
+  ⊢inv₀-λ (A ⊗ B) {≜ = ≜} = ⊢inv₀-λ A {≜ = ≜} , ⊢inv₀-λ B {≜ = ≜}
+  ⊢inv₀-ρ (A ⊗ B) {≜ = ≜} = ⊢inv₀-ρ A {≜ = ≜} , ⊢inv₀-ρ B {≜ = ≜}
   idn₁ (A ⊗ B) = idn₁ A , idn₁ B
   seq₁ (A ⊗ B) (α₀ , β₀)(α₁ , β₁) = seq₁ A α₀ α₁ , seq₁ B β₀ β₁
   inv₁ (A ⊗ B) (α , β) = inv₁ A α , inv₁ B β

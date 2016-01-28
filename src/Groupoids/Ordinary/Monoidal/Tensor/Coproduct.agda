@@ -46,48 +46,48 @@ module ⊕ where
   inv₀* (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}{()}
   inv₀* (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁} (ι β) {≜} =
     ι (inv₀* B β {≜})
-  ⊢λ₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁} =
-    ι (⊢λ₀ A)
-  ⊢λ₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{()}
-  ⊢λ₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}
-  ⊢λ₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁} =
-    ι (⊢λ₀ B)
-  ⊢ρ₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁} =
-    ι (⊢ρ₀ A)
-  ⊢ρ₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{()}
-  ⊢ρ₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}
-  ⊢ρ₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁} =
-    ι (⊢ρ₀ B)
-  ⊢α₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inl a₂}{T.⊕.inl a₃}{f}{g}{h} =
-    ι (⊢α₀ A)
-  ⊢α₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inl a₂}{T.⊕.inr b₃}{f}{g}{()}
-  ⊢α₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inr b₂}{T.⊕.inl a₃}{f}{()}{()}
-  ⊢α₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inr b₂}{T.⊕.inr b₃}{f}{()}{h}
-  ⊢α₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inl a₂}{T.⊕.inl a₃}{()}{()}{h}
-  ⊢α₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inl a₂}{T.⊕.inr b₃}{()}{()}{()}
-  ⊢α₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inr b₂}{T.⊕.inl a₃}{()}{g}{()}
-  ⊢α₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inr b₂}{T.⊕.inr b₃}{()}{g}{h}
-  ⊢α₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inl a₂}{T.⊕.inl a₃}{()}{g}{h}
-  ⊢α₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inl a₂}{T.⊕.inr b₃}{()}{g}{()}
-  ⊢α₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inr b₂}{T.⊕.inl a₃}{()}{()}{()}
-  ⊢α₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inr b₂}{T.⊕.inr b₃}{()}{()}{h}
-  ⊢α₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inl a₂}{T.⊕.inl a₃}{f}{()}{h}
-  ⊢α₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inl a₂}{T.⊕.inr b₃}{f}{()}{()}
-  ⊢α₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inr b₂}{T.⊕.inl a₃}{f}{g}{()}
-  ⊢α₀ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inr b₂}{T.⊕.inr b₃}{f}{g}{h} =
-    ι (⊢α₀ B)
-  ⊢λ₀⁻¹ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{≜ = ≜} =
-    ι (⊢λ₀⁻¹ A)
-  ⊢λ₀⁻¹ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{()}
-  ⊢λ₀⁻¹ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}
-  ⊢λ₀⁻¹ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{≜ = ≜} =
-    ι (⊢λ₀⁻¹ B)
-  ⊢ρ₀⁻¹ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{≜ = ≜} =
-    ι (⊢ρ₀⁻¹ A)
-  ⊢ρ₀⁻¹ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{()}
-  ⊢ρ₀⁻¹ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}
-  ⊢ρ₀⁻¹ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{≜ = ≜} =
-    ι (⊢ρ₀⁻¹ B)
+  ⊢idn₀-λ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁} =
+    ι (⊢idn₀-λ A)
+  ⊢idn₀-λ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{()}
+  ⊢idn₀-λ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}
+  ⊢idn₀-λ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁} =
+    ι (⊢idn₀-λ B)
+  ⊢idn₀-ρ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁} =
+    ι (⊢idn₀-ρ A)
+  ⊢idn₀-ρ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{()}
+  ⊢idn₀-ρ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}
+  ⊢idn₀-ρ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁} =
+    ι (⊢idn₀-ρ B)
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inl a₂}{T.⊕.inl a₃}{f}{g}{h} =
+    ι (⊢seq₀-α A)
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inl a₂}{T.⊕.inr b₃}{f}{g}{()}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inr b₂}{T.⊕.inl a₃}{f}{()}{()}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inr b₂}{T.⊕.inr b₃}{f}{()}{h}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inl a₂}{T.⊕.inl a₃}{()}{()}{h}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inl a₂}{T.⊕.inr b₃}{()}{()}{()}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inr b₂}{T.⊕.inl a₃}{()}{g}{()}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inr b₂}{T.⊕.inr b₃}{()}{g}{h}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inl a₂}{T.⊕.inl a₃}{()}{g}{h}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inl a₂}{T.⊕.inr b₃}{()}{g}{()}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inr b₂}{T.⊕.inl a₃}{()}{()}{()}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inr b₂}{T.⊕.inr b₃}{()}{()}{h}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inl a₂}{T.⊕.inl a₃}{f}{()}{h}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inl a₂}{T.⊕.inr b₃}{f}{()}{()}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inr b₂}{T.⊕.inl a₃}{f}{g}{()}
+  ⊢seq₀-α (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inr b₂}{T.⊕.inr b₃}{f}{g}{h} =
+    ι (⊢seq₀-α B)
+  ⊢inv₀-λ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{≜ = ≜} =
+    ι (⊢inv₀-λ A)
+  ⊢inv₀-λ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{()}
+  ⊢inv₀-λ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}
+  ⊢inv₀-λ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{≜ = ≜} =
+    ι (⊢inv₀-λ B)
+  ⊢inv₀-ρ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{≜ = ≜} =
+    ι (⊢inv₀-ρ A)
+  ⊢inv₀-ρ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{()}
+  ⊢inv₀-ρ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}
+  ⊢inv₀-ρ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁}{≜ = ≜} =
+    ι (⊢inv₀-ρ B)
   idn₁ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁} =
     ι (idn₁ A)
   idn₁ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inr b₁}{()}

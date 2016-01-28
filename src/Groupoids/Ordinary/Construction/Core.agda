@@ -24,26 +24,26 @@ seq₀* (core A) = seq₀* A
 inv₀* (core A) {f = f}{g = g} α =
   (seq₁ A
     (inv₁ A
-      (⊢ρ₀ A))
+      (⊢idn₀-ρ A))
     (seq₁ A
-      (seq₀*ρ A
+      (seq₀*-ρ A
         (inv₁ A
           (⊢»« g)))
       (seq₁ A
-        (⊢α₀ A)
+        (⊢seq₀-α A)
         (seq₁ A
           (seq₀* A
             (seq₁ A
-              (seq₀*ρ A
+              (seq₀*-ρ A
                 (inv₁ A α))
               (⊢«» f))
             (idn₁ A))
-          (⊢λ₀ A)))))
-⊢λ₀ (core A) = ⊢λ₀ A
-⊢ρ₀ (core A) = ⊢ρ₀ A
-⊢α₀ (core A) = ⊢α₀ A
-⊢λ₀⁻¹ (core A) {f = f} = ⊢«» f
-⊢ρ₀⁻¹ (core A) {f = f} = ⊢»« f
+          (⊢idn₀-λ A)))))
+⊢idn₀-λ (core A) = ⊢idn₀-λ A
+⊢idn₀-ρ (core A) = ⊢idn₀-ρ A
+⊢seq₀-α (core A) = ⊢seq₀-α A
+⊢inv₀-λ (core A) {f = f} = ⊢«» f
+⊢inv₀-ρ (core A) {f = f} = ⊢»« f
 idn₁ (core A) = idn₁ A
 seq₁ (core A) = seq₁ A
 inv₁ (core A) = inv₁ A

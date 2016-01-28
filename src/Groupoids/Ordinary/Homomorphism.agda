@@ -31,11 +31,11 @@ module ⇒₀ where
   inv₀ (A ⇒₀ B) α {≜} = ⇒₁.inv α {≜}
   seq₀* (A ⇒₀ B) (ι φ) (ι ψ) = ι λ a → seq₀* B (φ a) (ψ a)
   inv₀* (A ⇒₀ B) (ι ψ) {≜ = T.≡.idn} = ι λ a → inv₀* B (ψ a)
-  ⊢λ₀ (A ⇒₀ B) = ι λ a → ⊢λ₀ B
-  ⊢ρ₀ (A ⇒₀ B) = ι λ a → ⊢ρ₀ B
-  ⊢α₀ (A ⇒₀ B) = ι λ a → ⊢α₀ B
-  ⊢λ₀⁻¹ (A ⇒₀ B) {≜ = T.≡.idn} = ι λ a → ⊢λ₀⁻¹ B
-  ⊢ρ₀⁻¹ (A ⇒₀ B) {≜ = T.≡.idn} = ι λ a → ⊢ρ₀⁻¹ B
+  ⊢idn₀-λ (A ⇒₀ B) = ι λ a → ⊢idn₀-λ B
+  ⊢idn₀-ρ (A ⇒₀ B) = ι λ a → ⊢idn₀-ρ B
+  ⊢seq₀-α (A ⇒₀ B) = ι λ a → ⊢seq₀-α B
+  ⊢inv₀-λ (A ⇒₀ B) {≜ = T.≡.idn} = ι λ a → ⊢inv₀-λ B
+  ⊢inv₀-ρ (A ⇒₀ B) {≜ = T.≡.idn} = ι λ a → ⊢inv₀-ρ B
   idn₁ (A ⇒₀ B) = ι λ a → idn₁ B
   seq₁ (A ⇒₀ B) (ι φ) (ι ψ) = ι λ a → seq₁ B (φ a) (ψ a)
   inv₁ (A ⇒₀ B) (ι φ) = ι λ a → inv₁ B (φ a)

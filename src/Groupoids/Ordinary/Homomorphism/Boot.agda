@@ -127,8 +127,8 @@ module ⇒₁ where
     (idn₀ B)
   ap₁₁ (idn {B = B}{F = F}) f =
     (seq₁ B
-      (⊢ρ₀ B)
-      (inv₁ B (⊢λ₀ B)))
+      (⊢idn₀-ρ B)
+      (inv₁ B (⊢idn₀-λ B)))
 
   seq
     : ∀ {n r}..{ℓ₀ ℓ₁}
@@ -144,14 +144,14 @@ module ⇒₁ where
       (ap₁₀ β a))
   ap₁₁ (seq {B = B} α β) f =
     (seq₁ B
-      (⊢α₀ B)
+      (⊢seq₀-α B)
       (seq₁ B
-        (seq₀*λ B (ap₁₁ α f))
+        (seq₀*-λ B (ap₁₁ α f))
         (seq₁ B
-          (inv₁ B (⊢α₀ B))
+          (inv₁ B (⊢seq₀-α B))
           (seq₁ B
-            (seq₀*ρ B (ap₁₁ β f))
-            (⊢α₀ B)))))
+            (seq₀*-ρ B (ap₁₁ β f))
+            (⊢seq₀-α B)))))
 
   inv
     : ∀ {n r}..{ℓ₀ ℓ₁}
@@ -165,32 +165,32 @@ module ⇒₁ where
     inv₀ B (ap₁₀ α a) {T.≡.idn}
   ap₁₁ (inv {B = B}{F}{G} α {T.≡.idn}) {a}{b} f =
     (seq₁ B
-      (seq₀*λ B
+      (seq₀*-λ B
         (seq₁ B
           (inv₁ B
-            (⊢λ₀ B))
-          (seq₀*λ B
+            (⊢idn₀-λ B))
+          (seq₀*-λ B
             (inv₁ B
-              (⊢λ₀⁻¹ B {f = ap₁₀ α a} {≜ = T.≡.idn})))))
+              (⊢inv₀-λ B {f = ap₁₀ α a} {≜ = T.≡.idn})))))
       (seq₁ B
-        (seq₀*λ B
+        (seq₀*-λ B
           (seq₁ B
             (inv₁ B
-              (⊢α₀ B))
-            (seq₀*ρ B
+              (⊢seq₀-α B))
+            (seq₀*-ρ B
               (inv₁ B
                 (ap₁₁ α f)))))
         (seq₁ B
           (inv₁ B
-            (⊢α₀ B))
-          (seq₀*ρ B
+            (⊢seq₀-α B))
+          (seq₀*-ρ B
             (seq₁ B
               (inv₁ B
-                (⊢α₀ B))
+                (⊢seq₀-α B))
               (seq₁ B
-                (seq₀*ρ B
-                  (⊢ρ₀⁻¹ B))
-                (⊢ρ₀ B)))))))
+                (seq₀*-ρ B
+                  (⊢inv₀-ρ B))
+                (⊢idn₀-ρ B)))))))
 
   cmp
     : ∀ {n r}..{ℓ₀ ℓ₁}
