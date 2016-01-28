@@ -6,18 +6,6 @@ open import Groupoids.Common
 open import Groupoids.Core.Groupoid.Ordinary.Isomorphism
 open import Groupoids.Core.Groupoid.Ordinary.Universe.Boot
 
--- FIXME: this should probably go in globular-objects
-module _ where
-  open 𝔊
-
-  mutual
-    𝟙↝· : ∀ {n r i}..{ℓ} → 𝔊.Type {n = n}{r} (𝟙↑ {ℓ = ℓ}) i
-    𝟙↝· {i = ze} = ∀↝·
-    𝟙↝· {i = su i} = su ([𝟙↝·] i)
-
-    [𝟙↝·] : ∀ {n r} i..{ℓ} → [Type] {n = n}{r} (𝟙↑ {ℓ = ℓ}) ([ℕ∞].π i)
-    [Type].π ([𝟙↝·] i) = 𝟙↝·
-
 module _ where
   open ≅
 
