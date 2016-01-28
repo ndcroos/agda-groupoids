@@ -17,10 +17,11 @@ record 𝔘 (n r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   isGpd = r T.≡ 0
   open Gph public
   open Cell {𝒢 = complex}
+  idn₀
+    : {a : ·}
+    → 1 ⊢ a ↝ a
+  idn₀ = ↻ [_]
   field
-    idn₀
-      : {a : ·}
-      → 1 ⊢ a ↝ a
     seq₀
       : {a b c : ·}
       → (f : 1 ⊢ a ↝ b)
@@ -168,6 +169,8 @@ record 𝔘 (n r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   _⁻¹ = #display
   _⟓*_ = #display
   _⁻¹* = #display
+
+  {-# DISPLAY ↻ [_] = idn₀ #-}
 
   {-# DISPLAY idn₀ A = ↻ #-}
   {-# DISPLAY idn₁ A = ↻ #-}

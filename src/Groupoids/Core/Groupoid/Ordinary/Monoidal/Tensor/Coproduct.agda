@@ -14,8 +14,6 @@ module ⊕ where
     → (B : 𝔘 n r ℓ₁)
     → 𝔘 n r _
   [ A ⊕ B ] = [ A ] 𝔊.⊕ [ B ]
-  idn₀ (A ⊕ B) {T.⊕.inl a} = ι (idn₀ A)
-  idn₀ (A ⊕ B) {T.⊕.inr b} = ι (idn₀ B)
   seq₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inl a₂} (ι f) (ι g) =
     ι (seq₀ A f g)
   seq₀ (A ⊕ B) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inr b₂} f  ()

@@ -20,7 +20,6 @@ module _ where
   ↻ (⇇ (⇇ ([ [ A ]/≅ ]) _ _) _ _) = *
   ↻ (⇇ ([ [ A ]/≅ ]) a b) = ↻ (A ▸ 1 ⊩ a ↝ b)
   ↻ ([ [ A ]/≅ ]) = idn A
-  idn₀ [ A ]/≅ = idn A
   seq₀ [ A ]/≅ = seq A
   inv₀ [ A ]/≅ f = inv A f
   seq₀* [ A ]/≅ = seq₀* A
