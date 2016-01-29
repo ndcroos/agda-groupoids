@@ -73,7 +73,7 @@ module Comma where
             (seq₀*-ρ V (⊢idn G))
             (⊢idn₀-ρ V)))))
   seq₀ (_↓_ {A = A}{B}{V} F G)
-    {(a₀ , b₀) T.▸ f₀}{(a₁ , b₁) T.▸ f₁}{(a₂ , b₂) T.▸ f₂}
+    -- {(a₀ , b₀) T.▸ f₀}{(a₁ , b₁) T.▸ f₁}{(a₂ , b₂) T.▸ f₂}
     ((α₀ , β₀) T.▸ φ)((α₁ , β₁) T.▸ ψ)
     =
     (seq₀ A α₀ α₁ , seq₀ B β₀ β₁) T.▸
