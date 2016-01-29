@@ -7,7 +7,7 @@ open import Groupoids.Ordinary.Homomorphism.Boot
 open import Groupoids.Ordinary.Universe.Boot
 
 module Comma where
-  open Fun₀
+  open ⇒₀
 
   _↓_
     : ∀ {n r}..{ℓ₀ ℓ₁ ℓ₂}
