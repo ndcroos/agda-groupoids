@@ -4,6 +4,7 @@ module Groupoids.Everything where
 
 import Groupoids.Common
 import Groupoids.Ordinary
+import Groupoids.Ordinary.Construction.Arrow
 import Groupoids.Ordinary.Construction.Chaotic
 import Groupoids.Ordinary.Construction.Comma
 import Groupoids.Ordinary.Construction.Core
