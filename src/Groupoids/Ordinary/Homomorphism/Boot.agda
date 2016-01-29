@@ -33,6 +33,11 @@ module ⇒₀ where
         → {f : A ▸ 1 ⊢ a ↝ b}
         → {g : A ▸ 1 ⊢ b ↝ c}
         → B ▸ 2 ⊢ ap₀₁ (seq₀ A f g) ↝ seq₀ B (ap₀₁ f) (ap₀₁ g)
+      ⊢inv
+        : {≜ : r T.≡ ze}
+        → {a b : A ▸}
+        → {f : A ▸ 1 ⊢ a ↝ b}
+        → B ▸ 2 ⊢ ap₀₁ (inv₀ A f {≜}) ↝ inv₀ B (ap₀₁ f) {≜}
 
   open Fun₀ public
 
@@ -51,6 +56,7 @@ module ⇒₀ where
   ap₀₂ idn α = α
   ⊢idn (idn {A = A}) = idn₁ A
   ⊢seq (idn {A = A}) = idn₁ A
+  ⊢inv (idn {A = A}) = idn₁ A
 
   seq
     : ∀ {n r}..{ℓ₀ ℓ₁ ℓ₂}
@@ -68,11 +74,15 @@ module ⇒₀ where
       (ap₀₂ G
         (⊢idn F))
       (⊢idn G))
-  ⊢seq (seq {C = C} G F) =
+  ⊢seq (seq {C = C} F G) =
     (seq₁ C
-      (ap₀₂ F
-        (⊢seq G))
-      (⊢seq F))
+      (ap₀₂ G
+        (⊢seq F))
+      (⊢seq G))
+  ⊢inv (seq {C = C} F G) {≜} =
+    (seq₁ C
+      (ap₀₂ G (⊢inv F {≜}))
+      (⊢inv G {≜}))
 
   cmp
     : ∀ {n r}..{ℓ₀ ℓ₁ ℓ₂}
