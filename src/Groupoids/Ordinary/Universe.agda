@@ -168,11 +168,20 @@ module 𝔘 where
   ⊢«» («⊢seq₀-α» {D = D}) = ι λ a →
     ⊢idn₀-λ D
 
+  -- «Cat» is naturally a 𝔘 2 1 (lsuc ℓ) (large 2-category) structure but
+  -- actually using it as such is problematic with the current definitions in
+  -- this library. The main issue is that we do not allow functors between 𝔘
+  -- structures with different (n, r) dimensions and most of the other
+  -- constructions live at n ≤ 1. We _could_ allow cross-dimension functors but
+  -- doing so would introduce a lot of complexity for a bit of rarely needed
+  -- flexibility. The other reason to lower the dimension is because there are
+  -- currently no coherence constraints cells defined for n ≥ 2. Thus, we
+  -- downshift the n-dimension by 1 so we end up with 𝔘 1 1 (large 1-category).
   «Cat»
     : ∀ r ..ℓ
-    → 𝔘 2 1 _
+    → Cat (lsuc ℓ)
   ● [ «Cat» r ℓ ] = 𝔘 1 r ℓ
-  ⇇ [ «Cat» r ℓ ] A B = [ A ⇔₀ B ]
+  ⇇ [ «Cat» r ℓ ] A B = 𝔊.dim*[ [ A ⇔₀ B ] ]
   ↻ [ «Cat» r ℓ ] = ⇒₀.idn
   seq₀ («Cat» r ℓ) = ⇒₀.seq
   inv₀ («Cat» r ℓ) F {≜ = ()}
@@ -189,7 +198,7 @@ module 𝔘 where
 
   «Gpd»
     : ∀ r ..ℓ
-    → 𝔘 2 0 _
+    → Gpd (lsuc ℓ)
   «Gpd» r ℓ = [ «Cat» r ℓ ]/≅
 
 open 𝔘 public
