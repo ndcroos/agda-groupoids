@@ -96,7 +96,7 @@ module Comma where
     {≜}
     =
     (inv₀ A α₀ {≜} , inv₀ B β₀ {≜}) T.▸
-    seq₁ V
+    (seq₁ V
       (inv₁ V (⊢idn₀-ρ V))
       (seq₁ V
         (seq₀*-ρ V (inv₁ V (⊢inv₀-ρ V {f = ap₀₁ G β₀})))
@@ -121,7 +121,7 @@ module Comma where
                             (ap₀₂ F (⊢inv₀-λ A))
                             (⊢idn F))))
                       (⊢idn₀-λ V))))
-                (seq₀*-ρ V (inv₁ V (⊢inv G))))))))
+                (seq₀*-ρ V (inv₁ V (⊢inv G)))))))))
   seq₀* (_↓_ {A = A}{B}{V} F G)
     -- {(a₀ , b₀) T.▸ f₀}{(a₁ , b₁) T.▸ f₁}{(a₂ , b₂) T.▸ f₂}
     -- {(α₀₀ , β₀₀) T.▸ φ₀}{(α₀₁ , β₀₁) T.▸ ψ₀}{(α₁₀ , β₁₀) T.▸ φ₁}{(α₁₁ , β₁₁) T.▸ ψ₁}
