@@ -12,9 +12,7 @@ module Opposite where
     : ∀ {n r}..{ℓ}
     → (A : 𝔘 n r ℓ)
     → 𝔘 n r ℓ
-  ● [ Op A ] = ● [ A ]
-  ⇇ [ Op A ] a b = ⇇ [ A ] b a
-  ↻ [ Op A ] = ↻ [ A ]
+  [ Op A ] = 𝔊.Op [ A ]
   seq₀ (Op A) = cmp₀ A
   inv₀ (Op A) = inv₀ A
   seq₀* (Op A) = cmp₀* A
