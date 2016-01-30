@@ -10,9 +10,11 @@ open import Groupoids.Ordinary.Monoidal.Unit.Terminal
 open import Groupoids.Ordinary.Universe.Boot
 
 module Coslice where
-  coslice
+  Coslice
     : ∀ {n r}..{ℓ}
     → (A : 𝔘 n r ℓ)
     → (a : A ▸)
     → 𝔘 n r _
-  coslice A a = Δ.ʲ[ 𝟙 ↦ a ] ↓ ⇒₀.idn {A = A}
+  Coslice A a = Δ.ʲ[ 𝟙 ↦ a ] ↓ ⇒₀.idn {A = A}
+
+  syntax Coslice A a = a ↘ A

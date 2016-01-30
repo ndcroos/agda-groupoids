@@ -10,9 +10,11 @@ open import Groupoids.Ordinary.Monoidal.Unit.Terminal
 open import Groupoids.Ordinary.Universe.Boot
 
 module Slice where
-  slice
+  Slice
     : ∀ {n r}..{ℓ}
     → (A : 𝔘 n r ℓ)
     → (a : A ▸)
     → 𝔘 n r _
-  slice A a = ⇒₀.idn {A = A} ↓ Δ.ʲ[ 𝟙 ↦ a ]
+  Slice A a = ⇒₀.idn {A = A} ↓ Δ.ʲ[ 𝟙 ↦ a ]
+
+  syntax Slice A a = A ↙ a
