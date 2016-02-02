@@ -179,6 +179,9 @@ module 𝔘 where
   -- currently no coherence constraint cells defined for n ≥ 2. Thus, we
   -- downshift the n-dimension by 1 so we end up with 𝔘 1 1 (large 1-category).
 
+  -- Note that «Cat» is the category of categories/groupoids depending on
+  -- whether r > 0 (category) or r ≡ 0 (groupoid).
+
   «Cat»
     : ∀ r ..ℓ
     → Cat (lsuc ℓ)
@@ -198,10 +201,14 @@ module 𝔘 where
   seq₁ («Cat» r ℓ) {A}{B} = ≅.seq (A ⇒₀ B)
   inv₁ («Cat» r ℓ) {A}{B} = ≅.inv (A ⇒₀ B)
 
+  -- «Gpd» is the groupoid of categories/groupoids in the same way as «Cat».
+
   «Gpd»
     : ∀ r ..ℓ
     → Gpd (lsuc ℓ)
   «Gpd» r ℓ = [ «Cat» r ℓ ]/≅
+
+  -- «Std» is the category of setoids.
 
   «Std»
     : ∀ r ..ℓ
