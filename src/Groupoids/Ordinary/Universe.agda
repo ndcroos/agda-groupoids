@@ -212,14 +212,14 @@ module 𝔘 where
 
   «Std»
     : ∀ r ..ℓ
-    → Std (lsuc ℓ)
-  ● [ «Std» r ℓ ] = ● [ «Gpd» r ℓ ]
-  ● (⇇ [ «Std» r ℓ ] a b) = ● (⇇ [ «Gpd» r ℓ ] a b)
+    → Cat (lsuc ℓ)
+  ● [ «Std» r ℓ ] = ● [ «Cat» r ℓ ]
+  ● (⇇ [ «Std» r ℓ ] a b) = ● (⇇ [ «Cat» r ℓ ] a b)
   ⇇ (⇇ [ «Std» r ℓ ] _ _) _ _ = 𝔊.𝟙↑
   ↻ (⇇ [ «Std» r ℓ ] _ _) = _
-  ↻ [ «Std» r ℓ ] = idn₀ («Gpd» r ℓ)
-  seq₀ («Std» r ℓ) = seq₀ («Gpd» r ℓ)
-  inv₀ («Std» r ℓ) = inv₀ («Gpd» r ℓ)
+  ↻ [ «Std» r ℓ ] = idn₀ («Cat» r ℓ)
+  seq₀ («Std» r ℓ) = seq₀ («Cat» r ℓ)
+  inv₀ («Std» r ℓ) f {()}
   seq₀* («Std» r ℓ) = _
   inv₀* («Std» r ℓ) = _
   ⊢idn₀-λ («Std» r ℓ) = _
@@ -230,5 +230,53 @@ module 𝔘 where
   idn₁ («Std» r ℓ) = _
   seq₁ («Std» r ℓ) = _
   inv₁ («Std» r ℓ) = _
+
+  hom
+   : ∀ {r}..{ℓ}
+   → (A : 𝔘 r ℓ)
+   → (a b : A ▸)
+   → 𝔘 0 ℓ
+  ● [ hom A x y ] = A ▸ 1 ⊢ x ↝ y
+  ● (⇇ [ hom A x y ] f g) = A ▸ 2 ⊢ f ↝ g
+  ⇇ (⇇ [ hom A x y ] _ _) _ _ = 𝔊.𝟙↑
+  ↻ (⇇ [ hom A x y ] _ _) = _
+  ↻ [ hom A x y ] = idn₁ A
+  seq₀ (hom A x y) = seq₁ A
+  inv₀ (hom A x y) f = inv₁ A f
+  seq₀* (hom A x y) = _
+  inv₀* (hom A x y) = _
+  ⊢idn₀-λ (hom A x y) = _
+  ⊢idn₀-ρ (hom A x y) = _
+  ⊢seq₀-α (hom A x y) = _
+  ⊢inv₀-λ (hom A x y) = _
+  ⊢inv₀-ρ (hom A x y) = _
+  idn₁ (hom A x y) = _
+  seq₁ (hom A x y) = _
+  inv₁ (hom A x y) = _
+
+  hom*
+    : ∀ ..{ℓ}
+    → (A : 𝔘 1 ℓ)
+    → {a₀ a₁ b₀ b₁ : A ▸}
+    → (f : Op A ▸ 1 ⊢ a₀ ↝ a₁)
+    → (g : A ▸ 1 ⊢ b₀ ↝ b₁)
+    → Fun₀ (hom A a₀ b₀) (hom A a₁ b₁)
+  ap₀₀ (hom* A f g) k = seq₀ A f (seq₀ A k g)
+  ap₀₁ (hom* A f g) α = seq₀*-ρ A (seq₀*-λ A α)
+  ap₀₂ (hom* A f g) = _
+  Fun₀.⊢idn (hom* A f g) = _
+  Fun₀.⊢seq (hom* A f g) = _
+  Fun₀.⊢inv (hom* A f g) = _
+
+  «hom»
+    : ∀ ..{ℓ}
+    → (A : 𝔘 1 ℓ)
+    → Fun₀ (Op A ⊗ A) («Std» 0 ℓ)
+  ap₀₀ («hom» A) (a , b) = hom  A a b
+  ap₀₁ («hom» A) (f , g) = hom* A f g
+  ap₀₂ («hom» A) = _
+  Fun₀.⊢idn («hom» A) = _
+  Fun₀.⊢seq («hom» A) = _
+  Fun₀.⊢inv («hom» A) = _
 
 open 𝔘 public
