@@ -264,9 +264,9 @@ module 𝔘 where
   ap₀₀ (hom* A f g) k = seq₀ A f (seq₀ A k g)
   ap₀₁ (hom* A f g) α = seq₀*-ρ A (seq₀*-λ A α)
   ap₀₂ (hom* A f g) = _
-  Fun₀.⊢idn (hom* A f g) = _
-  Fun₀.⊢seq (hom* A f g) = _
-  Fun₀.⊢inv (hom* A f g) = _
+  ⇒₀.⊢idn (hom* A f g) = _
+  ⇒₀.⊢seq (hom* A f g) = _
+  ⇒₀.⊢inv (hom* A f g) = _
 
   «hom»
     : ∀ ..{ℓ}
@@ -275,8 +275,8 @@ module 𝔘 where
   ap₀₀ («hom» A) (a , b) = hom  A a b
   ap₀₁ («hom» A) (f , g) = hom* A f g
   ap₀₂ («hom» A) = _
-  Fun₀.⊢idn («hom» A) = _
-  Fun₀.⊢seq («hom» A) = _
-  Fun₀.⊢inv («hom» A) = _
+  ⇒₀.⊢idn («hom» A) = _
+  ⇒₀.⊢seq («hom» A) = _
+  ⇒₀.⊢inv («hom» A) = _
 
 open 𝔘 public
