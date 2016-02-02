@@ -3,6 +3,8 @@
 module Groupoids.Ordinary.Monoidal.Tensor.Coproduct where
 
 open import Groupoids.Common
+open import Groupoids.Ordinary.Construction.Opposite
+open import Groupoids.Ordinary.Homomorphism
 open import Groupoids.Ordinary.Universe.Boot
 
 module ⊕ where
@@ -106,6 +108,67 @@ module ⊕ where
   inv₁ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}{()}
   inv₁ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁} (ι β) =
     ι (inv₁ B β)
+
+  module ⊢ where
+    -- FIXME: these should be isomorphisms
+
+    op⇒
+      : ∀ {r}..{ℓ₀ ℓ₁}
+      → {A : 𝔘 r ℓ₀}
+      → {B : 𝔘 r ℓ₁}
+      → Fun₀ (Op (A ⊕ B)) (Op A ⊕ Op B)
+    ap₀₀ op⇒ = T.⇒.idn
+    ap₀₁ op⇒ {T.⊕.inl a₀}{T.⊕.inl a₁} = T.⇒.idn
+    ap₀₁ op⇒ {T.⊕.inl a₀}{T.⊕.inr b₁} = T.⇒.idn
+    ap₀₁ op⇒ {T.⊕.inr b₀}{T.⊕.inl a₁} = T.⇒.idn
+    ap₀₁ op⇒ {T.⊕.inr b₀}{T.⊕.inr b₁} = T.⇒.idn
+    ap₀₂ op⇒ {T.⊕.inl a₀}{T.⊕.inl a₁} = T.⇒.idn
+    ap₀₂ op⇒ {T.⊕.inl a₀}{T.⊕.inr b₁} = T.⇒.idn
+    ap₀₂ op⇒ {T.⊕.inr b₀}{T.⊕.inl a₁} = T.⇒.idn
+    ap₀₂ op⇒ {T.⊕.inr b₀}{T.⊕.inr b₁} = T.⇒.idn
+    ⇒₀.⊢idn (op⇒ {A = A}{B}) {T.⊕.inl a} = ι (idn₁ A)
+    ⇒₀.⊢idn (op⇒ {A = A}{B}) {T.⊕.inr b} = ι (idn₁ B)
+    ⇒₀.⊢seq (op⇒ {A = A}{B}) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inl a₂} {f}{g} = ι (idn₁ A)
+    ⇒₀.⊢seq (op⇒ {A = A}{B}) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inr b₂} {f}{()}
+    ⇒₀.⊢seq (op⇒ {A = A}{B}) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inl a₂} {()}{()}
+    ⇒₀.⊢seq (op⇒ {A = A}{B}) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inr b₂} {()}{g}
+    ⇒₀.⊢seq (op⇒ {A = A}{B}) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inl a₂} {()}{g}
+    ⇒₀.⊢seq (op⇒ {A = A}{B}) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inr b₂} {()}{()}
+    ⇒₀.⊢seq (op⇒ {A = A}{B}) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inl a₂} {f}{()}
+    ⇒₀.⊢seq (op⇒ {A = A}{B}) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inr b₂} {f}{g} = ι (idn₁ B)
+    ⇒₀.⊢inv (op⇒ {A = A}{B}) {≜}{T.⊕.inl a₀}{T.⊕.inl a₁} {f} = ι (idn₁ A)
+    ⇒₀.⊢inv (op⇒ {A = A}{B}) {≜}{T.⊕.inl a₀}{T.⊕.inr b₁} {()}
+    ⇒₀.⊢inv (op⇒ {A = A}{B}) {≜}{T.⊕.inr b₀}{T.⊕.inl a₁} {()}
+    ⇒₀.⊢inv (op⇒ {A = A}{B}) {≜}{T.⊕.inr b₀}{T.⊕.inr a₁} {f} = ι (idn₁ B)
+
+    op⇐
+      : ∀ {r}..{ℓ₀ ℓ₁}
+      → {A : 𝔘 r ℓ₀}
+      → {B : 𝔘 r ℓ₁}
+      → Fun₀ (Op A ⊕ Op B) (Op (A ⊕ B))
+    ap₀₀ op⇐ = T.⇒.idn
+    ap₀₁ op⇐ {T.⊕.inl a₀}{T.⊕.inl a₁} = T.⇒.idn
+    ap₀₁ op⇐ {T.⊕.inl a₀}{T.⊕.inr b₁} = T.⇒.idn
+    ap₀₁ op⇐ {T.⊕.inr b₀}{T.⊕.inl a₁} = T.⇒.idn
+    ap₀₁ op⇐ {T.⊕.inr b₀}{T.⊕.inr b₁} = T.⇒.idn
+    ap₀₂ op⇐ {T.⊕.inl a₀}{T.⊕.inl a₁} = T.⇒.idn
+    ap₀₂ op⇐ {T.⊕.inl a₀}{T.⊕.inr b₁} = T.⇒.idn
+    ap₀₂ op⇐ {T.⊕.inr b₀}{T.⊕.inl a₁} = T.⇒.idn
+    ap₀₂ op⇐ {T.⊕.inr b₀}{T.⊕.inr b₁} = T.⇒.idn
+    ⇒₀.⊢idn (op⇐ {A = A}{B}) {T.⊕.inl a} = ι (idn₁ A)
+    ⇒₀.⊢idn (op⇐ {A = A}{B}) {T.⊕.inr b} = ι (idn₁ B)
+    ⇒₀.⊢seq (op⇐ {A = A}{B}) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inl a₂} {f}{g} = ι (idn₁ A)
+    ⇒₀.⊢seq (op⇐ {A = A}{B}) {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inr b₂} {f}{()}
+    ⇒₀.⊢seq (op⇐ {A = A}{B}) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inl a₂} {()}{()}
+    ⇒₀.⊢seq (op⇐ {A = A}{B}) {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inr b₂} {()}{g}
+    ⇒₀.⊢seq (op⇐ {A = A}{B}) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inl a₂} {()}{g}
+    ⇒₀.⊢seq (op⇐ {A = A}{B}) {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inr b₂} {()}{()}
+    ⇒₀.⊢seq (op⇐ {A = A}{B}) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inl a₂} {f}{()}
+    ⇒₀.⊢seq (op⇐ {A = A}{B}) {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inr b₂} {f}{g} = ι (idn₁ B)
+    ⇒₀.⊢inv (op⇐ {A = A}{B}) {≜}{T.⊕.inl a₀}{T.⊕.inl a₁} {f} = ι (idn₁ A)
+    ⇒₀.⊢inv (op⇐ {A = A}{B}) {≜}{T.⊕.inl a₀}{T.⊕.inr b₁} {()}
+    ⇒₀.⊢inv (op⇐ {A = A}{B}) {≜}{T.⊕.inr b₀}{T.⊕.inl a₁} {()}
+    ⇒₀.⊢inv (op⇐ {A = A}{B}) {≜}{T.⊕.inr b₀}{T.⊕.inr a₁} {f} = ι (idn₁ B)
 
 open ⊕ public
   using (_⊕_)

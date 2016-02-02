@@ -3,6 +3,8 @@
 module Groupoids.Ordinary.Monoidal.Tensor.Product where
 
 open import Groupoids.Common
+open import Groupoids.Ordinary.Construction.Opposite
+open import Groupoids.Ordinary.Homomorphism
 open import Groupoids.Ordinary.Universe.Boot
 
 module ⊗ where
@@ -26,6 +28,33 @@ module ⊗ where
   idn₁ (A ⊗ B) = idn₁ A , idn₁ B
   seq₁ (A ⊗ B) (α₀ , β₀)(α₁ , β₁) = seq₁ A α₀ α₁ , seq₁ B β₀ β₁
   inv₁ (A ⊗ B) (α , β) = inv₁ A α , inv₁ B β
+
+  module ⊢ where
+    -- FIXME: these should be isomorphisms
+
+    op⇒
+      : ∀ {r}..{ℓ₀ ℓ₁}
+      → {A : 𝔘 r ℓ₀}
+      → {B : 𝔘 r ℓ₁}
+      → Fun₀ (Op (A ⊗ B)) (Op A ⊗ Op B)
+    ap₀₀ op⇒ = T.⇒.idn
+    ap₀₁ op⇒ = T.⇒.idn
+    ap₀₂ op⇒ = T.⇒.idn
+    ⇒₀.⊢idn (op⇒ {A = A}{B}) = idn₁ A , idn₁ B
+    ⇒₀.⊢seq (op⇒ {A = A}{B}) = idn₁ A , idn₁ B
+    ⇒₀.⊢inv (op⇒ {A = A}{B}) = idn₁ A , idn₁ B
+
+    op⇐
+      : ∀ {r}..{ℓ₀ ℓ₁}
+      → {A : 𝔘 r ℓ₀}
+      → {B : 𝔘 r ℓ₁}
+      → Fun₀ (Op A ⊗ Op B) (Op (A ⊗ B))
+    ap₀₀ op⇐ = T.⇒.idn
+    ap₀₁ op⇐ = T.⇒.idn
+    ap₀₂ op⇐ = T.⇒.idn
+    ⇒₀.⊢idn (op⇐ {A = A}{B}) = idn₁ A , idn₁ B
+    ⇒₀.⊢seq (op⇐ {A = A}{B}) = idn₁ A , idn₁ B
+    ⇒₀.⊢inv (op⇐ {A = A}{B}) = idn₁ A , idn₁ B
 
 open ⊗ public
   using (_⊗_)
