@@ -175,8 +175,9 @@ module 𝔘 where
   -- constructions live at n ≤ 1. We _could_ allow cross-dimension functors but
   -- doing so would introduce a lot of complexity for a bit of rarely needed
   -- flexibility. The other reason to lower the dimension is because there are
-  -- currently no coherence constraints cells defined for n ≥ 2. Thus, we
+  -- currently no coherence constraint cells defined for n ≥ 2. Thus, we
   -- downshift the n-dimension by 1 so we end up with 𝔘 1 1 (large 1-category).
+
   «Cat»
     : ∀ r ..ℓ
     → Cat (lsuc ℓ)
