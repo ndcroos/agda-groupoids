@@ -17,6 +17,7 @@ import Groupoids.Ordinary.Construction.Localization
 import Groupoids.Ordinary.Construction.Opposite
 import Groupoids.Ordinary.Construction.Path
 import Groupoids.Ordinary.Construction.Slice
+import Groupoids.Ordinary.Construction.Yoneda
 import Groupoids.Ordinary.Homomorphism
 import Groupoids.Ordinary.Homomorphism.Boot
 import Groupoids.Ordinary.Isomorphism
