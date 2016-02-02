@@ -9,7 +9,7 @@ open import Groupoids.Ordinary.Universe.Boot
 
 module Arrow where
   _⃗²
-    : ∀ {n r}..{ℓ}
-    → (A : 𝔘 n r ℓ)
-    → 𝔘 n r _
+    : ∀ {r}..{ℓ}
+    → (A : 𝔘 r ℓ)
+    → 𝔘 r _
   A ⃗² = ⇒₀.idn {A = A} ↓ ⇒₀.idn {A = A}

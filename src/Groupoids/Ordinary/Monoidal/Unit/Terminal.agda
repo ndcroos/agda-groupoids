@@ -7,13 +7,13 @@ open import Groupoids.Ordinary.Universe.Boot
 
 module 𝟙 where
   𝟙↑
-    : ∀ {n r}..{ℓ}
-    → 𝔘 n r ℓ
+    : ∀ {r}..{ℓ}
+    → 𝔘 r ℓ
   𝟙↑ = record { [_] = 𝔊.𝟙↑ }
 
   𝟙
-    : ∀ {n r}
-    → 𝔘 n r lzero
+    : ∀ {r}
+    → 𝔘 r lzero
   𝟙 = 𝟙↑
 
 open 𝟙 public

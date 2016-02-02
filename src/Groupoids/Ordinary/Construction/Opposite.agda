@@ -9,9 +9,9 @@ open import Groupoids.Ordinary.Universe.Boot
 module Opposite where
 
   Op
-    : ∀ {n r}..{ℓ}
-    → (A : 𝔘 n r ℓ)
-    → 𝔘 n r ℓ
+    : ∀ {r}..{ℓ}
+    → (A : 𝔘 r ℓ)
+    → 𝔘 r ℓ
   [ Op A ] = 𝔊.Op [ A ]
   seq₀ (Op A) = cmp₀ A
   inv₀ (Op A) = inv₀ A

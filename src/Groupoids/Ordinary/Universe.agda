@@ -6,20 +6,21 @@ open import Groupoids.Common
 
 module 𝔘 where
   open import Groupoids.Ordinary.Construction.Core
+  open import Groupoids.Ordinary.Construction.Opposite
   open import Groupoids.Ordinary.Homomorphism
   open import Groupoids.Ordinary.Isomorphism
   open import Groupoids.Ordinary.Monoidal.Exponential
+  open import Groupoids.Ordinary.Monoidal.Tensor.Product
   open import Groupoids.Ordinary.Universe.Boot public
 
   open ≅
 
-  Std = 𝔘 0 0
-  Gpd = 𝔘 1 0
-  Cat = 𝔘 1 1
+  Gpd = 𝔘 0
+  Cat = 𝔘 1
 
   «seq₀*»
     : ∀ {r}..{ℓ}
-    → {A B C : 𝔘 1 r ℓ}
+    → {A B C : 𝔘 r ℓ}
     → {F₀ F₁ : Fun₀ A B}
     → {G₀ G₁ : Fun₀ B C}
     → A ⇒₀ B ⊢ F₀ ≅ F₁
@@ -102,7 +103,7 @@ module 𝔘 where
 
   «⊢idn₀-λ»
     : ∀ {r}..{ℓ}
-    → {A B : 𝔘 1 r ℓ}
+    → {A B : 𝔘 r ℓ}
     → {F : Fun₀ A B}
     → A ⇒₀ B ⊢ ⇒₀.seq ⇒₀.idn F ≅ F
   ap₁₀ (» («⊢idn₀-λ» {B = B})) a =
@@ -124,7 +125,7 @@ module 𝔘 where
 
   «⊢idn₀-ρ»
     : ∀ {r}..{ℓ}
-    → {A B : 𝔘 1 r ℓ}
+    → {A B : 𝔘 r ℓ}
     → {F : Fun₀ A B}
     → A ⇒₀ B ⊢ ⇒₀.seq F ⇒₀.idn ≅ F
   ap₁₀ (» («⊢idn₀-ρ» {B = B})) a =
@@ -146,7 +147,7 @@ module 𝔘 where
 
   «⊢seq₀-α»
     : ∀ {r}..{ℓ}
-    → {A B C D : 𝔘 1 r ℓ}
+    → {A B C D : 𝔘 r ℓ}
     → {F : Fun₀ A B}
     → {G : Fun₀ B C}
     → {H : Fun₀ C D}
@@ -181,7 +182,7 @@ module 𝔘 where
   «Cat»
     : ∀ r ..ℓ
     → Cat (lsuc ℓ)
-  ● [ «Cat» r ℓ ] = 𝔘 1 r ℓ
+  ● [ «Cat» r ℓ ] = 𝔘 r ℓ
   ⇇ [ «Cat» r ℓ ] A B = 𝔊.dim*[ [ A ⇔₀ B ] ]
   ↻ [ «Cat» r ℓ ] = ⇒₀.idn
   seq₀ («Cat» r ℓ) = ⇒₀.seq

@@ -11,9 +11,9 @@ open import Groupoids.Ordinary.Universe
 
 module Glueing where
   Glue
-    : ∀ {n r}..{ℓ₀ ℓ₁}
-    → {A : 𝔘 n r ℓ₀}
-    → {V : 𝔘 n r ℓ₁}
+    : ∀ {r}..{ℓ₀ ℓ₁}
+    → {A : 𝔘 r ℓ₀}
+    → {V : 𝔘 r ℓ₁}
     → (Ψ : Fun₀ A V)
-    → 𝔘 n r _
+    → 𝔘 r _
   Glue {V = V} Ψ = ⇒₀.idn {A = V} ↓ Ψ

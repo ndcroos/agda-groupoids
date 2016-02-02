@@ -6,12 +6,12 @@ open import Groupoids.Common
 open 𝔊
   hiding (_▸_)
 
-record 𝔘 (n r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
+record 𝔘 (r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   no-eta-equality
   infix 3 [_]
   open Fin
   field
-    [_] : Gph 2+[ n ] r ℓ
+    [_] : Gph ∞ r ℓ
   complex = [_]
   isGpd : Set
   isGpd = r T.≡ 0

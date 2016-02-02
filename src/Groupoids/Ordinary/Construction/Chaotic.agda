@@ -8,13 +8,13 @@ open import Groupoids.Ordinary.Universe.Boot
 
 module ∻ where
   Free
-    : ∀ {n r}..{ℓ}
+    : ∀ {r}..{ℓ}
     → (A : Set ℓ)
-    → 𝔘 n r ℓ
+    → 𝔘 r ℓ
   Free A = record { [_] = 𝔊.dim*[ 𝔊.∻.Free A ] }
 
   Forget
-    : ∀ {n r}..{ℓ}
-    → (A : 𝔘 n r ℓ)
+    : ∀ {r}..{ℓ}
+    → (A : 𝔘 r ℓ)
     → Set ℓ
   Forget A = ● [ A ]

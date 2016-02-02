@@ -8,7 +8,7 @@ open import Groupoids.Ordinary.Universe.Boot
 module ≅ where
   infix 0 _⊢_≅_
 
-  record _⊢_≅_ {n r}..{ℓ} (A : 𝔘 n r ℓ) (a b : A ▸) : Set ℓ where
+  record _⊢_≅_ {r}..{ℓ} (A : 𝔘 r ℓ) (a b : A ▸) : Set ℓ where
     no-eta-equality
     field
       » : A ▸ 1 ⊢ a ↝ b
@@ -23,7 +23,7 @@ module ≅ where
     {-# DISPLAY « f = «[ f ] #-}
   open _⊢_≅_ public
 
-  module _ {n r}..{ℓ} (A : 𝔘 n r ℓ) where
+  module _ {r}..{ℓ} (A : 𝔘 r ℓ) where
     idn
       : ∀ {a}
       → A ⊢ a ≅ a
