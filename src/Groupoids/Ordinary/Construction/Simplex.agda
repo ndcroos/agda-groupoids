@@ -82,8 +82,8 @@ module Simplex where
   seq₁ Δ T.≡.idn T.≡.idn = T.≡.idn
   inv₁ Δ T.≡.idn = T.≡.idn
 
-  SStd : Set _
-  SStd = Psh Δ
+  ΔStd : Set _
+  ΔStd = Psh Δ
 
-  «SStd» : 𝔘 _ _
-  «SStd» = «Psh» Δ
+  «ΔStd» : 𝔘 _ _
+  «ΔStd» = «Psh» Δ
