@@ -3,7 +3,7 @@
 module Groupoids.Ordinary.Construction.Simplex where
 
 open import Groupoids.Common
-open import Groupoids.Ordinary.Universe.Boot
+open import Groupoids.Ordinary.Universe
 open import Prelude.Natural
 
 module Simplex where
@@ -81,3 +81,9 @@ module Simplex where
   idn₁ Δ = T.≡.idn
   seq₁ Δ T.≡.idn T.≡.idn = T.≡.idn
   inv₁ Δ T.≡.idn = T.≡.idn
+
+  SStd : Set _
+  SStd = Psh Δ
+
+  «SStd» : 𝔘 _ _
+  «SStd» = «Psh» Δ
