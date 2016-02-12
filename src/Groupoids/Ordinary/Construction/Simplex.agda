@@ -183,7 +183,7 @@ module Simplex where
   ⟦_⟧
     : ∀ {Γ Δ}
     → Γ ⊒ Δ
-    → Fin Γ → Fin Δ
+    → (Fin Γ → Fin Δ)
   ⟦ stop ⟧ i = i
   ⟦ face ρ ⟧ i = su ⟦ ρ ⟧ i
   ⟦ dgen ρ ⟧ ze = ze

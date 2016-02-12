@@ -6,7 +6,9 @@ open import Groupoids.Common
 open import Groupoids.Ordinary.Construction.Yoneda
 open import Groupoids.Ordinary.Homomorphism.Boot
 open import Groupoids.Ordinary.Universe
+import Prelude.Bool
 open import Prelude.Natural
+open import Prelude.Vector
 
 module Cube where
   -- * Cube based on Sjoerd Visscher's Haskell encoding
@@ -18,8 +20,11 @@ module Cube where
   □₀ : Set
   □₀ = Nat
 
-  data Sign : Set where
-    - + : Sign
+  open Prelude.Bool.𝟚↑ public
+    renaming (𝟚 to Sign)
+    renaming (ff to -)
+    renaming (tt to +)
+    using ()
 
   pattern ∅ = ze
   pattern _▸* Γ = su Γ
@@ -151,20 +156,13 @@ module Cube where
   □[_]₂ = ap₀₂ □[-]
   {-# DISPLAY ap₀₂ □[-] α = □[ α ]₂ #-}
 
-  infixr 0 _∷_
-  data Cube : Nat → Set where
-    []
-      : Cube 0
-    _∷_
-      : ∀ {n}
-      → (s : Sign)
-      → (c : Cube n)
-      → Cube (su n)
+  Cube : Nat → Set
+  Cube = Vec Sign
 
   ⟦_⟧
     : ∀ {Γ Δ}
     → Γ ⊒ Δ
-    → Cube Γ → Cube Δ
+    → (Cube Γ → Cube Δ)
   ⟦ stop ⟧ c = c
   ⟦ lift ρ ⟧ (s ∷ c) = s ∷ ⟦ ρ ⟧ c
   ⟦ face[ s ] ρ ⟧ c = s ∷ ⟦ ρ ⟧ c
