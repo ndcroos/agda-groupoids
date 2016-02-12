@@ -151,19 +151,13 @@ module Cube where
   □[_]₂ = ap₀₂ □[-]
   {-# DISPLAY ap₀₂ □[-] α = □[ α ]₂ #-}
 
-  data *-⊕-Sign : Set where
-    #0 - + : *-⊕-Sign
-
-  sign⊆ : Sign → *-⊕-Sign
-  sign⊆ - = -
-  sign⊆ + = +
-
+  infixr 0 _∷_
   data Cube : Nat → Set where
     []
       : Cube 0
     _∷_
       : ∀ {n}
-      → (s : *-⊕-Sign)
+      → (s : Sign)
       → (c : Cube n)
       → Cube (su n)
 
@@ -173,5 +167,10 @@ module Cube where
     → Cube Γ → Cube Δ
   ⟦ stop ⟧ c = c
   ⟦ lift ρ ⟧ (s ∷ c) = s ∷ ⟦ ρ ⟧ c
-  ⟦ face[ s ] ρ ⟧ c = sign⊆ s ∷ ⟦ ρ ⟧ c
+  ⟦ face[ s ] ρ ⟧ c = s ∷ ⟦ ρ ⟧ c
   ⟦ dgen ρ ⟧ (s ∷ c) = ⟦ ρ ⟧ c
+
+  test : ⟦ δ[ - ] σ σ ⇑ δ[ - ] ε ⟧
+         (+ ∷ - ∷ + ∷ [])
+     T.≡ (- ∷ + ∷ - ∷ [])
+  test = T.refl
