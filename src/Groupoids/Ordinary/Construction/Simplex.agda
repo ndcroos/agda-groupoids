@@ -3,6 +3,8 @@
 module Groupoids.Ordinary.Construction.Simplex where
 
 open import Groupoids.Common
+open import Groupoids.Ordinary.Construction.Yoneda
+open import Groupoids.Ordinary.Homomorphism
 open import Groupoids.Ordinary.Universe
 open import Prelude.Natural
 
@@ -98,3 +100,8 @@ module Simplex where
 
   «∆Std» : 𝔘 _ _
   «∆Std» = «Psh» ∆
+
+  open Yoneda
+
+  Δ[_] : Fun₀ ∆ «∆Std»
+  Δ[_] = 𝓎[ ∆ ]

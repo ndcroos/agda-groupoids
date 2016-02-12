@@ -3,6 +3,8 @@
 module Groupoids.Ordinary.Construction.Cube where
 
 open import Groupoids.Common
+open import Groupoids.Ordinary.Construction.Yoneda
+open import Groupoids.Ordinary.Homomorphism.Boot
 open import Groupoids.Ordinary.Universe
 open import Prelude.Natural
 
@@ -126,3 +128,8 @@ module Cube where
 
   «□Std» : 𝔘 _ _
   «□Std» = «Psh» □
+
+  open Yoneda
+
+  □[_] : Fun₀ □ «□Std»
+  □[_] = 𝓎[ □ ]
