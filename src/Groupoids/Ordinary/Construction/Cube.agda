@@ -158,6 +158,7 @@ module Cube where
 
   Cube : Nat → Set
   Cube = Vec Sign
+  {-# DISPLAY Vec Sign n = Cube n #-}
 
   ⟦_⟧
     : ∀ {Γ Δ}
