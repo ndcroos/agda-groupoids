@@ -48,6 +48,7 @@ module ⇒₀ where
   A ⇔₀ B = [ A ⇒₀ B ]/≅
 open ⇒₀ public
   using (Fun₀)
+  using (_⇒₀_)
   using (ap₀₀)
   using (ap₀₁)
   using (ap₀₂)
