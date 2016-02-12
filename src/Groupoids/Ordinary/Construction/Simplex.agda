@@ -9,81 +9,92 @@ open import Prelude.Natural
 module Simplex where
   -- Augmented Simplex based on Sjoerd Visscher's Haskell encoding
 
-  Δ₀ : Set
-  Δ₀ = Nat
+  infix 0 _⊒_
+  infix 1 _▸*
 
-  data Δ₁ : Δ₀ → Δ₀ → Set where
-    Z : Δ₁ ze ze
-    Y_ : ∀ {m n} → Δ₁ m n → Δ₁ m (su n)
-    X_ : ∀ {m n} → Δ₁ m (su n) → Δ₁ (su m) (su n)
+  -- ∆ = \increment
+  ∆₀ : Set
+  ∆₀ = Nat
 
-  Δ-idn₀
-    : ∀ {m}
-    → Δ₁ m m
-  Δ-idn₀ {ze} = Z
-  Δ-idn₀ {su m} = X Y Δ-idn₀ {m}
+  pattern ∅ = ze
+  pattern _▸* Γ = su Γ
 
-  Δ-seq₀
-    : ∀ {m n o}
-    → (f : Δ₁ m n)
-    → (g : Δ₁ n o)
-    → Δ₁ m o
-  Δ-seq₀ f (Y g) = Y Δ-seq₀ f g
-  Δ-seq₀ Z g = g
-  Δ-seq₀ (Y f) (X g) = Δ-seq₀ f g
-  Δ-seq₀ (X f) (X g) = X Δ-seq₀ f (X g)
+  data _⊒_ : ∆₀ → ∆₀ → Set where
+    stop : ∅ ⊒ ∅
+    drop_ : ∀ {Γ Δ} (ρ : Δ ⊒ Γ) → Δ ⊒ Γ ▸*
+    dgen_ : ∀ {Γ Δ} (ρ : Δ ⊒ Γ ▸*) → Δ ▸* ⊒ Γ ▸*
 
-  Δ-⊢idn₀-λ
-    : ∀ {m n}
-    → {f : Δ₁ m n}
-    → Δ-seq₀ Δ-idn₀ f T.≡ f
-  Δ-⊢idn₀-λ {f = Z} = T.≡.idn
-  Δ-⊢idn₀-λ {f = Y f} = T.≡.ap¹ Y_ Δ-⊢idn₀-λ
-  Δ-⊢idn₀-λ {f = X f} = T.≡.ap¹ X_ Δ-⊢idn₀-λ
+  pattern ε = stop
+  pattern δ_ ρ = drop ρ
+  pattern σ_ ρ = dgen ρ
 
-  Δ-⊢idn₀-ρ
-    : ∀ {m n}
-    → {f : Δ₁ m n}
-    → Δ-seq₀ f Δ-idn₀ T.≡ f
-  Δ-⊢idn₀-ρ {f = Z} = T.≡.idn
-  Δ-⊢idn₀-ρ {f = Y f} = T.≡.ap¹ Y_ Δ-⊢idn₀-ρ
-  Δ-⊢idn₀-ρ {f = X f} = T.≡.ap¹ X_ Δ-⊢idn₀-ρ
+  ∆-idn₀
+    : ∀ {Γ}
+    → Γ ⊒ Γ
+  ∆-idn₀ {∅} = stop
+  ∆-idn₀ {Γ ▸*} = dgen drop ∆-idn₀
 
-  Δ-⊢seq₀-α
-    : ∀ {m n o p}
-    → {f : Δ₁ m n}
-    → {g : Δ₁ n o}
-    → {h : Δ₁ o p}
-    → Δ-seq₀ f (Δ-seq₀ g h) T.≡ Δ-seq₀ (Δ-seq₀ f g) h
-  Δ-⊢seq₀-α {f = Z} {Z} {Z} = T.≡.idn
-  Δ-⊢seq₀-α {f = Y f} {()} {Z}
-  Δ-⊢seq₀-α {f = X f} {()} {Z}
-  Δ-⊢seq₀-α {f = f} {g} {Y h} = T.≡.ap¹ Y_ (Δ-⊢seq₀-α {h = h})
-  Δ-⊢seq₀-α {f = f} {Y g} {X h} = Δ-⊢seq₀-α {h = h}
-  Δ-⊢seq₀-α {f = Y f} {X g} {X h} = Δ-⊢seq₀-α {g = g}{X h}
-  Δ-⊢seq₀-α {f = X f} {X g} {X h} = T.≡.ap¹ X_ (Δ-⊢seq₀-α {f = f}{X g}{X h})
+  ∆-seq₀
+    : ∀ {Γ Δ Θ}
+    → (f : Θ ⊒ Δ)
+    → (g : Δ ⊒ Γ)
+    → Θ ⊒ Γ
+  ∆-seq₀ ρ₀ (drop ρ₁) = drop ∆-seq₀ ρ₀ ρ₁
+  ∆-seq₀ stop ρ₁ = ρ₁
+  ∆-seq₀ (drop ρ₀) (dgen ρ₁) = ∆-seq₀ ρ₀ ρ₁
+  ∆-seq₀ (dgen ρ₀) (dgen ρ₁) = dgen ∆-seq₀ ρ₀ (dgen ρ₁)
 
-  Δ : 𝔘 1 lzero
-  ● [ Δ ] = Δ₀
-  ● (⇇ [ Δ ] x y) = Δ₁ x y
-  ⇇ (⇇ [ Δ ] x y) f g = 𝔊.ℼ[ f T.≡ g ]
-  ↻ (⇇ [ Δ ] x y) = T.≡.idn
-  ↻ [ Δ ] = Δ-idn₀
-  seq₀ Δ = Δ-seq₀
-  inv₀ Δ f {≜ = ()}
-  seq₀* Δ T.≡.idn T.≡.idn = T.≡.idn
-  inv₀* Δ α {≜ = ()}
-  ⊢idn₀-λ Δ = Δ-⊢idn₀-λ
-  ⊢idn₀-ρ Δ = Δ-⊢idn₀-ρ
-  ⊢seq₀-α Δ {f = f}{g}{h} = Δ-⊢seq₀-α {f = f}{g}{h}
-  ⊢inv₀-λ Δ {≜ = ()}
-  ⊢inv₀-ρ Δ {≜ = ()}
-  idn₁ Δ = T.≡.idn
-  seq₁ Δ T.≡.idn T.≡.idn = T.≡.idn
-  inv₁ Δ T.≡.idn = T.≡.idn
+  ∆-⊢idn₀-λ
+    : ∀ {Γ Δ}
+    → {f : Δ ⊒ Γ}
+    → ∆-seq₀ ∆-idn₀ f T.≡ f
+  ∆-⊢idn₀-λ {f = stop} = T.≡.idn
+  ∆-⊢idn₀-λ {f = drop f} = T.≡.ap¹ drop_ ∆-⊢idn₀-λ
+  ∆-⊢idn₀-λ {f = dgen f} = T.≡.ap¹ dgen_ ∆-⊢idn₀-λ
 
-  ΔStd : Set _
-  ΔStd = Psh Δ
+  ∆-⊢idn₀-ρ
+    : ∀ {Γ Δ}
+    → {f : Δ ⊒ Γ}
+    → ∆-seq₀ f ∆-idn₀ T.≡ f
+  ∆-⊢idn₀-ρ {f = stop} = T.≡.idn
+  ∆-⊢idn₀-ρ {f = drop f} = T.≡.ap¹ drop_ ∆-⊢idn₀-ρ
+  ∆-⊢idn₀-ρ {f = dgen f} = T.≡.ap¹ dgen_ ∆-⊢idn₀-ρ
 
-  «ΔStd» : 𝔘 _ _
-  «ΔStd» = «Psh» Δ
+  ∆-⊢seq₀-α
+    : ∀ {Γ Δ Θ Ξ}
+    → {f : Ξ ⊒ Θ}
+    → {g : Θ ⊒ Δ}
+    → {h : Δ ⊒ Γ}
+    → ∆-seq₀ f (∆-seq₀ g h) T.≡ ∆-seq₀ (∆-seq₀ f g) h
+  ∆-⊢seq₀-α {f = stop} {stop} {stop} = T.≡.idn
+  ∆-⊢seq₀-α {f = drop f} {()} {stop}
+  ∆-⊢seq₀-α {f = dgen f} {()} {stop}
+  ∆-⊢seq₀-α {f = f} {g} {drop h} = T.≡.ap¹ drop_ (∆-⊢seq₀-α {h = h})
+  ∆-⊢seq₀-α {f = f} {drop g} {dgen h} = ∆-⊢seq₀-α {h = h}
+  ∆-⊢seq₀-α {f = drop f} {dgen g} {dgen h} = ∆-⊢seq₀-α {g = g}{dgen h}
+  ∆-⊢seq₀-α {f = dgen f} {dgen g} {dgen h} = T.≡.ap¹ dgen_ (∆-⊢seq₀-α {f = f}{dgen g}{dgen h})
+
+  ∆ : 𝔘 1 lzero
+  ● [ ∆ ] = ∆₀
+  ● (⇇ [ ∆ ] Δ Γ) = Δ ⊒ Γ
+  ⇇ (⇇ [ ∆ ] x y) f g = 𝔊.ℼ[ f T.≡ g ]
+  ↻ (⇇ [ ∆ ] x y) = T.≡.idn
+  ↻ [ ∆ ] = ∆-idn₀
+  seq₀ ∆ = ∆-seq₀
+  inv₀ ∆ f {≜ = ()}
+  seq₀* ∆ T.≡.idn T.≡.idn = T.≡.idn
+  inv₀* ∆ α {≜ = ()}
+  ⊢idn₀-λ ∆ = ∆-⊢idn₀-λ
+  ⊢idn₀-ρ ∆ = ∆-⊢idn₀-ρ
+  ⊢seq₀-α ∆ {f = f}{g}{h} = ∆-⊢seq₀-α {f = f}{g}{h}
+  ⊢inv₀-λ ∆ {≜ = ()}
+  ⊢inv₀-ρ ∆ {≜ = ()}
+  idn₁ ∆ = T.≡.idn
+  seq₁ ∆ T.≡.idn T.≡.idn = T.≡.idn
+  inv₁ ∆ T.≡.idn = T.≡.idn
+
+  ∆Std : Set _
+  ∆Std = Psh ∆
+
+  «∆Std» : 𝔘 _ _
+  «∆Std» = «Psh» ∆

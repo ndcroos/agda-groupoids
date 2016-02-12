@@ -12,90 +12,99 @@ module Cube where
   -- * I think this may be similar to how Crans describes it in the "Pasting
   -- * schemes" paper but I haven't read it yet.
 
+  infix 0 _⊒_
+  infix 1 _▸*
+
+  -- □ = \Box
   □₀ : Set
   □₀ = Nat
 
   data Sign : Set where
-    M P : Sign
+    - + : Sign
 
-  data □₁ : □₀ → □₀ → Set where
-    Z : □₁ ze ze
-    S_ : ∀ {m n} → □₁ m n → □₁ (su m) (su n)
-    Y[_]_ : ∀ {m n} (s : Sign) → □₁ m n → □₁ m (su n)
-    X_ : ∀ {m n} → □₁ m n → □₁ (su m) n
+  pattern ∅ = ze
+  pattern _▸* Γ = su Γ
 
-  pattern δ[_]_ s f = Y[ s ] f
-  pattern σ_ f = X f
+  data _⊒_ : □₀ → □₀ → Set where
+    stop : ∅ ⊒ ∅
+    keep_ : ∀ {Γ Δ} → Δ ⊒ Γ → Δ ▸* ⊒ Γ ▸*
+    drop[_]_ : ∀ {Γ Δ} (s : Sign) (ρ : Δ ⊒ Γ) → Δ ⊒ Γ ▸*
+    dgen_ : ∀ {Γ Δ} → Δ ⊒ Γ → Δ ▸* ⊒ Γ
+
+  pattern ε = stop
+  pattern ⇑_ ρ = keep ρ
+  pattern δ[_]_ s ρ = drop[ s ] ρ
+  pattern σ_ ρ = dgen ρ
 
   □-idn₀
-    : ∀ {m}
-    → □₁ m m
-  □-idn₀ {ze} = Z
-  □-idn₀ {su m} = S □-idn₀
+    : ∀ {Γ}
+    → Γ ⊒ Γ
+  □-idn₀ {∅} = stop
+  □-idn₀ {Γ ▸*} = keep □-idn₀
 
   □-seq₀
-    : ∀ {m n o}
-    → (f : □₁ m n)
-    → (g : □₁ n o)
-    → □₁ m o
-  □-seq₀ f (Y[ s ] g) = Y[ s ] □-seq₀ f g
-  □-seq₀ (Y[ s ] f) (X g) = □-seq₀ f g
-  □-seq₀ (X f) g = X □-seq₀ f g
-  □-seq₀ (S f) (X g) = X □-seq₀ f g
-  □-seq₀ (Y[ s ] f) (S g) = Y[ s ] □-seq₀ f g
-  □-seq₀ (S f) (S g) = S □-seq₀ f g
-  □-seq₀ f Z = f
+    : ∀ {Γ Δ Θ}
+    → (f : Θ ⊒ Δ)
+    → (g : Δ ⊒ Γ)
+    → Θ ⊒ Γ
+  □-seq₀ f (drop[ s ] g) = drop[ s ] □-seq₀ f g
+  □-seq₀ (drop[ s ] f) (dgen g) = □-seq₀ f g
+  □-seq₀ (dgen f) g = dgen □-seq₀ f g
+  □-seq₀ (keep f) (dgen g) = dgen □-seq₀ f g
+  □-seq₀ (drop[ s ] f) (keep g) = drop[ s ] □-seq₀ f g
+  □-seq₀ (keep f) (keep g) = keep □-seq₀ f g
+  □-seq₀ f stop = f
 
   □-⊢idn₀-λ
-    : ∀ {m n}
-    → {f : □₁ m n}
+    : ∀ {Δ Γ}
+    → {f : Δ ⊒ Γ}
     → □-seq₀ □-idn₀ f T.≡ f
-  □-⊢idn₀-λ {f = Y[ s ] f} = T.≡.ap¹ (Y[_]_ s) □-⊢idn₀-λ
-  □-⊢idn₀-λ {f = X f} = T.≡.ap¹ X_ □-⊢idn₀-λ
-  □-⊢idn₀-λ {f = S f} = T.≡.ap¹ S_ □-⊢idn₀-λ
-  □-⊢idn₀-λ {f = Z} = T.≡.idn
+  □-⊢idn₀-λ {f = drop[ s ] f} = T.≡.ap¹ (drop[_]_ s) □-⊢idn₀-λ
+  □-⊢idn₀-λ {f = dgen f} = T.≡.ap¹ dgen_ □-⊢idn₀-λ
+  □-⊢idn₀-λ {f = keep f} = T.≡.ap¹ keep_ □-⊢idn₀-λ
+  □-⊢idn₀-λ {f = stop} = T.≡.idn
 
   □-⊢idn₀-ρ
-    : ∀ {m n}
-    → {f : □₁ m n}
+    : ∀ {Δ Γ}
+    → {f : Δ ⊒ Γ}
     → □-seq₀ f □-idn₀ T.≡ f
-  □-⊢idn₀-ρ {f = Y[ s ] f} = T.≡.ap¹ (Y[_]_ s) □-⊢idn₀-ρ
-  □-⊢idn₀-ρ {n = ze} {X f} = T.≡.ap¹ X_ □-⊢idn₀-ρ
-  □-⊢idn₀-ρ {n = su n} {X f} = T.≡.ap¹ X_ □-⊢idn₀-ρ
-  □-⊢idn₀-ρ {f = S f} = T.≡.ap¹ S_ □-⊢idn₀-ρ
-  □-⊢idn₀-ρ {f = Z} = T.≡.idn
+  □-⊢idn₀-ρ {f = drop[ s ] f} = T.≡.ap¹ (drop[_]_ s) □-⊢idn₀-ρ
+  □-⊢idn₀-ρ {Γ = ze} {dgen f} = T.≡.ap¹ dgen_ □-⊢idn₀-ρ
+  □-⊢idn₀-ρ {Γ = su n} {dgen f} = T.≡.ap¹ dgen_ □-⊢idn₀-ρ
+  □-⊢idn₀-ρ {f = keep f} = T.≡.ap¹ keep_ □-⊢idn₀-ρ
+  □-⊢idn₀-ρ {f = stop} = T.≡.idn
 
   -- FIXME: simplify
   □-⊢seq₀-α
     : ∀ {m n o p}
-    → {f : □₁ m n}
-    → {g : □₁ n o}
-    → {h : □₁ o p}
+    → {f : m ⊒ n}
+    → {g : n ⊒ o}
+    → {h : o ⊒ p}
     → □-seq₀ f (□-seq₀ g h) T.≡ □-seq₀ (□-seq₀ f g) h
-  □-⊢seq₀-α {h = Y[ s ] h} = T.≡.ap¹ (Y[_]_ s) (□-⊢seq₀-α {h = h})
-  □-⊢seq₀-α {g = Y[ s ] g} {X h} = □-⊢seq₀-α {g = g}{h}
-  □-⊢seq₀-α {f = Y[ s ] f} {X g} {X h} = □-⊢seq₀-α {f = f}{g}{X h}
-  □-⊢seq₀-α {f = X f} {X g} {X h} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{X g}{X h})
-  □-⊢seq₀-α {f = S f} {X g} {X h} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{g}{X h})
-  □-⊢seq₀-α {f = Y[ s ] f} {S g} {X h} = □-⊢seq₀-α {f = f}{g}{h}
-  □-⊢seq₀-α {f = X f} {S g} {X h} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{S g}{X h})
-  □-⊢seq₀-α {f = S f} {S g} {X h} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{g}{h})
-  □-⊢seq₀-α {g = Y[ s ] g} {S h} = T.≡.ap¹ (Y[_]_ s) (□-⊢seq₀-α {g = g}{h})
-  □-⊢seq₀-α {f = Y[ s ] f} {X g} {S h} = □-⊢seq₀-α {f = f}{g}{h = S h}
-  □-⊢seq₀-α {f = X f} {X g} {S h} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{X g}{S h})
-  □-⊢seq₀-α {f = S f} {X g} {S h} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{g}{S h})
-  □-⊢seq₀-α {f = Y[ s ] f} {S g} {S h} = T.≡.ap¹ (Y[_]_ s) (□-⊢seq₀-α {f = f}{g}{h})
-  □-⊢seq₀-α {f = X f} {S g} {S h} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{S g}{S h})
-  □-⊢seq₀-α {f = S f} {S g} {S h} = T.≡.ap¹ S_ (□-⊢seq₀-α {f = f}{g}{h})
-  □-⊢seq₀-α {f = Y[ s ] f} {X g} {Z} = □-⊢seq₀-α {f = f}{g}{Z}
-  □-⊢seq₀-α {f = X f} {X g} {Z} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{X g}{Z})
-  □-⊢seq₀-α {f = S f} {X g} {Z} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{g}{Z})
-  □-⊢seq₀-α {f = X f} {Z} {Z} = T.≡.ap¹ X_ (□-⊢seq₀-α {f = f}{Z}{Z})
-  □-⊢seq₀-α {f = Z} {Z} {Z} = T.≡.idn
+  □-⊢seq₀-α {h = drop[ s ] h} = T.≡.ap¹ (drop[_]_ s) (□-⊢seq₀-α {h = h})
+  □-⊢seq₀-α {g = drop[ s ] g} {dgen h} = □-⊢seq₀-α {g = g}{h}
+  □-⊢seq₀-α {f = drop[ s ] f} {dgen g} {dgen h} = □-⊢seq₀-α {f = f}{g}{dgen h}
+  □-⊢seq₀-α {f = dgen f} {dgen g} {dgen h} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{dgen g}{dgen h})
+  □-⊢seq₀-α {f = keep f} {dgen g} {dgen h} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{g}{dgen h})
+  □-⊢seq₀-α {f = drop[ s ] f} {keep g} {dgen h} = □-⊢seq₀-α {f = f}{g}{h}
+  □-⊢seq₀-α {f = dgen f} {keep g} {dgen h} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{keep g}{dgen h})
+  □-⊢seq₀-α {f = keep f} {keep g} {dgen h} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{g}{h})
+  □-⊢seq₀-α {g = drop[ s ] g} {keep h} = T.≡.ap¹ (drop[_]_ s) (□-⊢seq₀-α {g = g}{h})
+  □-⊢seq₀-α {f = drop[ s ] f} {dgen g} {keep h} = □-⊢seq₀-α {f = f}{g}{h = keep h}
+  □-⊢seq₀-α {f = dgen f} {dgen g} {keep h} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{dgen g}{keep h})
+  □-⊢seq₀-α {f = keep f} {dgen g} {keep h} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{g}{keep h})
+  □-⊢seq₀-α {f = drop[ s ] f} {keep g} {keep h} = T.≡.ap¹ (drop[_]_ s) (□-⊢seq₀-α {f = f}{g}{h})
+  □-⊢seq₀-α {f = dgen f} {keep g} {keep h} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{keep g}{keep h})
+  □-⊢seq₀-α {f = keep f} {keep g} {keep h} = T.≡.ap¹ keep_ (□-⊢seq₀-α {f = f}{g}{h})
+  □-⊢seq₀-α {f = drop[ s ] f} {dgen g} {stop} = □-⊢seq₀-α {f = f}{g}{stop}
+  □-⊢seq₀-α {f = dgen f} {dgen g} {stop} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{dgen g}{stop})
+  □-⊢seq₀-α {f = keep f} {dgen g} {stop} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{g}{stop})
+  □-⊢seq₀-α {f = dgen f} {stop} {stop} = T.≡.ap¹ dgen_ (□-⊢seq₀-α {f = f}{stop}{stop})
+  □-⊢seq₀-α {f = stop} {stop} {stop} = T.≡.idn
 
   □ : 𝔘 1 lzero
   ● [ □ ] = □₀
-  ● (⇇ [ □ ] x y) = □₁ x y
+  ● (⇇ [ □ ] Δ Γ) = Δ ⊒ Γ
   ⇇ (⇇ [ □ ] x y) f g = 𝔊.ℼ[ f T.≡ g ]
   ↻ (⇇ [ □ ] x y) = T.≡.idn
   ↻ [ □ ] = □-idn₀
