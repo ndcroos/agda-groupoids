@@ -8,6 +8,7 @@ import Groupoids.Ordinary.Construction.Arrow
 import Groupoids.Ordinary.Construction.Chaotic
 import Groupoids.Ordinary.Construction.Comma
 import Groupoids.Ordinary.Construction.Core
+import Groupoids.Ordinary.Construction.Cube
 import Groupoids.Ordinary.Construction.Coslice
 import Groupoids.Ordinary.Construction.Free
 import Groupoids.Ordinary.Construction.Glueing
