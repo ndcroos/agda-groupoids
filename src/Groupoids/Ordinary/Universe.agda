@@ -187,7 +187,7 @@ module 𝔘 where
     → Cat (lsuc ℓ)
   ● [ «Cat» r ℓ ] = 𝔘 r ℓ
   ⇇ [ «Cat» r ℓ ] A B = 𝔊.dim*[ [ A ⇔₀ B ] ]
-  ↻ [ «Cat» r ℓ ] = ⇒₀.idn
+  idn₀ («Cat» r ℓ) = ⇒₀.idn
   seq₀ («Cat» r ℓ) = ⇒₀.seq
   inv₀ («Cat» r ℓ) F {≜ = ()}
   seq₀* («Cat» r ℓ) = «seq₀*»
@@ -216,8 +216,7 @@ module 𝔘 where
   ● [ «Std» r ℓ ] = ● [ «Cat» r ℓ ]
   ● (⇇ [ «Std» r ℓ ] a b) = ● (⇇ [ «Cat» r ℓ ] a b)
   ⇇ (⇇ [ «Std» r ℓ ] _ _) _ _ = 𝔊.𝟙↑
-  ↻ (⇇ [ «Std» r ℓ ] _ _) = _
-  ↻ [ «Std» r ℓ ] = idn₀ («Cat» r ℓ)
+  idn₀ («Std» r ℓ) = idn₀ («Cat» r ℓ)
   seq₀ («Std» r ℓ) = seq₀ («Cat» r ℓ)
   inv₀ («Std» r ℓ) f {()}
   seq₀* («Std» r ℓ) = _
@@ -239,8 +238,7 @@ module 𝔘 where
   ● [ hom A x y ] = A ▸ 1 ⊢ x ↝ y
   ● (⇇ [ hom A x y ] f g) = A ▸ 2 ⊢ f ↝ g
   ⇇ (⇇ [ hom A x y ] _ _) _ _ = 𝔊.𝟙↑
-  ↻ (⇇ [ hom A x y ] _ _) = _
-  ↻ [ hom A x y ] = idn₁ A
+  idn₀ (hom A x y) = idn₁ A
   seq₀ (hom A x y) = seq₁ A
   inv₀ (hom A x y) f = inv₁ A f
   seq₀* (hom A x y) = _

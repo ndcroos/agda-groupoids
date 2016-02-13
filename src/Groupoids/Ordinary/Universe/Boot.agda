@@ -12,16 +12,19 @@ record 𝔘 (r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   open Fin
   field
     [_] : Gph ∞ r ℓ
+
   complex = [_]
+
   isGpd : Set
   isGpd = r T.≡ 0
+
   open Gph public
   open Cell {𝒢 = complex}
-  idn₀
-    : {a : ⊢*}
-    → 1 ⊢ a ↝ a
-  idn₀ = ↻ [_]
+
   field
+    idn₀
+      : {a : ⊢*}
+      → 1 ⊢ a ↝ a
     seq₀
       : {a b c : ⊢*}
       → (f : 1 ⊢ a ↝ b)
@@ -188,13 +191,12 @@ record 𝔘 (r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   infix 2 _⟔_
   infix 4 _⁻¹
 
+  ↻ = #display
   _⟓_ = #display
   _⟔_ = #display
   _⁻¹ = #display
   _⟓*_ = #display
   _⁻¹* = #display
-
-  {-# DISPLAY ↻ [_] = idn₀ #-}
 
   {-# DISPLAY idn₀ A = ↻ #-}
   {-# DISPLAY idn₁ A = ↻ #-}

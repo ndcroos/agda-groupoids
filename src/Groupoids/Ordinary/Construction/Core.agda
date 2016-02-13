@@ -15,9 +15,7 @@ core
 ● (⇇ ([ core A ]) a b) = A ⊢ a ≅ b
 ● (⇇ (⇇ ([ core A ]) a b) f g) = A ▸ 2 ⊢ » f ↝ » g
 ⇇ (⇇ (⇇ ([ core A ]) _ _) _ _) _ _ = 𝔊.𝟙↑
-↻ (⇇ (⇇ ([ core A ]) _ _) _ _) = *
-↻ (⇇ ([ core A ]) a b) = ↻ (A ▸ 1 ⊩ a ↝ b)
-↻ ([ core A ]) = idn A
+idn₀ (core A) = idn A
 seq₀ (core A) = seq A
 inv₀ (core A) f = inv A f
 seq₀* (core A) = seq₀* A

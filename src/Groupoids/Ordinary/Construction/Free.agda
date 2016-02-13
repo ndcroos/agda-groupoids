@@ -54,8 +54,7 @@ module Free (A : 𝔘 1 lzero) where
   ● [ Free ] = ● [ A ]
   ● (⇇ [ Free ] x y) = Path x y
   ⇇ (⇇ [ Free ] x y) π₀ π₁ = 𝔊.ℼ[ π₀ T.≡ π₁ ]
-  ↻ (⇇ [ Free ] x y) = T.≡.idn
-  ↻ [ Free ] = []
+  idn₀ Free = []
   seq₀ Free = _++_
   inv₀ Free f {≜ = ()}
   seq₀* Free T.refl T.refl = T.≡.idn

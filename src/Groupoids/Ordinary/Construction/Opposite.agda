@@ -13,6 +13,7 @@ module Opposite where
     → (A : 𝔘 r ℓ)
     → 𝔘 r ℓ
   [ Op A ] = 𝔊.Op [ A ]
+  idn₀ (Op A) = idn₀ A
   seq₀ (Op A) = cmp₀ A
   inv₀ (Op A) = inv₀ A
   seq₀* (Op A) = cmp₀* A
