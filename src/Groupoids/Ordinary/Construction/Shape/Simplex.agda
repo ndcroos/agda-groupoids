@@ -1,16 +1,14 @@
 {-# OPTIONS --without-K #-}
 
-module Groupoids.Ordinary.Construction.Simplex where
+module Groupoids.Ordinary.Construction.Shape.Simplex where
 
 open import Groupoids.Common
 open import Groupoids.Ordinary.Construction.Yoneda
-open import Groupoids.Ordinary.Homomorphism
+open import Groupoids.Ordinary.Morphism.Hom
 open import Groupoids.Ordinary.Universe
 open import Prelude.Natural
 
 module Simplex where
-  -- * Simplex based on Sjoerd Visscher's Haskell encoding
-
   infix 0 _⊒_
   infix 0 _⊒+_
   infix 1 _▸*

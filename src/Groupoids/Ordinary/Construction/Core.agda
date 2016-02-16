@@ -3,7 +3,7 @@
 module Groupoids.Ordinary.Construction.Core where
 
 open import Groupoids.Common
-open import Groupoids.Ordinary.Isomorphism
+open import Groupoids.Ordinary.Morphism.Iso
 open import Groupoids.Ordinary.Universe.Boot
 open ≅
 

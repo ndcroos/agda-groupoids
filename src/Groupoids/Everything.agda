@@ -8,7 +8,6 @@ import Groupoids.Ordinary.Construction.Arrow
 import Groupoids.Ordinary.Construction.Chaotic
 import Groupoids.Ordinary.Construction.Comma
 import Groupoids.Ordinary.Construction.Core
-import Groupoids.Ordinary.Construction.Cube
 import Groupoids.Ordinary.Construction.Coslice
 import Groupoids.Ordinary.Construction.Free
 import Groupoids.Ordinary.Construction.Glueing
@@ -17,12 +16,10 @@ import Groupoids.Ordinary.Construction.Lift
 import Groupoids.Ordinary.Construction.Localization
 import Groupoids.Ordinary.Construction.Opposite
 import Groupoids.Ordinary.Construction.Path
-import Groupoids.Ordinary.Construction.Simplex
+import Groupoids.Ordinary.Construction.Shape.Cube
+import Groupoids.Ordinary.Construction.Shape.Simplex
 import Groupoids.Ordinary.Construction.Slice
 import Groupoids.Ordinary.Construction.Yoneda
-import Groupoids.Ordinary.Homomorphism
-import Groupoids.Ordinary.Homomorphism.Boot
-import Groupoids.Ordinary.Isomorphism
 import Groupoids.Ordinary.Monoidal.Copower
 import Groupoids.Ordinary.Monoidal.Diagonal
 import Groupoids.Ordinary.Monoidal.Exponential
@@ -33,5 +30,8 @@ import Groupoids.Ordinary.Monoidal.Tensor.Product
 import Groupoids.Ordinary.Monoidal.Tensor.Product.Indexed
 import Groupoids.Ordinary.Monoidal.Unit.Initial
 import Groupoids.Ordinary.Monoidal.Unit.Terminal
+import Groupoids.Ordinary.Morphism.Hom
+import Groupoids.Ordinary.Morphism.Hom.Boot
+import Groupoids.Ordinary.Morphism.Iso
 import Groupoids.Ordinary.Universe
 import Groupoids.Ordinary.Universe.Boot

@@ -4,7 +4,7 @@ module Groupoids.Ordinary.Construction.Coslice where
 
 open import Groupoids.Common
 open import Groupoids.Ordinary.Construction.Comma
-open import Groupoids.Ordinary.Homomorphism.Boot
+open import Groupoids.Ordinary.Morphism.Hom.Boot
 open import Groupoids.Ordinary.Monoidal.Diagonal
 open import Groupoids.Ordinary.Monoidal.Unit.Terminal
 open import Groupoids.Ordinary.Universe.Boot

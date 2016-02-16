@@ -1,15 +1,15 @@
 {-# OPTIONS --without-K #-}
 
-module Groupoids.Ordinary.Homomorphism where
+module Groupoids.Ordinary.Morphism.Hom where
 
-import Groupoids.Ordinary.Homomorphism.Boot
+import Groupoids.Ordinary.Morphism.Hom.Boot
 open import Groupoids.Common
 open import Groupoids.Ordinary.Construction.Core
 open import Groupoids.Ordinary.Universe.Boot
 
 module ⇒₀ where
-  open Groupoids.Ordinary.Homomorphism.Boot.⇒₀ public
-  open Groupoids.Ordinary.Homomorphism.Boot public
+  open Groupoids.Ordinary.Morphism.Hom.Boot.⇒₀ public
+  open Groupoids.Ordinary.Morphism.Hom.Boot public
     hiding (module ⇒₀)
 
   infix 1 _⇒₀_
@@ -52,8 +52,8 @@ open ⇒₀ public
   using (ap₀₂)
 
 module ⇒₁ where
-  open Groupoids.Ordinary.Homomorphism.Boot.⇒₁ public
-  open Groupoids.Ordinary.Homomorphism.Boot public
+  open Groupoids.Ordinary.Morphism.Hom.Boot.⇒₁ public
+  open Groupoids.Ordinary.Morphism.Hom.Boot public
     hiding (module ⇒₁)
 open ⇒₁ public
   using (Fun₁)

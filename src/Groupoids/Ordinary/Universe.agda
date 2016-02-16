@@ -7,8 +7,8 @@ open import Groupoids.Common
 module 𝔘 where
   open import Groupoids.Ordinary.Construction.Core
   open import Groupoids.Ordinary.Construction.Opposite
-  open import Groupoids.Ordinary.Homomorphism
-  open import Groupoids.Ordinary.Isomorphism
+  open import Groupoids.Ordinary.Morphism.Hom
+  open import Groupoids.Ordinary.Morphism.Iso
   open import Groupoids.Ordinary.Monoidal.Exponential
   open import Groupoids.Ordinary.Monoidal.Tensor.Product
   open import Groupoids.Ordinary.Universe.Boot public

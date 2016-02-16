@@ -1,22 +1,19 @@
 {-# OPTIONS --without-K #-}
 
-module Groupoids.Ordinary.Construction.Cube where
+module Groupoids.Ordinary.Construction.Shape.Cube where
 
 open import Groupoids.Common
 open import Groupoids.Ordinary.Construction.Yoneda
-open import Groupoids.Ordinary.Homomorphism.Boot
+open import Groupoids.Ordinary.Morphism.Hom.Boot
 open import Groupoids.Ordinary.Universe
 import Prelude.Bool
 open import Prelude.Natural
 open import Prelude.Vector
 
 module Cube where
-  -- * Cube based on Sjoerd Visscher's Haskell encoding
-
   infix 0 _⊒_
   infix 1 _▸*
 
-  -- □ = \Box
   □₀ : Set
   □₀ = Nat
 

@@ -4,7 +4,7 @@ module Groupoids.Ordinary.Construction.Yoneda where
 
 open import Groupoids.Common
 open import Groupoids.Ordinary.Construction.Opposite
-open import Groupoids.Ordinary.Homomorphism.Boot
+open import Groupoids.Ordinary.Morphism.Hom.Boot
 open import Groupoids.Ordinary.Monoidal.Exponential
 open import Groupoids.Ordinary.Universe
 

@@ -4,7 +4,7 @@ module Groupoids.Ordinary.Monoidal.Exponential where
 
 open import Groupoids.Common
 open import Groupoids.Ordinary.Construction.Opposite
-open import Groupoids.Ordinary.Homomorphism
+open import Groupoids.Ordinary.Morphism.Hom
 open import Groupoids.Ordinary.Universe.Boot
 
 open ⇒₀ public

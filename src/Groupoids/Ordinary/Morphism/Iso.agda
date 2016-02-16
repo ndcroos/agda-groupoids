@@ -1,6 +1,6 @@
 {-# OPTIONS --without-K #-}
 
-module Groupoids.Ordinary.Isomorphism where
+module Groupoids.Ordinary.Morphism.Iso where
 
 open import Groupoids.Common
 open import Groupoids.Ordinary.Universe.Boot
