@@ -7,10 +7,13 @@ open import Groupoids.Ordinary.Construction.Chaotic public
 open import Groupoids.Ordinary.Construction.Comma public
 open import Groupoids.Ordinary.Construction.Core public
 open import Groupoids.Ordinary.Construction.Coslice public
+open import Groupoids.Ordinary.Construction.Free public
 open import Groupoids.Ordinary.Construction.Glueing public
 open import Groupoids.Ordinary.Construction.Grothendieck public
 open import Groupoids.Ordinary.Construction.Lift public
 open import Groupoids.Ordinary.Construction.Opposite public
+open import Groupoids.Ordinary.Construction.Shape.Cube public
+open import Groupoids.Ordinary.Construction.Shape.Simplex public
 open import Groupoids.Ordinary.Construction.Slice public
 open import Groupoids.Ordinary.Construction.Yoneda public
 open import Groupoids.Ordinary.Monoidal.Diagonal public
