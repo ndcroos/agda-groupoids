@@ -6,7 +6,7 @@ open import Groupoids.Common
 open import Groupoids.Ordinary.Universe.Boot
 
 module ⇒₀ where
-  record Fun₀ {r}..{ℓ₀ ℓ₁}
+  record Hom₀ {r}..{ℓ₀ ℓ₁}
     (A : 𝔘 r ℓ₀)
     (B : 𝔘 r ℓ₁)
     : Set (lsuc (ℓ₀ ⊔ ℓ₁))
@@ -39,10 +39,10 @@ module ⇒₀ where
         → {f : A ▸ 1 ⊢ a ↝ b}
         → B ▸ 2 ⊢ ap₀₁ (inv₀ A f {≜}) ↝ inv₀ B (ap₀₁ f) {≜}
 
-  open Fun₀ public
+  open Hom₀ public
 
   module _ where
-    open Fun₀
+    open Hom₀
 
     {-# DISPLAY ap₀₀ F a = F ⊙ a #-}
     {-# DISPLAY ap₀₁ F f = F ⊙ f #-}
@@ -50,7 +50,7 @@ module ⇒₀ where
   idn
     : ∀ {r}..{ℓ}
     → {A : 𝔘 r ℓ}
-    → Fun₀ A A
+    → Hom₀ A A
   ap₀₀ idn a = a
   ap₀₁ idn f = f
   ap₀₂ idn α = α
@@ -63,9 +63,9 @@ module ⇒₀ where
     → {A : 𝔘 r ℓ₀}
     → {B : 𝔘 r ℓ₁}
     → {C : 𝔘 r ℓ₂}
-    → Fun₀ A B
-    → Fun₀ B C
-    → Fun₀ A C
+    → Hom₀ A B
+    → Hom₀ B C
+    → Hom₀ A C
   ap₀₀ (seq F G) a = ap₀₀ G (ap₀₀ F a)
   ap₀₁ (seq F G) f = ap₀₁ G (ap₀₁ F f)
   ap₀₂ (seq F G) α = ap₀₂ G (ap₀₂ F α)
@@ -89,22 +89,22 @@ module ⇒₀ where
     → {A : 𝔘 r ℓ₀}
     → {B : 𝔘 r ℓ₁}
     → {C : 𝔘 r ℓ₂}
-    → Fun₀ B C
-    → Fun₀ A B
-    → Fun₀ A C
+    → Hom₀ B C
+    → Hom₀ A B
+    → Hom₀ A C
   cmp G F = seq F G
 
 open ⇒₀ public
-  using (Fun₀)
+  using (Hom₀)
   using (ap₀₀)
   using (ap₀₁)
   using (ap₀₂)
 
 module ⇒₁ where
-  record Fun₁ {r}..{ℓ₀ ℓ₁}
+  record Hom₁ {r}..{ℓ₀ ℓ₁}
     {A : 𝔘 r ℓ₀}
     {B : 𝔘 r ℓ₁}
-    (F G : Fun₀ A B)
+    (F G : Hom₀ A B)
     : Set (lsuc (ℓ₀ ⊔ ℓ₁))
     where
     no-eta-equality
@@ -119,10 +119,10 @@ module ⇒₁ where
         → (f : A ▸ 1 ⊢ a ↝ b)
         → B ▸ 2 ⊢ cmp₀ B (ap₁₀ b) (ap₀₁ F f) ↝ cmp₀ B (ap₀₁ G f) (ap₁₀ a)
 
-  open Fun₁ public
+  open Hom₁ public
 
   module _ where
-    open Fun₁
+    open Hom₁
 
     {-# DISPLAY ap₁₀ α a = α ⊙ a #-}
     {-# DISPLAY ap₁₁ α f = α ⊙ f #-}
@@ -131,8 +131,8 @@ module ⇒₁ where
     : ∀ {r}..{ℓ₀ ℓ₁}
     → {A : 𝔘 r ℓ₀}
     → {B : 𝔘 r ℓ₁}
-    → {F : Fun₀ A B}
-    → Fun₁ F F
+    → {F : Hom₀ A B}
+    → Hom₁ F F
   ap₁₀ (idn {B = B}) a =
     (idn₀ B)
   ap₁₁ (idn {B = B}{F = F}) f =
@@ -144,10 +144,10 @@ module ⇒₁ where
     : ∀ {r}..{ℓ₀ ℓ₁}
     → {A : 𝔘 r ℓ₀}
     → {B : 𝔘 r ℓ₁}
-    → {F G H : Fun₀ A B}
-    → (α : Fun₁ F G)
-    → (β : Fun₁ G H)
-    → Fun₁ F H
+    → {F G H : Hom₀ A B}
+    → (α : Hom₁ F G)
+    → (β : Hom₁ G H)
+    → Hom₁ F H
   ap₁₀ (seq {B = B} α β) a =
     (seq₀ B
       (ap₁₀ α a)
@@ -167,10 +167,10 @@ module ⇒₁ where
     : ∀ {r}..{ℓ₀ ℓ₁}
     → {A : 𝔘 r ℓ₀}
     → {B : 𝔘 r ℓ₁}
-    → {F G : Fun₀ A B}
-    → (α : Fun₁ F G)
+    → {F G : Hom₀ A B}
+    → (α : Hom₁ F G)
     → {≜ : r T.≡ 0}
-    → Fun₁ G F
+    → Hom₁ G F
   ap₁₀ (inv {B = B} α {T.≡.idn}) a =
     inv₀ B (ap₁₀ α a) {T.≡.idn}
   ap₁₁ (inv {B = B}{F}{G} α {T.≡.idn}) {a}{b} f =
@@ -206,13 +206,13 @@ module ⇒₁ where
     : ∀ {r}..{ℓ₀ ℓ₁}
     → {A : 𝔘 r ℓ₀}
     → {B : 𝔘 r ℓ₁}
-    → {F G H : Fun₀ A B}
-    → (β : Fun₁ G H)
-    → (α : Fun₁ F G)
-    → Fun₁ F H
+    → {F G H : Hom₀ A B}
+    → (β : Hom₁ G H)
+    → (α : Hom₁ F G)
+    → Hom₁ F H
   cmp β α = seq α β
 
 open ⇒₁ public
-  using (Fun₁)
+  using (Hom₁)
   using (ap₁₀)
   using (ap₁₁)

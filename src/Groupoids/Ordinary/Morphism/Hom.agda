@@ -20,8 +20,8 @@ module ⇒₀ where
     → (A : 𝔘 r ℓ₀)
     → (B : 𝔘 r ℓ₁)
     → 𝔘 r _
-  ● [ A ⇒₀ B ] = Fun₀ A B
-  ● (⇇ [ A ⇒₀ B ] F G) = Fun₁ F G
+  ● [ A ⇒₀ B ] = Hom₀ A B
+  ● (⇇ [ A ⇒₀ B ] F G) = Hom₁ F G
   ● (⇇ (⇇ [ A ⇒₀ B ] F G) α β) = T.⊔⇑ _ ((a : A ▸) → B ▸ 2 ⊢ ap₁₀ α a ↝ ap₁₀ β a)
   ⇇ (⇇ (⇇ [ A ⇒₀ B ] _ _) _ _) _ _ = 𝔊.𝟙↑
   idn₀ (A ⇒₀ B) = ⇒₁.idn
@@ -45,7 +45,7 @@ module ⇒₀ where
     → 𝔘 0 _
   A ⇔₀ B = [ A ⇒₀ B ]/≅
 open ⇒₀ public
-  using (Fun₀)
+  using (Hom₀)
   using (_⇒₀_)
   using (ap₀₀)
   using (ap₀₁)
@@ -56,6 +56,6 @@ module ⇒₁ where
   open Groupoids.Ordinary.Morphism.Hom.Boot public
     hiding (module ⇒₁)
 open ⇒₁ public
-  using (Fun₁)
+  using (Hom₁)
   using (ap₁₀)
   using (ap₁₁)

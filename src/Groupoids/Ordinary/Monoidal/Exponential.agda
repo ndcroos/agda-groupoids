@@ -18,7 +18,7 @@ module ⊢ where
     : ∀ ..{ℓ₀ ℓ₁}
     → {A : 𝔘 1 ℓ₀}
     → {B : 𝔘 1 ℓ₁}
-    → Fun₀ (Op (A ⇒₀ B)) (Op A ⇒₀ Op B)
+    → Hom₀ (Op (A ⇒₀ B)) (Op A ⇒₀ Op B)
   ap₀₀ (ap₀₀ op⇒ F) = ap₀₀ F
   ap₀₁ (ap₀₀ op⇒ F) = ap₀₁ F
   ap₀₂ (ap₀₀ op⇒ F) = ap₀₂ F
@@ -36,7 +36,7 @@ module ⊢ where
     : ∀ ..{ℓ₀ ℓ₁}
     → {A : 𝔘 1 ℓ₀}
     → {B : 𝔘 1 ℓ₁}
-    → Fun₀ (Op A ⇒₀ Op B) (Op (A ⇒₀ B))
+    → Hom₀ (Op A ⇒₀ Op B) (Op (A ⇒₀ B))
   ap₀₀ (ap₀₀ op⇐ F) = ap₀₀ F
   ap₀₁ (ap₀₀ op⇐ F) = ap₀₁ F
   ap₀₂ (ap₀₀ op⇐ F) = ap₀₂ F

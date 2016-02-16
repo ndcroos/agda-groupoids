@@ -12,7 +12,7 @@ module Yoneda where
   𝓎[_]
     : ∀ ..{ℓ}
     → (A : 𝔘 1 ℓ)
-    → Fun₀ A (Op A ⇒₀ «Std» 0 ℓ)
+    → Hom₀ A (Op A ⇒₀ «Std» 0 ℓ)
   ap₀₀ (ap₀₀ 𝓎[ A ] b) a = hom A a b
   ap₀₁ (ap₀₀ 𝓎[ A ] b) f = hom* A f (idn₀ A)
   ap₀₂ (ap₀₀ 𝓎[ A ] b) α = _
@@ -33,7 +33,7 @@ module Coyoneda where
   𝓎[_]
     : ∀ ..{ℓ}
     → (A : 𝔘 1 ℓ)
-    → Fun₀ (Op A) (A ⇒₀ «Std» 0 ℓ)
+    → Hom₀ (Op A) (A ⇒₀ «Std» 0 ℓ)
   ap₀₀ (ap₀₀ 𝓎[ A ] a) b = hom A a b
   ap₀₁ (ap₀₀ 𝓎[ A ] a) g = hom* A (idn₀ A) g
   ap₀₂ (ap₀₀ 𝓎[ A ] a) β = _

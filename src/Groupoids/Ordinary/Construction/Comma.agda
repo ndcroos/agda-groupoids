@@ -14,8 +14,8 @@ module Comma where
     → {A : 𝔘 r ℓ₀}
     → {B : 𝔘 r ℓ₁}
     → {V : 𝔘 r ℓ₂}
-    → (F : Fun₀ A V)
-    → (G : Fun₀ B V)
+    → (F : Hom₀ A V)
+    → (G : Hom₀ B V)
     → 𝔘 r _
   ● [ _↓_ {A = A}{B}{V} F G ]
     =

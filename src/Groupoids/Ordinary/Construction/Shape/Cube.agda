@@ -129,7 +129,7 @@ module Cube where
 
   open Yoneda
 
-  □[-] : Fun₀ □ «□Std»
+  □[-] : Hom₀ □ «□Std»
   □[-] = 𝓎[ □ ]
   {-# DISPLAY 𝓎[_] □ = □[-] #-}
 

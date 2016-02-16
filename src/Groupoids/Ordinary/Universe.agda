@@ -21,8 +21,8 @@ module 𝔘 where
   «seq₀*»
     : ∀ {r}..{ℓ}
     → {A B C : 𝔘 r ℓ}
-    → {F₀ F₁ : Fun₀ A B}
-    → {G₀ G₁ : Fun₀ B C}
+    → {F₀ F₁ : Hom₀ A B}
+    → {G₀ G₁ : Hom₀ B C}
     → A ⇒₀ B ⊢ F₀ ≅ F₁
     → B ⇒₀ C ⊢ G₀ ≅ G₁
     → A ⇒₀ C ⊢ ⇒₀.seq F₀ G₀ ≅ ⇒₀.seq F₁ G₁
@@ -104,7 +104,7 @@ module 𝔘 where
   «⊢idn₀-λ»
     : ∀ {r}..{ℓ}
     → {A B : 𝔘 r ℓ}
-    → {F : Fun₀ A B}
+    → {F : Hom₀ A B}
     → A ⇒₀ B ⊢ ⇒₀.seq ⇒₀.idn F ≅ F
   ap₁₀ (» («⊢idn₀-λ» {B = B})) a =
     idn₀ B
@@ -126,7 +126,7 @@ module 𝔘 where
   «⊢idn₀-ρ»
     : ∀ {r}..{ℓ}
     → {A B : 𝔘 r ℓ}
-    → {F : Fun₀ A B}
+    → {F : Hom₀ A B}
     → A ⇒₀ B ⊢ ⇒₀.seq F ⇒₀.idn ≅ F
   ap₁₀ (» («⊢idn₀-ρ» {B = B})) a =
     idn₀ B
@@ -148,9 +148,9 @@ module 𝔘 where
   «⊢seq₀-α»
     : ∀ {r}..{ℓ}
     → {A B C D : 𝔘 r ℓ}
-    → {F : Fun₀ A B}
-    → {G : Fun₀ B C}
-    → {H : Fun₀ C D}
+    → {F : Hom₀ A B}
+    → {G : Hom₀ B C}
+    → {H : Hom₀ C D}
     → A ⇒₀ D ⊢ ⇒₀.seq F (⇒₀.seq G H) ≅ ⇒₀.seq (⇒₀.seq F G) H
   ap₁₀ (» («⊢seq₀-α» {D = D})) a =
     idn₀ D
@@ -258,7 +258,7 @@ module 𝔘 where
     → {a₀ a₁ b₀ b₁ : A ▸}
     → (f : Op A ▸ 1 ⊢ a₀ ↝ a₁)
     → (g : A ▸ 1 ⊢ b₀ ↝ b₁)
-    → Fun₀ (hom A a₀ b₀) (hom A a₁ b₁)
+    → Hom₀ (hom A a₀ b₀) (hom A a₁ b₁)
   ap₀₀ (hom* A f g) k = seq₀ A f (seq₀ A k g)
   ap₀₁ (hom* A f g) α = seq₀*-ρ A (seq₀*-λ A α)
   ap₀₂ (hom* A f g) = _
@@ -269,7 +269,7 @@ module 𝔘 where
   «hom»
     : ∀ ..{ℓ}
     → (A : 𝔘 1 ℓ)
-    → Fun₀ (Op A ⊗ A) («Std» 0 ℓ)
+    → Hom₀ (Op A ⊗ A) («Std» 0 ℓ)
   ap₀₀ («hom» A) (a , b) = hom  A a b
   ap₀₁ («hom» A) (f , g) = hom* A f g
   ap₀₂ («hom» A) = _
@@ -281,7 +281,7 @@ module 𝔘 where
     : ∀ ..{ℓ}
     → (A : 𝔘 1 ℓ)
     → Set _
-  Psh {ℓ} A = Fun₀ (Op A) («Std» 0 ℓ)
+  Psh {ℓ} A = Hom₀ (Op A) («Std» 0 ℓ)
 
   «Psh»
     : ∀ ..{ℓ}
