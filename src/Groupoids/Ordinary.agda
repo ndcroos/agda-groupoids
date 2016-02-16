@@ -19,6 +19,7 @@ open import Groupoids.Ordinary.Construction.Yoneda public
 open import Groupoids.Ordinary.Monoidal.Diagonal public
 open import Groupoids.Ordinary.Monoidal.Exponential public
 open import Groupoids.Ordinary.Monoidal.Tensor.Coproduct public
+open import Groupoids.Ordinary.Monoidal.Tensor.Coproduct.Indexed public
 open import Groupoids.Ordinary.Monoidal.Tensor.Product public
 open import Groupoids.Ordinary.Monoidal.Tensor.Product.Indexed public
 open import Groupoids.Ordinary.Monoidal.Unit.Initial public
