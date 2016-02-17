@@ -30,6 +30,7 @@ import Groupoids.Ordinary.Monoidal.Tensor.Product
 import Groupoids.Ordinary.Monoidal.Tensor.Product.Indexed
 import Groupoids.Ordinary.Monoidal.Unit.Initial
 import Groupoids.Ordinary.Monoidal.Unit.Terminal
+import Groupoids.Ordinary.Morphism.Fib
 import Groupoids.Ordinary.Morphism.Hom
 import Groupoids.Ordinary.Morphism.Hom.Boot
 import Groupoids.Ordinary.Morphism.Iso

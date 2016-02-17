@@ -24,6 +24,7 @@ open import Groupoids.Ordinary.Monoidal.Tensor.Product public
 open import Groupoids.Ordinary.Monoidal.Tensor.Product.Indexed public
 open import Groupoids.Ordinary.Monoidal.Unit.Initial public
 open import Groupoids.Ordinary.Monoidal.Unit.Terminal public
+open import Groupoids.Ordinary.Morphism.Fib
 open import Groupoids.Ordinary.Morphism.Hom public
 open import Groupoids.Ordinary.Morphism.Iso public
 open import Groupoids.Ordinary.Universe public
