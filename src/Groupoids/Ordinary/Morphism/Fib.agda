@@ -56,6 +56,26 @@ module Fib where
     hiding (π₀[_])
     hiding (π₁[_])
 
+  record Lifted
+    {r}..{ℓ₀ ℓ₁}
+    {E : 𝔘 r ℓ₀}
+    {B : 𝔘 r ℓ₁}
+    (π : Hom₀ E B)
+    {b e}
+    (f : B ▸ 1 ⊢ b ↝ ap₀₀ π e)
+    : Set (ℓ₀ ⊔ ℓ₁)
+    where
+    no-eta-equality
+    private
+      π₀[_] = ap₀₀ π
+      π₁[_] = ap₀₁ π
+    field
+      dom : E ▸
+      map : E ▸ 1 ⊢ dom ↝ e
+      iso : B ⊢ b ≅ π₀[ dom ]
+      coh : B ▸ 2 ⊢ seq₀ B (Iso.« iso) f ↝ π₁[ map ]
+      car : Cartesian π map
+
   record Fibration
     {r}..{ℓ₀ ℓ₁}
     {E : 𝔘 r ℓ₀}
@@ -64,32 +84,14 @@ module Fib where
     : Set (ℓ₀ ⊔ ℓ₁)
     where
     no-eta-equality
-    π₀[_] = ap₀₀ π
-    π₁[_] = ap₀₁ π
     field
-      lift-obj
+      lift
         : ∀ {b e}
-        → (f : B ▸ 1 ⊢ b ↝ π₀[ e ])
-        → E ▸
-      lift-map
-        : ∀ {b e}
-        → (f : B ▸ 1 ⊢ b ↝ π₀[ e ])
-        → E ▸ 1 ⊢ lift-obj f ↝ e
-      lift-iso
-        : ∀ {b e}
-        → (f : B ▸ 1 ⊢ b ↝ π₀[ e ])
-        → B ⊢ b ≅ π₀[ lift-obj f ]
-      lift-coh
-        : ∀ {b e}
-        → (f : B ▸ 1 ⊢ b ↝ π₀[ e ])
-        → B ▸ 2 ⊢ seq₀ B (Iso.« (lift-iso f)) f ↝ π₁[ lift-map f ]
-      cartesian
-        : ∀ {b e}
-        → (f : B ▸ 1 ⊢ b ↝ π₀[ e ])
-        → Cartesian π (lift-map f)
+        → (f : B ▸ 1 ⊢ b ↝ ap₀₀ π e)
+        → Lifted π f
+    module Lift {b e} (f : B ▸ 1 ⊢ b ↝ ap₀₀ π e) where
+      open Lifted (lift f) public
   open Fibration public
-    hiding (π₀[_])
-    hiding (π₁[_])
 
 open Fib public
   using (Cartesian)
