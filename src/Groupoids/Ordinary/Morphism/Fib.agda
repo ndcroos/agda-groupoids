@@ -46,15 +46,13 @@ module Fib where
       π₁[_] = ap₀₁ π
     open Horn π-horn
     field
-      edge-∃
+      lhs
         : E ▸ 1 ⊢ □01 ↝ □00
-    lhs = edge-∃
-    field
-      ⊢edge-⟓
+      ⊢seq
         : E ▸ 2 ⊢ dia ↝ seq₀ E lhs bot
-      ⊢edge-π[-]
+      ⊢img
         : B ▸ 2 ⊢ π₁[ lhs ] ↝ π₁[lhs]
-      ⊢edge-!
+      ⊢unique
         : (#lhs : E ▸ 1 ⊢ □01 ↝ □00)
         → E ▸ 2 ⊢ dia ↝ seq₀ E #lhs bot
         → B ▸ 2 ⊢ π₁[ #lhs ] ↝ π₁[lhs]
