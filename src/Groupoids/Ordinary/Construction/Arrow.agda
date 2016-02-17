@@ -16,34 +16,34 @@ module Arrow where
     → 𝔘 r _
   A ↗² = ⇒₀.idn {A = A} ↓ ⇒₀.idn {A = A}
 
-  points
+  nodes
     : ∀ {r}..{ℓ}
     → (A : 𝔘 r ℓ)
     → Hom₀ (A ↗²) (A ⊗ A)
-  ap₀₀ (points A) =
+  ap₀₀ (nodes A) =
     T.Σ.fst
-  ap₀₁ (points A) =
+  ap₀₁ (nodes A) =
     T.Σ.fst
-  ap₀₂ (points A) =
+  ap₀₂ (nodes A) =
     T.⊔⇑.π
-  ⇒₀.⊢idn (points A) =
+  ⇒₀.⊢idn (nodes A) =
     idn₁ A , idn₁ A
-  ⇒₀.⊢seq (points A) =
+  ⇒₀.⊢seq (nodes A) =
     idn₁ A , idn₁ A
-  ⇒₀.⊢inv (points A) =
+  ⇒₀.⊢inv (nodes A) =
     idn₁ A , idn₁ A
 
   dom
     : ∀ {r}..{ℓ}
     → (A : 𝔘 r ℓ)
     → Hom₀ (A ↗²) A
-  dom A = ⇒₀.seq (points A) ⊗.fst
+  dom A = ⇒₀.seq (nodes A) ⊗.fst
 
   cod
     : ∀ {r}..{ℓ}
     → (A : 𝔘 r ℓ)
     → Hom₀ (A ↗²) A
-  cod A = ⇒₀.seq (points A) ⊗.snd
+  cod A = ⇒₀.seq (nodes A) ⊗.snd
 
 open Arrow public
   using (_↗²)
