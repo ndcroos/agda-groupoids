@@ -256,7 +256,7 @@ module 𝔘 where
     : ∀ ..{ℓ}
     → (A : 𝔘 1 ℓ)
     → {a₀ a₁ b₀ b₁ : A ▸}
-    → (f : Op A ▸ 1 ⊢ a₀ ↝ a₁)
+    → (f : Op[ A ] ▸ 1 ⊢ a₀ ↝ a₁)
     → (g : A ▸ 1 ⊢ b₀ ↝ b₁)
     → Hom₀ (hom A a₀ b₀) (hom A a₁ b₁)
   ap₀₀ (hom* A f g) k = seq₀ A f (seq₀ A k g)
@@ -269,7 +269,7 @@ module 𝔘 where
   «hom»
     : ∀ ..{ℓ}
     → (A : 𝔘 1 ℓ)
-    → Hom₀ (Op A ⊗ A) («Std» 0 ℓ)
+    → Hom₀ (Op[ A ] ⊗ A) («Std» 0 ℓ)
   ap₀₀ («hom» A) (a , b) = hom  A a b
   ap₀₁ («hom» A) (f , g) = hom* A f g
   ap₀₂ («hom» A) = _
@@ -281,12 +281,57 @@ module 𝔘 where
     : ∀ ..{ℓ}
     → (A : 𝔘 1 ℓ)
     → Set _
-  Psh {ℓ} A = Hom₀ (Op A) («Std» 0 ℓ)
+  Psh {ℓ} A = Hom₀ Op[ A ] («Std» 0 ℓ)
 
   «Psh»
     : ∀ ..{ℓ}
     → (A : 𝔘 1 ℓ)
     → 𝔘 _ _
-  «Psh» {ℓ} A = Op A ⇒₀ «Std» 0 ℓ
+  «Psh» {ℓ} A = Op[ A ] ⇒₀ «Std» 0 ℓ
+
+  «Op»
+    : ∀ {r}..{ℓ}
+    → Hom₀ («Cat» r ℓ) («Cat» r ℓ)
+  ap₀₀ «Op» =
+    Op[_]
+  ap₀₁ «Op» = ap₀₀
+    ⇒.⊢.op⇒
+  Hom₁.ap₁₀ (Iso.» (ap₀₂ «Op» α)) =
+    ap₁₀ (Iso.« α)
+  Hom₁.ap₁₁ (Iso.» (ap₀₂ «Op» {b = B} α)) f =
+    inv₁ B (ap₁₁ (Iso.« α) f)
+  Hom₁.ap₁₀ (Iso.« (ap₀₂ «Op» α)) a =
+    ap₁₀ (Iso.» α) a
+  Hom₁.ap₁₁ (Iso.« (ap₀₂ «Op» {b = B} α)) f =
+    inv₁ B (ap₁₁ (Iso.» α) f)
+  Iso.⊢»« (ap₀₂ «Op» α) =
+    Iso.⊢»« α
+  Iso.⊢«» (ap₀₂ «Op» α) =
+    Iso.⊢«» α
+  Hom₁.ap₁₀ (Iso.» (⇒₀.⊢idn «Op» {A})) a =
+    idn₀ A
+  Hom₁.ap₁₁ (Iso.» (⇒₀.⊢idn «Op» {A})) f =
+    seq₁ A (⊢idn₀-λ A) (inv₁ A (⊢idn₀-ρ A))
+  Hom₁.ap₁₀ (Iso.« (⇒₀.⊢idn «Op» {A})) a =
+    idn₀ A
+  Hom₁.ap₁₁ (Iso.« (⇒₀.⊢idn «Op» {A})) f =
+    seq₁ A (⊢idn₀-λ A) (inv₁ A (⊢idn₀-ρ A))
+  Iso.⊢»« (⇒₀.⊢idn «Op» {A}) =
+    ι λ a → ⊢idn₀-λ A {a}{a}{idn₀ A {a}}
+  Iso.⊢«» (⇒₀.⊢idn «Op» {A}) =
+    ι λ a → ⊢idn₀-λ A {a}{a}{idn₀ A {a}}
+  Hom₁.ap₁₀ (Iso.» (⇒₀.⊢seq «Op» {c = C})) a =
+    idn₀ C
+  Hom₁.ap₁₁ (Iso.» (⇒₀.⊢seq «Op» {c = C})) f =
+    seq₁ C (⊢idn₀-λ C) (inv₁ C (⊢idn₀-ρ C))
+  Hom₁.ap₁₀ (Iso.« (⇒₀.⊢seq «Op» {c = C})) a =
+    idn₀ C
+  Hom₁.ap₁₁ (Iso.« (⇒₀.⊢seq «Op» {c = C})) f =
+    seq₁ C (⊢idn₀-λ C) (inv₁ C (⊢idn₀-ρ C))
+  Iso.⊢»« (⇒₀.⊢seq «Op» {c = C}{F}{G}) =
+    ι λ a → ⊢idn₀-λ C {ap₀₀ G (ap₀₀ F a)}
+  Iso.⊢«» (⇒₀.⊢seq «Op» {c = C}{F}{G}) =
+    ι λ a → ⊢idn₀-λ C {ap₀₀ G (ap₀₀ F a)}
+  ⇒₀.⊢inv «Op» {()}
 
 open 𝔘 public

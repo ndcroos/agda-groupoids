@@ -74,7 +74,7 @@ module ⊗ where
       : ∀ {r}..{ℓ₀ ℓ₁}
       → {A : 𝔘 r ℓ₀}
       → {B : 𝔘 r ℓ₁}
-      → Hom₀ (Op (A ⊗ B)) (Op A ⊗ Op B)
+      → Hom₀ Op[ A ⊗ B ] (Op[ A ] ⊗ Op[ B ])
     ap₀₀ op⇒ = T.⇒.idn
     ap₀₁ op⇒ = T.⇒.idn
     ap₀₂ op⇒ = T.⇒.idn
@@ -86,7 +86,7 @@ module ⊗ where
       : ∀ {r}..{ℓ₀ ℓ₁}
       → {A : 𝔘 r ℓ₀}
       → {B : 𝔘 r ℓ₁}
-      → Hom₀ (Op A ⊗ Op B) (Op (A ⊗ B))
+      → Hom₀ (Op[ A ] ⊗ Op[ B ]) Op[ A ⊗ B ]
     ap₀₀ op⇐ = T.⇒.idn
     ap₀₁ op⇐ = T.⇒.idn
     ap₀₂ op⇐ = T.⇒.idn
