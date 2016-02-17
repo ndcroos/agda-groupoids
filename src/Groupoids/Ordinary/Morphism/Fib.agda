@@ -54,8 +54,8 @@ module Fib where
         : B ▸ 2 ⊢ π₁[ lhs ] ↝ img
       unique
         : (#lhs : E ▸ 1 ⊢ □01 ↝ □00)
-        → E ▸ 2 ⊢ dia ↝ seq₀ E #lhs bot
-        → B ▸ 2 ⊢ π₁[ #lhs ] ↝ img
+        → (#seq : E ▸ 2 ⊢ dia ↝ seq₀ E #lhs bot)
+        → (#img : B ▸ 2 ⊢ π₁[ #lhs ] ↝ img)
         → E ▸ 2 ⊢ #lhs ↝ lhs
 
   record Cartesian
