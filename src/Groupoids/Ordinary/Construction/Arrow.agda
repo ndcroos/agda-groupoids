@@ -10,16 +10,16 @@ open import Groupoids.Ordinary.Morphism.Hom.Boot
 open import Groupoids.Ordinary.Universe.Boot
 
 module Arrow where
-  _↗²
+  ⇇∐[_]
     : ∀ {r}..{ℓ}
     → (A : 𝔘 r ℓ)
     → 𝔘 r _
-  A ↗² = ⇒₀.idn {A = A} ↓ ⇒₀.idn {A = A}
+  ⇇∐[ A ] = ⇒₀.idn {A = A} ↓ ⇒₀.idn {A = A}
 
   nodes
     : ∀ {r}..{ℓ}
     → (A : 𝔘 r ℓ)
-    → Hom₀ (A ↗²) (A ⊗ A)
+    → Hom₀ ⇇∐[ A ] (A ⊗ A)
   ap₀₀ (nodes A) =
     T.Σ.fst
   ap₀₁ (nodes A) =
@@ -36,14 +36,14 @@ module Arrow where
   dom
     : ∀ {r}..{ℓ}
     → (A : 𝔘 r ℓ)
-    → Hom₀ (A ↗²) A
+    → Hom₀ ⇇∐[ A ] A
   dom A = ⇒₀.seq (nodes A) ⊗.fst
 
   cod
     : ∀ {r}..{ℓ}
     → (A : 𝔘 r ℓ)
-    → Hom₀ (A ↗²) A
+    → Hom₀ ⇇∐[ A ] A
   cod A = ⇒₀.seq (nodes A) ⊗.snd
 
 open Arrow public
-  using (_↗²)
+  using (⇇∐[_])
