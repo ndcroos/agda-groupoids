@@ -25,10 +25,10 @@ module Fib where
       π₀[_] = ap₀₀ π
       π₁[_] = ap₀₁ π
     field
-      {□01}   : E ▸
-      π₁[lhs] : B ▸ 1 ⊢ π₀[ □01 ] ↝ π₀[ □00 ]
-      dia     : E ▸ 1 ⊢ □01 ↝ □10
-      coh     : B ▸ 2 ⊢ seq₀ B π₁[lhs] π₁[ bot ] ↝ π₁[ dia ]
+      {□01} : E ▸
+      img   : B ▸ 1 ⊢ π₀[ □01 ] ↝ π₀[ □00 ]
+      dia   : E ▸ 1 ⊢ □01 ↝ □10
+      coh   : B ▸ 2 ⊢ seq₀ B img π₁[ bot ] ↝ π₁[ dia ]
 
   record Refined
     {r}..{ℓ₀ ℓ₁}
@@ -48,14 +48,14 @@ module Fib where
     field
       lhs
         : E ▸ 1 ⊢ □01 ↝ □00
-      ⊢seq
+      coh-seq
         : E ▸ 2 ⊢ dia ↝ seq₀ E lhs bot
-      ⊢img
-        : B ▸ 2 ⊢ π₁[ lhs ] ↝ π₁[lhs]
-      ⊢unique
+      coh-img
+        : B ▸ 2 ⊢ π₁[ lhs ] ↝ img
+      unique
         : (#lhs : E ▸ 1 ⊢ □01 ↝ □00)
         → E ▸ 2 ⊢ dia ↝ seq₀ E #lhs bot
-        → B ▸ 2 ⊢ π₁[ #lhs ] ↝ π₁[lhs]
+        → B ▸ 2 ⊢ π₁[ #lhs ] ↝ img
         → E ▸ 2 ⊢ #lhs ↝ lhs
 
   record Cartesian
@@ -75,11 +75,11 @@ module Fib where
       edge : (horn : Horn π bot) → Refined π horn
     module Edge
       {□01}
-      (π₁[lhs] : B ▸ 1 ⊢ π₀[ □01 ] ↝ π₀[ □00 ])
+      (img : B ▸ 1 ⊢ π₀[ □01 ] ↝ π₀[ □00 ])
       (dia : E ▸ 1 ⊢ □01 ↝ □10)
-      (coh : B ▸ 2 ⊢ seq₀ B π₁[lhs] π₁[ bot ] ↝ π₁[ dia ])
+      (coh : B ▸ 2 ⊢ seq₀ B img π₁[ bot ] ↝ π₁[ dia ])
       where
-      open Refined (edge (horn π₁[lhs] dia coh)) public
+      open Refined (edge (horn img dia coh)) public
   open Cartesian public
 
   record Lifted
@@ -99,9 +99,10 @@ module Fib where
     field
       dom : E ▸
       map : E ▸ 1 ⊢ dom ↝ e
+      car : Cartesian π map
+    field
       coe : B ⊢ b ≅ π₀[ dom ]
       coh : B ▸ 2 ⊢ seq₀ B (« coe) f ↝ π₁[ map ]
-      car : Cartesian π map
 
   record Fibration
     {r}..{ℓ₀ ℓ₁}
