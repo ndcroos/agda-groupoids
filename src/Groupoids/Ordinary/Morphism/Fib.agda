@@ -92,14 +92,15 @@ module Fib where
     : Set (ℓ₀ ⊔ ℓ₁)
     where
     no-eta-equality
+    open Iso
     private
       π₀[_] = ap₀₀ π
       π₁[_] = ap₀₁ π
     field
       dom : E ▸
       map : E ▸ 1 ⊢ dom ↝ e
-      iso : B ⊢ b ≅ π₀[ dom ]
-      coh : B ▸ 2 ⊢ seq₀ B (Iso.« iso) f ↝ π₁[ map ]
+      coe : B ⊢ b ≅ π₀[ dom ]
+      coh : B ▸ 2 ⊢ seq₀ B (« coe) f ↝ π₁[ map ]
       car : Cartesian π map
 
   record Fibration
