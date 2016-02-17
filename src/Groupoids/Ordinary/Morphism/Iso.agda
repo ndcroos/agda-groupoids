@@ -6,9 +6,9 @@ open import Groupoids.Common
 open import Groupoids.Ordinary.Universe.Boot
 
 module ≅ where
-  infix 0 _⊢_≅_
+  infix 0 Iso
 
-  record _⊢_≅_ {r}..{ℓ} (A : 𝔘 r ℓ) (a b : A ▸) : Set ℓ where
+  record Iso {r}..{ℓ} (A : 𝔘 r ℓ) (a b : A ▸) : Set ℓ where
     no-eta-equality
     field
       » : A ▸ 1 ⊢ a ↝ b
@@ -21,7 +21,9 @@ module ≅ where
 
     {-# DISPLAY » f = »[ f ] #-}
     {-# DISPLAY « f = «[ f ] #-}
-  open _⊢_≅_ public
+  open Iso public
+
+  syntax Iso A f g = A ⊢ f ≅ g
 
   module _ {r}..{ℓ} (A : 𝔘 r ℓ) where
     idn
@@ -78,4 +80,4 @@ module ≅ where
     ⊢«» (inv f) = ⊢»« f
 
 open ≅ public
-  using (_⊢_≅_)
+  using (Iso)
