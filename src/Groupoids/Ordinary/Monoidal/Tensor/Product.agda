@@ -43,6 +43,30 @@ module ⊗ where
   inv₁ (A ⊗ B) (α , β) =
     inv₁ A α , inv₁ B β
 
+  fst
+    : ∀ {r}..{ℓ₀ ℓ₁}
+    → {A : 𝔘 r ℓ₀}
+    → {B : 𝔘 r ℓ₁}
+    → Hom₀ (A ⊗ B) A
+  ap₀₀ fst = T.⊗.fst
+  ap₀₁ fst = T.⊗.fst
+  ap₀₂ fst = T.⊗.fst
+  ⇒₀.⊢idn (fst {A = A}) = idn₁ A
+  ⇒₀.⊢seq (fst {A = A}) = idn₁ A
+  ⇒₀.⊢inv (fst {A = A}) = idn₁ A
+
+  snd
+    : ∀ {r}..{ℓ₀ ℓ₁}
+    → {A : 𝔘 r ℓ₀}
+    → {B : 𝔘 r ℓ₁}
+    → Hom₀ (A ⊗ B) B
+  ap₀₀ snd = T.⊗.snd
+  ap₀₁ snd = T.⊗.snd
+  ap₀₂ snd = T.⊗.snd
+  ⇒₀.⊢idn (snd {B = B}) = idn₁ B
+  ⇒₀.⊢seq (snd {B = B}) = idn₁ B
+  ⇒₀.⊢inv (snd {B = B}) = idn₁ B
+
   module ⊢ where
     -- FIXME: these should be isomorphisms
 
