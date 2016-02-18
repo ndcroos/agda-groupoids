@@ -30,3 +30,4 @@ open import Groupoids.Ordinary.Groupoid.Yoneda public
 open import Groupoids.Ordinary.Structure.Dinatural public
 open import Groupoids.Ordinary.Structure.Fibration public
 open import Groupoids.Ordinary.Structure.Profunctor public
+open import Groupoids.Ordinary.Structure.Wedge public

@@ -38,3 +38,4 @@ import Groupoids.Ordinary.Groupoid.Yoneda
 import Groupoids.Ordinary.Structure.Dinatural
 import Groupoids.Ordinary.Structure.Fibration
 import Groupoids.Ordinary.Structure.Profunctor
+import Groupoids.Ordinary.Structure.Wedge
