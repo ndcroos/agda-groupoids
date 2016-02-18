@@ -3,10 +3,7 @@
 module Groupoids.Ordinary.Structure.Wedge where
 
 open import Groupoids.Basis
-open import Groupoids.Ordinary.Groupoid.Opposite
 open import Groupoids.Ordinary.Ambient.Cosmos.Diagonal
-open import Groupoids.Ordinary.Ambient.Cosmos.Tensor.Product
-open import Groupoids.Ordinary.Ambient.Morphism.Hom
 open import Groupoids.Ordinary.Ambient.Universe.Boot
 open import Groupoids.Ordinary.Structure.Dinatural
 open import Groupoids.Ordinary.Structure.Profunctor

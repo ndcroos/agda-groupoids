@@ -36,6 +36,6 @@ module ⇏₁ where
                      (seq₀ V
                        (ap₁δ₀ y)
                        (ap₀₁ G (f , idn₀ A)))))
-
+  open ¬Hom₁ public
 open ⇏₁ public
   using (¬Hom₁)
