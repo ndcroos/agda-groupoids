@@ -73,11 +73,11 @@ module Arrow where
         (seq₁ A
           (seq₀*-λ A coh)
           (T.Σ.snd dia)))
-    coh-seq (edge (car (lift (dom-fib A) f)) ⦣) =
-      ι (inv₁ A (Horn.coh ⦣) , inv₁ A (⊢idn₀-ρ A))
-    coh-img (edge (car (lift (dom-fib A) f)) ⦣) =
+    coh-seq (edge (car (lift (dom-fib A) f)) 𝔥) =
+      ι (inv₁ A (Horn.coh 𝔥) , inv₁ A (⊢idn₀-ρ A))
+    coh-img (edge (car (lift (dom-fib A) f)) 𝔥) =
       idn₁ A
-    unique (edge (car (lift (dom-fib A) f)) ⦣) #lhs #seq #img =
+    unique (edge (car (lift (dom-fib A) f)) 𝔥) #lhs #seq #img =
       ι (#img , inv₁ A (seq₁ A (T.⊗.snd (T.⊔⇑.π #seq)) (⊢idn₀-ρ A)))
     coe (lift (dom-fib A) f) =
       ≅.idn A
@@ -102,11 +102,11 @@ module Arrow where
           (seq₁ A
             (seq₀*-ρ A coh)
             (inv₁ A (T.Σ.snd dia)))))
-    coh-seq (edge (car (lift (cod-opfib A) f)) ⦣) =
-      ι (inv₁ A (⊢idn₀-λ A) , inv₁ A (Horn.coh ⦣))
-    coh-img (edge (car (lift (cod-opfib A) f)) ⦣) =
+    coh-seq (edge (car (lift (cod-opfib A) f)) 𝔥) =
+      ι (inv₁ A (⊢idn₀-λ A) , inv₁ A (Horn.coh 𝔥))
+    coh-img (edge (car (lift (cod-opfib A) f)) 𝔥) =
       idn₁ A
-    unique (edge (car (lift (cod-opfib A) f)) ⦣) #lhs #seq #img =
+    unique (edge (car (lift (cod-opfib A) f)) 𝔥) #lhs #seq #img =
       ι (inv₁ A (seq₁ A (T.⊗.fst (T.⊔⇑.π #seq)) (⊢idn₀-λ A)) , #img)
     coe (lift (cod-opfib A) f) =
       ≅.idn Op[ A ]
