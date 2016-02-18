@@ -8,17 +8,22 @@ open import Groupoids.Ordinary.Ambient.Cosmos.Tensor.Product
 open import Groupoids.Ordinary.Ambient.Morphism.Hom
 open import Groupoids.Ordinary.Ambient.Universe
 
-GPro
-  : ∀ {r}..{ℓ₀ ℓ₁ ℓ₂}
-  → (V : 𝔘 r ℓ₀)
-  → (A : 𝔘 r ℓ₁)
-  → (B : 𝔘 r ℓ₂)
-  → Set _
-GPro V A B = Hom₀ (Op[ B ] ⊗ A) V
+module ⇏₀ where
+  ¬Hom₀[_]
+    : ∀ {r}..{ℓ₀ ℓ₁ ℓ₂}
+    → (V : 𝔘 r ℓ₀)
+    → (A : 𝔘 r ℓ₁)
+    → (B : 𝔘 r ℓ₂)
+    → Set _
+  ¬Hom₀[ V ] A B = Hom₀ (Op[ B ] ⊗ A) V
 
-Pro
-  : ∀ ..{ℓ}{r}..{ℓ₀ ℓ₁}
-  → (A : 𝔘 1 ℓ₀)
-  → (B : 𝔘 1 ℓ₁)
-  → Set _
-Pro {ℓ}{r} = GPro («Std» r ℓ)
+  ¬Hom₀
+    : ∀ ..{ℓ}{r}..{ℓ₀ ℓ₁}
+    → (A : 𝔘 1 ℓ₀)
+    → (B : 𝔘 1 ℓ₁)
+    → Set _
+  ¬Hom₀ {ℓ}{r} = ¬Hom₀[ «Std» r ℓ ]
+
+open ⇏₀ public
+  using (¬Hom₀[_])
+  using (¬Hom₀)
