@@ -35,5 +35,6 @@ import Groupoids.Ordinary.Groupoid.Shape.Cube
 import Groupoids.Ordinary.Groupoid.Shape.Simplex
 import Groupoids.Ordinary.Groupoid.Slice
 import Groupoids.Ordinary.Groupoid.Yoneda
+import Groupoids.Ordinary.Structure.Dinatural
 import Groupoids.Ordinary.Structure.Fibration
 import Groupoids.Ordinary.Structure.Profunctor

@@ -27,5 +27,6 @@ open import Groupoids.Ordinary.Groupoid.Shape.Cube public
 open import Groupoids.Ordinary.Groupoid.Shape.Simplex public
 open import Groupoids.Ordinary.Groupoid.Slice public
 open import Groupoids.Ordinary.Groupoid.Yoneda public
+open import Groupoids.Ordinary.Structure.Dinatural public
 open import Groupoids.Ordinary.Structure.Fibration public
 open import Groupoids.Ordinary.Structure.Profunctor public
