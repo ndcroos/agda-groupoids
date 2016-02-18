@@ -3,6 +3,7 @@
 module Groupoids.Ordinary.Construction.Comma where
 
 open import Groupoids.Common
+open import Groupoids.Ordinary.Monoidal.Tensor.Product
 open import Groupoids.Ordinary.Morphism.Hom.Boot
 open import Groupoids.Ordinary.Universe.Boot
 
@@ -164,6 +165,44 @@ module Comma where
     (ι (Φ , Ψ))
     =
     ι (inv₁ A Φ , inv₁ B Ψ)
+
+  nodes
+    : ∀ {r}..{ℓ₀ ℓ₁ ℓ₂}
+    → {A : 𝔘 r ℓ₀}
+    → {B : 𝔘 r ℓ₁}
+    → {V : 𝔘 r ℓ₂}
+    → (F : Hom₀ A V)
+    → (G : Hom₀ B V)
+    → Hom₀ (F ↓ G) (A ⊗ B)
+  ap₀₀ (nodes {A = A}{B = B} F G) =
+    T.Σ.fst
+  ap₀₁ (nodes {A = A}{B = B} F G) =
+    T.Σ.fst
+  ap₀₂ (nodes {A = A}{B = B} F G) =
+    T.⊔⇑.π
+  ⇒₀.⊢idn (nodes {A = A}{B = B} F G) =
+    idn₁ A , idn₁ B
+  ⇒₀.⊢seq (nodes {A = A}{B = B} F G) =
+    idn₁ A , idn₁ B
+  ⇒₀.⊢inv (nodes {A = A}{B = B} F G) =
+    idn₁ A , idn₁ B
+
+  private
+    module Comma
+      {r}
+      ..{ℓ₀ ℓ₁ ℓ₂}
+      {A : 𝔘 r ℓ₀}
+      {B : 𝔘 r ℓ₁}
+      {V : 𝔘 r ℓ₂}
+      (F : Hom₀ A V)
+      (G : Hom₀ B V)
+      where
+        dom : Hom₀ (F ↓ G) A
+        dom = ⇒₀.seq (nodes F G) ⊗.fst
+
+        cod : Hom₀ (F ↓ G) B
+        cod = ⇒₀.seq (nodes F G) ⊗.snd
+  open Comma public
 
 open Comma public
   using (_↓_)

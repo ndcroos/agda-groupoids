@@ -5,8 +5,6 @@ module Groupoids.Ordinary.Construction.Arrow where
 open import Groupoids.Common
 open import Groupoids.Ordinary.Construction.Comma
 open import Groupoids.Ordinary.Construction.Opposite
-open import Groupoids.Ordinary.Monoidal.Exponential
-open import Groupoids.Ordinary.Monoidal.Tensor.Product
 open import Groupoids.Ordinary.Morphism.Fib
 open import Groupoids.Ordinary.Morphism.Hom.Boot
 open import Groupoids.Ordinary.Morphism.Iso
@@ -19,36 +17,17 @@ module Arrow where
     → 𝔘 r _
   ⇇∐[ A ] = ⇒₀.idn {A = A} ↓ ⇒₀.idn {A = A}
 
-  nodes
-    : ∀ {r}..{ℓ}
-    → (A : 𝔘 r ℓ)
-    → Hom₀ ⇇∐[ A ] (A ⊗ A)
-  ap₀₀ (nodes A) =
-    T.Σ.fst
-  ap₀₁ (nodes A) =
-    T.Σ.fst
-  ap₀₂ (nodes A) =
-    T.⊔⇑.π
-  ⇒₀.⊢idn (nodes A) =
-    idn₁ A , idn₁ A
-  ⇒₀.⊢seq (nodes A) =
-    idn₁ A , idn₁ A
-  ⇒₀.⊢inv (nodes A) =
-    idn₁ A , idn₁ A
-
   private
-    module Arrow where
-      dom
-        : ∀ {r}..{ℓ}
-        → (A : 𝔘 r ℓ)
-        → Hom₀ ⇇∐[ A ] A
-      dom A = ⇒₀.seq (nodes A) ⊗.fst
+    module Arrow
+      {r}
+      ..{ℓ}
+      (A : 𝔘 r ℓ)
+      where
+        dom : Hom₀ ⇇∐[ A ] A
+        dom = Comma.dom ⇒₀.idn ⇒₀.idn
 
-      cod
-        : ∀ {r}..{ℓ}
-        → (A : 𝔘 r ℓ)
-        → Hom₀ ⇇∐[ A ] A
-      cod A = ⇒₀.seq (nodes A) ⊗.snd
+        cod : Hom₀ ⇇∐[ A ] A
+        cod = Comma.cod ⇒₀.idn ⇒₀.idn
 
   module _ where
     open Cartesian
