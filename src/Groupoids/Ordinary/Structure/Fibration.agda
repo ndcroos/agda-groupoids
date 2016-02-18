@@ -123,15 +123,15 @@ module Fib where
       open Lifted (lift f) public
   open Fibration public
 
-  Opfibration
+  OpFibration
     : ∀ {r}..{ℓ₀ ℓ₁}
     → {E : 𝔘 r ℓ₀}
     → {B : 𝔘 r ℓ₁}
     → (π : Hom₀ E B)
     → Set (ℓ₀ ⊔ ℓ₁)
-  Opfibration π = Fibration (ap₀₀ ⇒.⊢.op⇒ π)
+  OpFibration π = Fibration (ap₀₀ ⇒.⊢.op⇒ π)
 
-  record Bifibration
+  record BiFibration
     {r}..{ℓ₀ ℓ₁}
     {E : 𝔘 r ℓ₀}
     {B : 𝔘 r ℓ₁}
@@ -139,8 +139,16 @@ module Fib where
     : Set (ℓ₀ ⊔ ℓ₁)
     where
     field
-      fib-» :   Fibration π
-      fib-« : Opfibration π
+      fib→ :   Fibration π
+      fib← : OpFibration π
+
+  Fib→ =   Fibration
+  Fib← = OpFibration
+  Fib↔ = BiFibration
+
+  {-# DISPLAY   Fibration = Fib→ #-}
+  {-# DISPLAY OpFibration = Fib← #-}
+  {-# DISPLAY BiFibration = Fib↔ #-}
 
 open Fib public
   using (Cartesian)
