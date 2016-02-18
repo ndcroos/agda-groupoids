@@ -133,6 +133,17 @@ module Fib where
     → Set (ℓ₀ ⊔ ℓ₁)
   Opfibration π = Fibration (ap₀₀ ⇒.⊢.op⇒ π)
 
+  record Bifibration
+    {r}..{ℓ₀ ℓ₁}
+    {E : 𝔘 r ℓ₀}
+    {B : 𝔘 r ℓ₁}
+    (π : Hom₀ E B)
+    : Set (ℓ₀ ⊔ ℓ₁)
+    where
+    field
+      fib-» :   Fibration π
+      fib-« : Opfibration π
+
 open Fib public
   using (Cartesian)
   using (Fibration)
