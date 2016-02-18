@@ -5,6 +5,7 @@ module Groupoids.Ordinary.Morphism.Fib where
 import Groupoids.Ordinary.Morphism.Hom.Boot
 open import Groupoids.Common
 open import Groupoids.Ordinary.Construction.Core
+open import Groupoids.Ordinary.Monoidal.Exponential
 open import Groupoids.Ordinary.Morphism.Hom
 open import Groupoids.Ordinary.Morphism.Iso
 open import Groupoids.Ordinary.Universe.Boot
@@ -123,6 +124,14 @@ module Fib where
     module Lift {b e} (f : B ▸ 1 ⊢ b ↝ π₀[ e ]) where
       open Lifted (lift f) public
   open Fibration public
+
+  Opfibration
+    : ∀ {r}..{ℓ₀ ℓ₁}
+    → {E : 𝔘 r ℓ₀}
+    → {B : 𝔘 r ℓ₁}
+    → (π : Hom₀ E B)
+    → Set (ℓ₁ ⊔ ℓ₀)
+  Opfibration π = Fibration (ap₀₀ ⇒.⊢.op⇒ π)
 
 open Fib public
   using (Cartesian)
