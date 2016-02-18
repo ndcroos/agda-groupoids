@@ -131,21 +131,21 @@ record 𝔘 (r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
     → 2 ⊢ cmp₀ g₀ f₀ ↝ cmp₀ g₁ f₁
   cmp₀* β α = seq₀* α β
 
-  cmp₀*λ
+  cmp₀*-λ
     : {a b c : ⊢*}
     → {f₀ f₁ : 1 ⊢ a ↝ b}
     → {g : 1 ⊢ b ↝ c}
     → (α : 2 ⊢ f₀ ↝ f₁)
     → 2 ⊢ cmp₀ g f₀ ↝ cmp₀ g f₁
-  cmp₀*λ α = cmp₀* idn₁ α
+  cmp₀*-λ α = cmp₀* idn₁ α
 
-  cmp₀*ρ
+  cmp₀*-ρ
     : {a b c : ⊢*}
     → {f : 1 ⊢ a ↝ b}
     → {g₀ g₁ : 1 ⊢ b ↝ c}
     → (β : 2 ⊢ g₀ ↝ g₁)
     → 2 ⊢ cmp₀ g₀ f ↝ cmp₀ g₁ f
-  cmp₀*ρ β = cmp₀* β idn₁
+  cmp₀*-ρ β = cmp₀* β idn₁
 
   ⊢seq₀-α-«
     : {a b c d : ⊢*}

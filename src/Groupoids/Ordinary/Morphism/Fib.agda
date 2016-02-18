@@ -38,14 +38,14 @@ module Fib where
     (π : Hom₀ E B)
     {□00 □10 : E ▸}
     {bot : E ▸ 1 ⊢ □00 ↝ □10}
-    (π-horn : Horn π bot)
+    (⦣ : Horn π bot)
     : Set (ℓ₀ ⊔ ℓ₁)
     where
     no-eta-equality
     private
       π₀[_] = ap₀₀ π
       π₁[_] = ap₀₁ π
-    open Horn π-horn
+    open Horn ⦣
     field
       lhs
         : E ▸ 1 ⊢ □01 ↝ □00
@@ -73,7 +73,7 @@ module Fib where
       π₀[_] = ap₀₀ π
       π₁[_] = ap₀₁ π
     field
-      edge : (horn : Horn π bot) → Refined π horn
+      edge : (⦣ : Horn π bot) → Refined π ⦣
     module Edge
       {□01}
       (img : B ▸ 1 ⊢ π₀[ □01 ] ↝ π₀[ □00 ])

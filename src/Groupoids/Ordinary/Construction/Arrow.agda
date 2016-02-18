@@ -59,9 +59,11 @@ module Arrow where
       → (A : 𝔘 r ℓ)
       → Fibration (Arrow.dom A)
     dom (lift (dom-fib A) {b}{e = ((σ , τ) T.▸ e)} f) =
-      (b , τ) T.▸ (seq₀ A f e)
+      (b , τ) T.▸
+      (seq₀ A f e)
     map (lift (dom-fib A) f) =
-      (f , idn₀ A) T.▸ (inv₁ A (⊢idn₀-ρ A))
+      (f , idn₀ A) T.▸
+      (inv₁ A (⊢idn₀-ρ A))
     lhs (edge (car (lift (dom-fib A) f)) (horn img dia coh)) =
       (img , T.snd (T.Σ.fst dia)) T.▸
       (seq₁ A
@@ -69,11 +71,11 @@ module Arrow where
         (seq₁ A
           (seq₀*-λ A coh)
           (T.Σ.snd dia)))
-    coh-seq (edge (car (lift (dom-fib A) f)) (horn img dia coh)) =
-      ι (inv₁ A coh , inv₁ A (⊢idn₀-ρ A))
-    coh-img (edge (car (lift (dom-fib A) f)) (horn img dia coh)) =
+    coh-seq (edge (car (lift (dom-fib A) f)) ⦣) =
+      ι (inv₁ A (Horn.coh ⦣) , inv₁ A (⊢idn₀-ρ A))
+    coh-img (edge (car (lift (dom-fib A) f)) ⦣) =
       idn₁ A
-    unique (edge (car (lift (dom-fib A) f)) (horn img dia coh)) #lhs #seq #img =
+    unique (edge (car (lift (dom-fib A) f)) ⦣) #lhs #seq #img =
       ι (#img , inv₁ A (seq₁ A (T.⊗.snd (T.⊔⇑.π #seq)) (⊢idn₀-ρ A)))
     coe (lift (dom-fib A) f) =
       ≅.idn A
