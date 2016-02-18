@@ -2,8 +2,10 @@
 
 module Groupoids.Ordinary where
 
+open import Groupoids.Ordinary.Ambient.Cosmos.Copower public
 open import Groupoids.Ordinary.Ambient.Cosmos.Diagonal public
 open import Groupoids.Ordinary.Ambient.Cosmos.Exponential public
+open import Groupoids.Ordinary.Ambient.Cosmos.Power public
 open import Groupoids.Ordinary.Ambient.Cosmos.Tensor.Coproduct public
 open import Groupoids.Ordinary.Ambient.Cosmos.Tensor.Coproduct.Indexed public
 open import Groupoids.Ordinary.Ambient.Cosmos.Tensor.Product public
