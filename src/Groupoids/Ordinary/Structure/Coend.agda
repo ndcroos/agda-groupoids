@@ -43,3 +43,6 @@ module ∫↑ where
   ⇏₁.ap₁δ₁ (map (∫↑ F)) k =
     *
     -- FIXME: generalize to «Cat»
+
+open ∫↑ public
+  using (∫↑)
