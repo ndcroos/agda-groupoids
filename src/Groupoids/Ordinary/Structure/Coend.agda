@@ -1,3 +1,5 @@
+{-# OPTIONS --without-K #-}
+
 module Groupoids.Ordinary.Structure.Coend where
 
 open import Groupoids.Basis
