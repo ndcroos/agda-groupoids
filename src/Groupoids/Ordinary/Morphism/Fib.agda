@@ -130,7 +130,7 @@ module Fib where
     → {E : 𝔘 r ℓ₀}
     → {B : 𝔘 r ℓ₁}
     → (π : Hom₀ E B)
-    → Set (ℓ₁ ⊔ ℓ₀)
+    → Set (ℓ₀ ⊔ ℓ₁)
   Opfibration π = Fibration (ap₀₀ ⇒.⊢.op⇒ π)
 
 open Fib public
