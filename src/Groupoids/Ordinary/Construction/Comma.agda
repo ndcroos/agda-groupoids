@@ -174,11 +174,11 @@ module Comma where
     → (F : Hom₀ A V)
     → (G : Hom₀ B V)
     → Hom₀ (F ↓ G) (A ⊗ B)
-  ap₀₀ (nodes {A = A}{B = B} F G) =
+  ap₀₀ (nodes F G) =
     T.Σ.fst
-  ap₀₁ (nodes {A = A}{B = B} F G) =
+  ap₀₁ (nodes F G) =
     T.Σ.fst
-  ap₀₂ (nodes {A = A}{B = B} F G) =
+  ap₀₂ (nodes F G) =
     T.⊔⇑.π
   ⇒₀.⊢idn (nodes {A = A}{B = B} F G) =
     idn₁ A , idn₁ B
