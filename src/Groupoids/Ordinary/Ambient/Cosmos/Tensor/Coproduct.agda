@@ -3,9 +3,9 @@
 module Groupoids.Ordinary.Ambient.Cosmos.Tensor.Coproduct where
 
 open import Groupoids.Basis
-  hiding (_,_)
 open import Groupoids.Ordinary.Ambient.Morphism.Hom
 open import Groupoids.Ordinary.Ambient.Universe.Boot
+  hiding ([_])
 open import Groupoids.Ordinary.Groupoid.Opposite
 
 module ⊕ where
@@ -16,7 +16,7 @@ module ⊕ where
     → (A : 𝔘 r ℓ₀)
     → (B : 𝔘 r ℓ₁)
     → 𝔘 r _
-  [ A ⊕ B ] = [ A ] 𝔊.⊕ [ B ]
+  𝔘.[ A ⊕ B ] = 𝔘.[ A ] 𝔊.⊕ 𝔘.[ B ]
   idn₀ (A ⊕ B) {T.⊕.inl a₀} =
     ι (idn₀ A)
   idn₀ (A ⊕ B) {T.⊕.inr b₀} =
