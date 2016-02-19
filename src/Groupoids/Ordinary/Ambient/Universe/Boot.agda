@@ -186,18 +186,6 @@ record 𝔘 (r : ℕ∞) ..ℓ : Set (lsuc ℓ) where
   {-# DISPLAY cell A i a b = A ▸ i ⊢ a ↝ b #-}
   {-# DISPLAY cell A 0 = A ▸ #-}
 
-  infix 2 _⟓*_
-  infix 2 _⟓_
-  infix 2 _⟔_
-  infix 4 _⁻¹
-
-  ↻ = #display
-  _⟓_ = #display
-  _⟔_ = #display
-  _⁻¹ = #display
-  _⟓*_ = #display
-  _⁻¹* = #display
-
   {-# DISPLAY idn₀ A = ↻ #-}
   {-# DISPLAY idn₁ A = ↻ #-}
 
