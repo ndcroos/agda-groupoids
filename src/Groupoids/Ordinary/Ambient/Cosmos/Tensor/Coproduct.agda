@@ -9,7 +9,7 @@ open import Groupoids.Ordinary.Ambient.Universe.Boot
 open import Groupoids.Ordinary.Groupoid.Opposite
 
 module ⊕ where
-  infix 1 _⊕_
+  infixr 2 _⊕_
 
   _⊕_
     : ∀ {r}..{ℓ₀ ℓ₁}
