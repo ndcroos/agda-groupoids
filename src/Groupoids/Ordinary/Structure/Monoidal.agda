@@ -277,6 +277,7 @@ module Monoidal where
   Monad A = Monoid (endo A)
 
   module Monad where
+    open import Groupoids.Ordinary.Ambient.Cosmos.Tensor.Coproduct
     open Monoid
 
     identity
@@ -289,6 +290,23 @@ module Monoidal where
     ⊢α identity = ι _
     ⊢λ identity = ι _
     ⊢ρ identity = ι _
+
+    maybe
+      : ∀ {r}..{ℓ}
+      → Monad («Std» r ℓ)
+    ap₀₀ (mon maybe) A = 𝟙 ⊕ A
+    ap₀₁ (mon maybe) F = ⊕.[ ↻₀ ⊕ F ]
+    ap₀₂ (mon maybe) = _
+    ⇒₀.⊢idn (mon maybe) = _
+    ⇒₀.⊢seq (mon maybe) = _
+    ⇒₀.⊢inv (mon maybe) = _
+    ap₁₀ (mul maybe) A = ⊕.[ ⊕.inl , ↻₀ ]
+    ap₁₁ (mul maybe) F = _
+    ap₁₀ (nil maybe) A = ⊕.inr
+    ap₁₁ (nil maybe) = _
+    ⊢α maybe = ι _
+    ⊢λ maybe = ι _
+    ⊢ρ maybe = ι _
 
   open Monoid public
   open Monoidal public
