@@ -115,6 +115,163 @@ module Monoidal where
     → Set ℓ
   Comonoid = Monoid
 
+  module Endo ..{ℓ} (A : 𝔘 1 ℓ) where
+    Endo : 𝔘 1 (lsuc ℓ)
+    Endo = A ⇒₀ A
+
+    private
+      module Endo where
+        one : Hom₀ A A
+        one = ↻₀
+
+        ten : Hom₀ ((A ⇒₀ A) ⊗ (A ⇒₀ A)) (A ⇒₀ A)
+        ap₀₀ ten (F , G) =
+          F ⟓₀ G
+        ap₀₁ ten (α , β) =
+          seq₀*→ α β
+        ap₀₂ ten
+          {F₀ , G₀}{F₁ , G₁}
+          {α₀ , β₀}{α₁ , β₁}
+          (ι 𝔣 , ι 𝔤)
+          =
+          ι λ a → seq₀* A (ap₀₂ G₀ (𝔣 a)) (𝔤 (ap₀₀ F₁ a))
+        ⇒₀.⊢idn ten {F , G} =
+          ι λ a → seq₁ A (seq₀*-λ A (⇒₀.⊢idn G)) (⊢idn₀-λ A)
+        ⇒₀.⊢seq ten
+          {F₀ , G₀}{F₁ , G₁}{F₂ , G₂}
+          {α₀ , β₀}{α₁ , β₁}
+          =
+          ι λ a →
+            (seq₁ A
+              (seq₀*-λ A (⇒₀.⊢seq G₀))
+              (seq₁ A
+                (inv₁ A (⊢seq₀-α A))
+                (seq₁ A
+                  (seq₀*-ρ A
+                    (seq₁ A
+                      (⊢seq₀-α A)
+                      (seq₁ A
+                        (seq₀*-λ A (ap₁₁ β₀ (ap₁₀ α₁ a)))
+                        (inv₁ A (⊢seq₀-α A)))))
+                  (⊢seq₀-α A))))
+        ⇒₀.⊢inv ten {≜ = ()}
+
+    open Monoid
+    open Monoidal
+
+    endo : Monoidal Endo
+    one endo =
+      Endo.one
+    ten endo =
+      Endo.ten
+    ap₁₀ (» (≅λ endo)) F =
+      » (⊢idn₀-λ («Cat» _ _))
+    ap₁₁ (» (≅λ endo)) {F}{G} α =
+      ι λ a →
+        (seq₁ A
+          (⊢idn₀-ρ A)
+          (seq₀*-λ A (⇒₀.⊢idn F)))
+    ap₁₀ (« (≅λ endo)) F =
+      « (⊢idn₀-λ («Cat» _ _))
+    ap₁₁ (« (≅λ endo)) {F}{G} α =
+      ι λ a →
+        (seq₁ A
+          (⊢idn₀-ρ A)
+          (inv₁ A
+            (seq₁ A
+              (⊢idn₀-λ A)
+              (seq₁ A
+                (seq₀*-λ A (⇒₀.⊢idn F))
+                (⊢idn₀-λ A)))))
+    ⊢»« (≅λ endo) =
+      ι λ F →
+      ι λ a →
+        ⊢idn₀-λ A
+    ⊢«» (≅λ endo) =
+      ι λ F →
+      ι λ a →
+        ⊢idn₀-λ A
+    ap₁₀ (» (≅ρ endo)) F =
+      » (⊢idn₀-ρ («Cat» _ _))
+    ap₁₁ (» (≅ρ endo)) {F}{G} α =
+      ι λ a →
+        (seq₁ A
+          (⊢idn₀-ρ A)
+          (seq₁ A
+            (⊢idn₀-ρ A)
+            (inv₁ A (⊢idn₀-λ A))))
+    ap₁₀ (« (≅ρ endo)) F =
+      « (⊢idn₀-ρ («Cat» _ _))
+    ap₁₁ (« (≅ρ endo)) {F}{G} α =
+      ι λ a →
+        (inv₁ A
+          (⊢idn₀-λ A))
+    ⊢»« (≅ρ endo) =
+      ι λ F →
+      ι λ a →
+        ⊢idn₀-λ A
+    ⊢«» (≅ρ endo) =
+      ι λ F →
+      ι λ a →
+        ⊢idn₀-λ A
+    ap₁₀ (» (≅α endo)) (F , G , H) =
+      » (⊢seq₀-α («Cat» _ _))
+    ap₁₁ (» (≅α endo))
+      {F₀ , G₀ , H₀}
+      {F₁ , G₁ , H₁}
+      (α , β , γ)
+      =
+      ι λ a →
+        (seq₁ A
+          (⊢idn₀-ρ A)
+          (inv₁ A
+            (seq₁ A
+              (⊢idn₀-λ A)
+              (seq₁ A
+                (seq₀*-λ A (⇒₀.⊢seq H₀))
+                (inv₁ A (⊢seq₀-α A))))))
+    ap₁₀ (« (≅α endo)) (F , G , H) =
+      « (⊢seq₀-α («Cat» _ _))
+    ap₁₁ (« (≅α endo))
+      {F₀ , G₀ , H₀}
+      {F₁ , G₁ , H₁}
+      (α , β , γ)
+      =
+      ι λ a →
+        (seq₁ A
+          (⊢idn₀-ρ A))
+          (inv₁ A
+            (seq₁ A
+              (⊢idn₀-λ A)
+              (seq₁ A
+                (⊢seq₀-α A)
+                (seq₀*-λ A
+                  (inv₁ A
+                    (⇒₀.⊢seq H₀))))))
+    ⊢»« (≅α endo) =
+      ι λ F →
+      ι λ a →
+        ⊢idn₀-λ A
+    ⊢«» (≅α endo) =
+      ι λ F →
+      ι λ a →
+        ⊢idn₀-λ A
+    ⊢tri endo {F}{G} =
+      ι λ a →
+        ⊢idn₀-λ A
+    ⊢pnt endo {F}{G}{H}{K} =
+      ι λ a →
+      (inv₁ A
+        (seq₀* A
+          (seq₁ A
+            (⊢idn₀-ρ A)
+            (⇒₀.⊢idn (K ⟔₀ H ⟔₀ G)))
+          (seq₁ A
+            (⊢idn₀-λ A)
+            (seq₁ A
+              (⊢idn₀-ρ A)
+              (⇒₀.⊢idn K)))))
+  open Endo
   open Monoid public
   open Monoidal public
 open Monoidal public
