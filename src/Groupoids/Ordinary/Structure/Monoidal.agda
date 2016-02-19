@@ -9,6 +9,7 @@ open import Groupoids.Ordinary.Ambient.Cosmos.Unit.Terminal
 open import Groupoids.Ordinary.Ambient.Morphism.Hom
 open import Groupoids.Ordinary.Ambient.Morphism.Iso
 open import Groupoids.Ordinary.Ambient.Universe.Boot
+open import Groupoids.Ordinary.Groupoid.Opposite
 
 module Monoidal where
   open Iso
@@ -106,6 +107,13 @@ module Monoidal where
       ⊢α : A ▸ 2 ⊢ seq₀ A α₀ (seq₀ A (mul ⊛₁ idn₀ A) mul) ↝ seq₀ A (idn₀ A ⊛₁ mul) mul
       ⊢λ : A ▸ 2 ⊢ seq₀ A (nil ⊛₁ idn₀ A) mul ↝ λ₀
       ⊢ρ : A ▸ 2 ⊢ seq₀ A (idn₀ A ⊛₁ nil) mul ↝ ρ₀
+
+  Comonoid
+    : ∀ {r}..{ℓ}
+    → {A : 𝔘 r ℓ}
+    → (Ψ : Monoidal Op[ A ])
+    → Set ℓ
+  Comonoid = Monoid
 
   open Monoid public
   open Monoidal public
