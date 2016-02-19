@@ -6,6 +6,9 @@ open import Groupoids.Basis
 open import Groupoids.Ordinary.Ambient.Universe.Boot
 
 module ⇒₀ where
+  infixl 1 _⟔₀_
+  infixl 1 _⟓₀_
+
   record Hom₀ {r}..{ℓ₀ ℓ₁}
     (A : 𝔘 r ℓ₀)
     (B : 𝔘 r ℓ₁)
@@ -94,13 +97,27 @@ module ⇒₀ where
     → Hom₀ A C
   cmp G F = seq F G
 
+  ↻₀ = idn
+  _⟔₀_ = cmp
+  _⟓₀_ = seq
+
+  {-# DISPLAY idn = ↻₀ #-}
+  {-# DISPLAY cmp G F = G ⟔₀ F #-}
+  {-# DISPLAY seq F G = F ⟓₀ G #-}
+
 open ⇒₀ public
   using (Hom₀)
   using (ap₀₀)
   using (ap₀₁)
   using (ap₀₂)
+  using (↻₀)
+  using (_⟔₀_)
+  using (_⟓₀_)
 
 module ⇒₁ where
+  infixl 1 _⟔₁_
+  infixl 1 _⟓₁_
+
   record Hom₁ {r}..{ℓ₀ ℓ₁}
     {A : 𝔘 r ℓ₀}
     {B : 𝔘 r ℓ₁}
@@ -212,7 +229,18 @@ module ⇒₁ where
     → Hom₁ F H
   cmp β α = seq α β
 
+  ↻₁ = idn
+  _⟔₁_ = cmp
+  _⟓₁_ = seq
+
+  {-# DISPLAY idn = ↻₁ #-}
+  {-# DISPLAY cmp β α = β ⟔₁ α #-}
+  {-# DISPLAY seq α β = α ⟓₁ β #-}
+
 open ⇒₁ public
   using (Hom₁)
   using (ap₁₀)
   using (ap₁₁)
+  using (↻₁)
+  using (_⟔₁_)
+  using (_⟓₁_)

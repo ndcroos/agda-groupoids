@@ -50,6 +50,9 @@ open ⇒₀ public
   using (ap₀₀)
   using (ap₀₁)
   using (ap₀₂)
+  using (↻₀)
+  using (_⟔₀_)
+  using (_⟓₀_)
 
 module ⇒₁ where
   open Groupoids.Ordinary.Ambient.Morphism.Hom.Boot.⇒₁ public
@@ -59,3 +62,6 @@ open ⇒₁ public
   using (Hom₁)
   using (ap₁₀)
   using (ap₁₁)
+  using (↻₁)
+  using (_⟔₁_)
+  using (_⟓₁_)
