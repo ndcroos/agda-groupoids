@@ -3,6 +3,7 @@
 module Groupoids.Ordinary.Ambient.Cosmos.Tensor.Coproduct where
 
 open import Groupoids.Basis
+  hiding (_,_)
 open import Groupoids.Ordinary.Ambient.Morphism.Hom
 open import Groupoids.Ordinary.Ambient.Universe.Boot
 open import Groupoids.Ordinary.Groupoid.Opposite
@@ -112,6 +113,84 @@ module ⊕ where
   inv₁ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inl a₁}{()}{()}
   inv₁ (A ⊕ B) {T.⊕.inr b₀}{T.⊕.inr b₁} (ι β) =
     ι (inv₁ B β)
+
+  inl
+    : ∀ {r}..{ℓ₀ ℓ₁}
+    → {A : 𝔘 r ℓ₀}
+    → {B : 𝔘 r ℓ₁}
+    → Hom₀ A (A ⊕ B)
+  ap₀₀ inl = T.⊕.inl
+  ap₀₁ inl = ι
+  ap₀₂ inl = ι
+  ⇒₀.⊢idn (inl {A = A}) = ι (idn₁ A)
+  ⇒₀.⊢seq (inl {A = A}) = ι (idn₁ A)
+  ⇒₀.⊢inv (inl {A = A}) = ι (idn₁ A)
+
+  inr
+    : ∀ {r}..{ℓ₀ ℓ₁}
+    → {A : 𝔘 r ℓ₀}
+    → {B : 𝔘 r ℓ₁}
+    → Hom₀ B (A ⊕ B)
+  ap₀₀ inr = T.⊕.inr
+  ap₀₁ inr = ι
+  ap₀₂ inr = ι
+  ⇒₀.⊢idn (inr {B = B}) = ι (idn₁ B)
+  ⇒₀.⊢seq (inr {B = B}) = ι (idn₁ B)
+  ⇒₀.⊢inv (inr {B = B}) = ι (idn₁ B)
+
+  [_,_]
+    : ∀ {r}..{ℓ₀ ℓ₁ ℓ₂}
+    → {A : 𝔘 r ℓ₀}
+    → {B : 𝔘 r ℓ₁}
+    → {X : 𝔘 r ℓ₂}
+    → (F : Hom₀ A X)
+    → (G : Hom₀ B X)
+    → Hom₀ (A ⊕ B) X
+  ap₀₀ [ F , G ] =
+    T.⊕.[ ap₀₀ F , ap₀₀ G ]
+  ap₀₁ [ F , G ] {T.⊕.inl a₀}{T.⊕.inl a₁} (ι f) =
+    ap₀₁ F f
+  ap₀₁ [ F , G ] {T.⊕.inl a₀}{T.⊕.inr b₁} ()
+  ap₀₁ [ F , G ] {T.⊕.inr b₀}{T.⊕.inl a₁} ()
+  ap₀₁ [ F , G ] {T.⊕.inr b₀}{T.⊕.inr b₁} (ι g) =
+    ap₀₁ G g
+  ap₀₂ [ F , G ] {T.⊕.inl a₀}{T.⊕.inl a₁} (ι α) =
+    ap₀₂ F α
+  ap₀₂ [ F , G ] {T.⊕.inl a₀}{T.⊕.inr b₁} {()}{()}
+  ap₀₂ [ F , G ] {T.⊕.inr b₀}{T.⊕.inl a₁} {()}{()}
+  ap₀₂ [ F , G ] {T.⊕.inr b₀}{T.⊕.inr b₁} (ι β) =
+    ap₀₂ G β
+  ⇒₀.⊢idn [ F , G ] {T.⊕.inl a} =
+    ⇒₀.⊢idn F
+  ⇒₀.⊢idn [ F , G ] {T.⊕.inr b} =
+    ⇒₀.⊢idn G
+  ⇒₀.⊢seq [ F , G ] {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inl a₂} {f₀}{f₁} =
+    ⇒₀.⊢seq F
+  ⇒₀.⊢seq [ F , G ] {T.⊕.inl a₀}{T.⊕.inl a₁}{T.⊕.inr b₂} {f₀}{()}
+  ⇒₀.⊢seq [ F , G ] {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inl a₂} {()}{()}
+  ⇒₀.⊢seq [ F , G ] {T.⊕.inl a₀}{T.⊕.inr b₁}{T.⊕.inr b₂} {()}{g₁}
+  ⇒₀.⊢seq [ F , G ] {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inl a₂} {()}{f₁}
+  ⇒₀.⊢seq [ F , G ] {T.⊕.inr b₀}{T.⊕.inl a₁}{T.⊕.inr b₂} {()}{()}
+  ⇒₀.⊢seq [ F , G ] {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inl a₂} {g₀}{()}
+  ⇒₀.⊢seq [ F , G ] {T.⊕.inr b₀}{T.⊕.inr b₁}{T.⊕.inr b₂} {g₀}{g₁} =
+    ⇒₀.⊢seq G
+  ⇒₀.⊢inv [ F , G ] {≜} {T.⊕.inl a₀}{T.⊕.inl a₁} =
+    ⇒₀.⊢inv F {≜}
+  ⇒₀.⊢inv [ F , G ] {≜} {T.⊕.inl a₀}{T.⊕.inr b₁} {()}
+  ⇒₀.⊢inv [ F , G ] {≜} {T.⊕.inr b₀}{T.⊕.inl a₁} {()}
+  ⇒₀.⊢inv [ F , G ] {≜} {T.⊕.inr b₀}{T.⊕.inr b₁} =
+    ⇒₀.⊢inv G {≜}
+
+  [_⊕_]
+    : ∀ {r}..{ℓ₀ ℓ₁ ℓ₂ ℓ₃}
+    → {A : 𝔘 r ℓ₀}
+    → {B : 𝔘 r ℓ₁}
+    → {X : 𝔘 r ℓ₂}
+    → {Y : 𝔘 r ℓ₃}
+    → (F : Hom₀ A X)
+    → (G : Hom₀ B Y)
+    → Hom₀ (A ⊕ B) (X ⊕ Y)
+  [ F ⊕ G ] = [ ⇒₀.seq F inl , ⇒₀.seq G inr ]
 
   module ⊢ where
     -- FIXME: these should be isomorphisms
