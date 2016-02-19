@@ -39,5 +39,6 @@ import Groupoids.Ordinary.Structure.Coend
 import Groupoids.Ordinary.Structure.Dinatural
 import Groupoids.Ordinary.Structure.End
 import Groupoids.Ordinary.Structure.Fibration
+import Groupoids.Ordinary.Structure.Monoidal
 import Groupoids.Ordinary.Structure.Profunctor
 import Groupoids.Ordinary.Structure.Wedge

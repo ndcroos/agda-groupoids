@@ -33,5 +33,6 @@ open import Groupoids.Ordinary.Structure.Coend public
 open import Groupoids.Ordinary.Structure.Dinatural public
 open import Groupoids.Ordinary.Structure.End public
 open import Groupoids.Ordinary.Structure.Fibration public
+open import Groupoids.Ordinary.Structure.Monoidal public
 open import Groupoids.Ordinary.Structure.Profunctor public
 open import Groupoids.Ordinary.Structure.Wedge public
