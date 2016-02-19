@@ -276,6 +276,20 @@ module Monoidal where
   Monad : ∀ ..{ℓ} (A : 𝔘 1 ℓ) → Set (lsuc ℓ)
   Monad A = Monoid (endo A)
 
+  module Monad where
+    open Monoid
+
+    identity
+      : ∀ {r}..{ℓ}
+      → Monad («Std» r ℓ)
+    mon identity = ↻₀
+    ap₁₀ (mul identity) A = ↻₀
+    ap₁₁ (mul identity) F = *
+    nil identity = ↻₁
+    ⊢α identity = ι _
+    ⊢λ identity = ι _
+    ⊢ρ identity = ι _
+
   open Monoid public
   open Monoidal public
 open Monoidal public
