@@ -272,6 +272,10 @@ module Monoidal where
               (⊢idn₀-ρ A)
               (⇒₀.⊢idn K)))))
   open Endo
+
+  Monad : ∀ ..{ℓ} (A : 𝔘 1 ℓ) → Set (lsuc ℓ)
+  Monad A = Monoid (endo A)
+
   open Monoid public
   open Monoidal public
 open Monoidal public
