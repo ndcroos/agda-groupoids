@@ -16,7 +16,7 @@ module Monoidal where
     using (⟨_,_⟩)
     using (⟨_⊗_⟩)
 
-  record Mon {r}..{ℓ} (A : 𝔘 r ℓ) : Set (lsuc ℓ) where
+  record Monoidal {r}..{ℓ} (A : 𝔘 r ℓ) : Set (lsuc ℓ) where
     no-eta-equality
     field
       one : A ▸
@@ -81,13 +81,35 @@ module Monoidal where
           (seq₀ A
             (idn₀ A ⊛₁ α₀)
             (seq₀ A α₀ (α₀ ⊛₁ idn₀ A))))
-  open Mon public
 
-  {-# DISPLAY one M = 𝟙 #-}
-  {-# DISPLAY ten M = ⊛ #-}
-  {-# DISPLAY _⊛₀_ M = _⊛_ #-}
-  {-# DISPLAY _⊛₁_ M = _⊛_ #-}
-  {-# DISPLAY _⊛₂_ M = _⊛_ #-}
+  module _ where
+    open Monoidal
+    {-# DISPLAY one A = 𝟙 #-}
+    {-# DISPLAY ten A = ⊛ #-}
+    {-# DISPLAY _⊛₀_ A = _⊛_ #-}
+    {-# DISPLAY _⊛₁_ A = _⊛_ #-}
+    {-# DISPLAY _⊛₂_ A = _⊛_ #-}
 
+  record Monoid {r}..{ℓ}
+    {A : 𝔘 r ℓ}
+    (Ψ : Monoidal A)
+    : Set ℓ
+    where
+    no-eta-equality
+    open Monoidal Ψ
+    field
+      mon : A ▸
+    field
+      mul : A ▸ 1 ⊢ mon ⊛₀ mon ↝ mon
+      nil : A ▸ 1 ⊢ 𝟙₀ ↝ mon
+    field
+      ⊢α : A ▸ 2 ⊢ seq₀ A α₀ (seq₀ A (mul ⊛₁ idn₀ A) mul) ↝ seq₀ A (idn₀ A ⊛₁ mul) mul
+      ⊢λ : A ▸ 2 ⊢ seq₀ A (nil ⊛₁ idn₀ A) mul ↝ λ₀
+      ⊢ρ : A ▸ 2 ⊢ seq₀ A (idn₀ A ⊛₁ nil) mul ↝ ρ₀
+
+  open Monoid public
+  open Monoidal public
 open Monoidal public
-  using (Mon)
+  hiding (module Monoidal)
+  using (Monoidal)
+  using (Monoid)
