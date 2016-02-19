@@ -8,7 +8,7 @@ open import Groupoids.Ordinary.Ambient.Cosmos.Tensor.Product
 open import Groupoids.Ordinary.Ambient.Cosmos.Unit.Terminal
 open import Groupoids.Ordinary.Ambient.Morphism.Hom
 open import Groupoids.Ordinary.Ambient.Morphism.Iso
-open import Groupoids.Ordinary.Ambient.Universe.Boot
+open import Groupoids.Ordinary.Ambient.Universe
 open import Groupoids.Ordinary.Groupoid.Opposite
 
 module Monoidal where
