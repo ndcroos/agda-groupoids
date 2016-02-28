@@ -6,7 +6,7 @@ open import Groupoids.Basis
 open import Groupoids.Ordinary.Ambient.Universe.Boot
 open import Prelude.Natural
 
-module Free (A : 𝔘 1 lzero) where
+module Free {n} (A : 𝔘 n 1 lzero) where
 
   infixl 1 _▸_
   infixl 2 _++_
@@ -50,7 +50,7 @@ module Free (A : 𝔘 1 lzero) where
   path-⊢seq₀-α {π₂ = []} = T.≡.idn
   path-⊢seq₀-α {π₂ = π₂ ▸ f} = T.≡.ap¹ (λ x → x ▸ f) (path-⊢seq₀-α {π₂ = π₂})
 
-  Free : 𝔘 1 lzero
+  Free : 𝔘 n 1 lzero
   ● [ Free ] = ● [ A ]
   ● (⇇ [ Free ] x y) = Path x y
   ⇇ (⇇ [ Free ] x y) π₀ π₁ = 𝔊.ℼ[ π₀ T.≡ π₁ ]

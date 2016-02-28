@@ -10,9 +10,9 @@ open import Groupoids.Ordinary.Ambient.Universe.Boot
 
 module Fib where
   record Horn
-    {r}..{ℓ₀ ℓ₁}
-    {E : 𝔘 r ℓ₀}
-    {B : 𝔘 r ℓ₁}
+    {n r}..{ℓ₀ ℓ₁}
+    {E : 𝔘 n r ℓ₀}
+    {B : 𝔘 n r ℓ₁}
     (π : Hom₀ E B)
     {□00 □10 : E ▸}
     (bot : E ▸ 1 ⊢ □00 ↝ □10)
@@ -30,9 +30,9 @@ module Fib where
       coh   : B ▸ 2 ⊢ seq₀ B img π₁[ bot ] ↝ π₁[ dia ]
 
   record Refined
-    {r}..{ℓ₀ ℓ₁}
-    {E : 𝔘 r ℓ₀}
-    {B : 𝔘 r ℓ₁}
+    {n r}..{ℓ₀ ℓ₁}
+    {E : 𝔘 n r ℓ₀}
+    {B : 𝔘 n r ℓ₁}
     (π : Hom₀ E B)
     {□00 □10 : E ▸}
     {bot : E ▸ 1 ⊢ □00 ↝ □10}
@@ -58,9 +58,9 @@ module Fib where
         → E ▸ 2 ⊢ #lhs ↝ lhs
 
   record Cartesian
-    {r}..{ℓ₀ ℓ₁}
-    {E : 𝔘 r ℓ₀}
-    {B : 𝔘 r ℓ₁}
+    {n r}..{ℓ₀ ℓ₁}
+    {E : 𝔘 n r ℓ₀}
+    {B : 𝔘 n r ℓ₁}
     (π : Hom₀ E B)
     {□00 □10 : E ▸}
     (bot : E ▸ 1 ⊢ □00 ↝ □10)
@@ -82,9 +82,9 @@ module Fib where
   open Cartesian public
 
   record Lifted
-    {r}..{ℓ₀ ℓ₁}
-    {E : 𝔘 r ℓ₀}
-    {B : 𝔘 r ℓ₁}
+    {n r}..{ℓ₀ ℓ₁}
+    {E : 𝔘 n r ℓ₀}
+    {B : 𝔘 n r ℓ₁}
     (π : Hom₀ E B)
     {b e}
     (f : B ▸ 1 ⊢ b ↝ ap₀₀ π e)
@@ -104,9 +104,9 @@ module Fib where
       coh : B ▸ 2 ⊢ seq₀ B (« coe) f ↝ π₁[ map ]
 
   record Fibration
-    {r}..{ℓ₀ ℓ₁}
-    {E : 𝔘 r ℓ₀}
-    {B : 𝔘 r ℓ₁}
+    {n r}..{ℓ₀ ℓ₁}
+    {E : 𝔘 n r ℓ₀}
+    {B : 𝔘 n r ℓ₁}
     (π : Hom₀ E B)
     : Set (ℓ₀ ⊔ ℓ₁)
     where
@@ -124,17 +124,17 @@ module Fib where
   open Fibration public
 
   OpFibration
-    : ∀ {r}..{ℓ₀ ℓ₁}
-    → {E : 𝔘 r ℓ₀}
-    → {B : 𝔘 r ℓ₁}
+    : ∀ {n r}..{ℓ₀ ℓ₁}
+    → {E : 𝔘 n r ℓ₀}
+    → {B : 𝔘 n r ℓ₁}
     → (π : Hom₀ E B)
     → Set (ℓ₀ ⊔ ℓ₁)
   OpFibration π = Fibration (ap₀₀ ⇒.⊢.op⇒ π)
 
   record BiFibration
-    {r}..{ℓ₀ ℓ₁}
-    {E : 𝔘 r ℓ₀}
-    {B : 𝔘 r ℓ₁}
+    {n r}..{ℓ₀ ℓ₁}
+    {E : 𝔘 n r ℓ₀}
+    {B : 𝔘 n r ℓ₁}
     (π : Hom₀ E B)
     : Set (ℓ₀ ⊔ ℓ₁)
     where

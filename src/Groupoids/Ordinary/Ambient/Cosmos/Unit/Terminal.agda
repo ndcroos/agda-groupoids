@@ -7,8 +7,8 @@ open import Groupoids.Ordinary.Ambient.Universe.Boot
 
 module 𝟙 where
   𝟙↑
-    : ∀ {r}..{ℓ}
-    → 𝔘 r ℓ
+    : ∀ {n r}..{ℓ}
+    → 𝔘 n r ℓ
   [ 𝟙↑ ] = 𝔊.𝟙↑
   idn₀ 𝟙↑ = _
   seq₀ 𝟙↑ = _
@@ -25,8 +25,8 @@ module 𝟙 where
   inv₁ 𝟙↑ = _
 
   𝟙
-    : ∀ {r}
-    → 𝔘 r lzero
+    : ∀ {n r}
+    → 𝔘 n r lzero
   𝟙 = 𝟙↑
 
 open 𝟙 public

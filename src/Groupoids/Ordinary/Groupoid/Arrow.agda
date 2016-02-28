@@ -12,16 +12,16 @@ open import Groupoids.Ordinary.Structure.Fibration
 
 module Arrow where
   ⇇∐[_]
-    : ∀ {r}..{ℓ}
-    → (A : 𝔘 r ℓ)
-    → 𝔘 r _
+    : ∀ {n r}..{ℓ}
+    → (A : 𝔘 n r ℓ)
+    → 𝔘 n r _
   ⇇∐[ A ] = ⇒₀.idn {A = A} ↓ ⇒₀.idn {A = A}
 
   private
     module Arrow
-      {r}
+      {n r}
       ..{ℓ}
-      (A : 𝔘 r ℓ)
+      (A : 𝔘 n r ℓ)
       where
         dom : Hom₀ ⇇∐[ A ] A
         dom = Comma.dom ⇒₀.idn ⇒₀.idn
@@ -36,8 +36,8 @@ module Arrow where
     open Refined
 
     dom-fib→
-      : ∀ {r}..{ℓ}
-      → (A : 𝔘 r ℓ)
+      : ∀ {n r}..{ℓ}
+      → (A : 𝔘 n r ℓ)
       → Fib→ (Arrow.dom A)
     dom (lift (dom-fib→ A) {b}{e = ((σ , τ) T.▸ e)} f) =
       (b , τ) T.▸
@@ -64,8 +64,8 @@ module Arrow where
       ⊢idn₀-λ A
 
     cod-fib←
-      : ∀ {r}..{ℓ}
-      → (A : 𝔘 r ℓ)
+      : ∀ {n r}..{ℓ}
+      → (A : 𝔘 n r ℓ)
       → Fib← (Arrow.cod A)
     dom (lift (cod-fib← A) {b}{e = ((σ , τ) T.▸ e)} f) =
       (σ , b) T.▸

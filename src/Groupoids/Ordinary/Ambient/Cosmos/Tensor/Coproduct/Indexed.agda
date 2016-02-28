@@ -8,10 +8,10 @@ open import Groupoids.Ordinary.Ambient.Universe.Boot
 module Σ where
   infix 0 Σ
 
-  Σ : ∀ {r}..{ℓ₀ ℓ₁}
+  Σ : ∀ {n r}..{ℓ₀ ℓ₁}
     → (I : Set ℓ₀)
-    → (A : I → 𝔘 r ℓ₁)
-    → 𝔘 r _
+    → (A : I → 𝔘 n r ℓ₁)
+    → 𝔘 n r _
   [ Σ I A ] =
     𝔊.Σ.[ I ∋ i ] [ A i ]
   idn₀ (Σ I A)

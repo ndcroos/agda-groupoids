@@ -11,10 +11,10 @@ open import Groupoids.Ordinary.Groupoid.Comma
 
 module Coslice where
   Coslice
-    : ∀ {r}..{ℓ}
-    → (A : 𝔘 r ℓ)
+    : ∀ {n r}..{ℓ}
+    → (A : 𝔘 n r ℓ)
     → (a : A ▸)
-    → 𝔘 r _
+    → 𝔘 n r _
   Coslice A a = Δ.ʲ[ 𝟙 ↦ a ] ↓ ⇒₀.idn {A = A}
 
   syntax Coslice A a = a ↘ A

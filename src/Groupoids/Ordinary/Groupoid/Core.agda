@@ -8,9 +8,9 @@ open import Groupoids.Ordinary.Ambient.Universe.Boot
 open ≅
 
 core
-  : ∀ {r}..{ℓ}
-  → (A : 𝔘 r ℓ)
-  → 𝔘 0 _
+  : ∀ {n r}..{ℓ}
+  → (A : 𝔘 n r ℓ)
+  → 𝔘 n 0 _
 ● ([ core A ]) = ● [ A ]
 ● (⇇ ([ core A ]) a b) = A ⊢ a ≅ b
 ● (⇇ (⇇ ([ core A ]) a b) f g) = A ▸ 2 ⊢ » f ↝ » g

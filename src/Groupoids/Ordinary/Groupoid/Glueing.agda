@@ -11,9 +11,9 @@ open import Groupoids.Ordinary.Groupoid.Comma
 
 module Glueing where
   Glue
-    : ∀ {r}..{ℓ₀ ℓ₁}
-    → {A : 𝔘 r ℓ₀}
-    → {V : 𝔘 r ℓ₁}
+    : ∀ {n r}..{ℓ₀ ℓ₁}
+    → {A : 𝔘 n r ℓ₀}
+    → {V : 𝔘 n r ℓ₁}
     → (Ψ : Hom₀ A V)
-    → 𝔘 r _
+    → 𝔘 n r _
   Glue {V = V} Ψ = ⇒₀.idn {A = V} ↓ Ψ

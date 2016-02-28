@@ -8,10 +8,10 @@ open import Groupoids.Ordinary.Ambient.Universe.Boot
 
 module ⋔ where
   _⋔_
-    : ∀ {r}..{ℓ₀ ℓ₁}
+    : ∀ {n r}..{ℓ₀ ℓ₁}
     → (I : Set ℓ₀)
-    → (A : 𝔘 r ℓ₁)
-    → 𝔘 r _
+    → (A : 𝔘 n r ℓ₁)
+    → 𝔘 n r _
   I ⋔ A = Π.[ I ∋ _ ] A
 
 open ⋔ public

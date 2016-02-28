@@ -8,7 +8,7 @@ open import Groupoids.Ordinary.Ambient.Universe.Boot
 module ≅ where
   infix 0 Iso
 
-  record Iso {r}..{ℓ} (A : 𝔘 r ℓ) (a b : A ▸) : Set ℓ where
+  record Iso {n r}..{ℓ} (A : 𝔘 n r ℓ) (a b : A ▸) : Set ℓ where
     no-eta-equality
     field
       » : A ▸ 1 ⊢ a ↝ b
@@ -25,7 +25,7 @@ module ≅ where
 
   syntax Iso A f g = A ⊢ f ≅ g
 
-  module _ {r}..{ℓ} (A : 𝔘 r ℓ) where
+  module _ {n r}..{ℓ} (A : 𝔘 n r ℓ) where
     idn
       : ∀ {a}
       → A ⊢ a ≅ a

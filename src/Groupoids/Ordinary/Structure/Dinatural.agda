@@ -10,9 +10,9 @@ open import Groupoids.Ordinary.Ambient.Universe.Boot
 open import Groupoids.Ordinary.Structure.Profunctor
 
 module ⇏₁ where
-  record ¬Hom₁ {r}..{ℓ₀ ℓ₁}
-    {A : 𝔘 r ℓ₀}
-    {V : 𝔘 r ℓ₁}
+  record ¬Hom₁ {n r}..{ℓ₀ ℓ₁}
+    {A : 𝔘 n r ℓ₀}
+    {V : 𝔘 n r ℓ₁}
     (F G : ¬Hom₀[ V ] A A)
     : Set (lsuc (ℓ₀ ⊔ ℓ₁))
     where

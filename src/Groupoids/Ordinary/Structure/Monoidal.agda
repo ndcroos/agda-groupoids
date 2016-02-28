@@ -17,7 +17,7 @@ module Monoidal where
     using (⟨_,_⟩)
     using (⟨_⊗_⟩)
 
-  record Monoidal {r}..{ℓ} (A : 𝔘 r ℓ) : Set (lsuc ℓ) where
+  record Monoidal {r}..{ℓ} (A : 𝔘 1 r ℓ) : Set (lsuc ℓ) where
     no-eta-equality
     field
       one : A ▸
@@ -92,7 +92,7 @@ module Monoidal where
     {-# DISPLAY _⊛₂_ A = _⊛_ #-}
 
   record Monoid {r}..{ℓ}
-    {A : 𝔘 r ℓ}
+    {A : 𝔘 1 r ℓ}
     (Ψ : Monoidal A)
     : Set ℓ
     where
@@ -110,13 +110,13 @@ module Monoidal where
 
   Comonoid
     : ∀ {r}..{ℓ}
-    → {A : 𝔘 r ℓ}
+    → {A : 𝔘 1 r ℓ}
     → (Ψ : Monoidal Op[ A ])
     → Set ℓ
   Comonoid = Monoid
 
-  module Endo ..{ℓ} (A : 𝔘 1 ℓ) where
-    Endo : 𝔘 1 (lsuc ℓ)
+  module Endo ..{ℓ} (A : 𝔘 1 1 ℓ) where
+    Endo : 𝔘 1 1 (lsuc ℓ)
     Endo = A ⇒₀ A
 
     private
@@ -273,40 +273,40 @@ module Monoidal where
               (⇒₀.⊢idn K)))))
   open Endo
 
-  Monad : ∀ ..{ℓ} (A : 𝔘 1 ℓ) → Set (lsuc ℓ)
+  Monad : ∀ ..{ℓ} (A : 𝔘 1 1 ℓ) → Set (lsuc ℓ)
   Monad A = Monoid (endo A)
 
   module Monad where
     open import Groupoids.Ordinary.Ambient.Cosmos.Tensor.Coproduct
     open Monoid
 
-    identity
-      : ∀ {r}..{ℓ}
-      → Monad («Std» r ℓ)
-    mon identity = ↻₀
-    ap₁₀ (mul identity) A = ↻₀
-    ap₁₁ (mul identity) F = *
-    nil identity = ↻₁
-    ⊢α identity = ι _
-    ⊢λ identity = ι _
-    ⊢ρ identity = ι _
+    -- identity
+    --   : ∀ {r}..{ℓ}
+    --   → Monad («Std» r ℓ)
+    -- mon identity = ↻₀
+    -- ap₁₀ (mul identity) A = ↻₀
+    -- ap₁₁ (mul identity) F = *
+    -- nil identity = ↻₁
+    -- ⊢α identity = ι _
+    -- ⊢λ identity = ι _
+    -- ⊢ρ identity = ι _
 
-    maybe
-      : ∀ {r}..{ℓ}
-      → Monad («Std» r ℓ)
-    ap₀₀ (mon maybe) A = 𝟙 ⊕ A
-    ap₀₁ (mon maybe) F = ⊕.[ ↻₀ ⊕ F ]
-    ap₀₂ (mon maybe) = _
-    ⇒₀.⊢idn (mon maybe) = _
-    ⇒₀.⊢seq (mon maybe) = _
-    ⇒₀.⊢inv (mon maybe) = _
-    ap₁₀ (mul maybe) A = ⊕.[ ⊕.inl , ↻₀ ]
-    ap₁₁ (mul maybe) F = _
-    ap₁₀ (nil maybe) A = ⊕.inr
-    ap₁₁ (nil maybe) = _
-    ⊢α maybe = ι _
-    ⊢λ maybe = ι _
-    ⊢ρ maybe = ι _
+    -- maybe
+    --   : ∀ {r}..{ℓ}
+    --   → Monad («Std» r ℓ)
+    -- ap₀₀ (mon maybe) A = 𝟙 ⊕ A
+    -- ap₀₁ (mon maybe) F = ⊕.[ ↻₀ ⊕ F ]
+    -- ap₀₂ (mon maybe) = _
+    -- ⇒₀.⊢idn (mon maybe) = _
+    -- ⇒₀.⊢seq (mon maybe) = _
+    -- ⇒₀.⊢inv (mon maybe) = _
+    -- ap₁₀ (mul maybe) A = ⊕.[ ⊕.inl , ↻₀ ]
+    -- ap₁₁ (mul maybe) F = _
+    -- ap₁₀ (nil maybe) A = ⊕.inr
+    -- ap₁₁ (nil maybe) = _
+    -- ⊢α maybe = ι _
+    -- ⊢λ maybe = ι _
+    -- ⊢ρ maybe = ι _
 
   open Monoid public
   open Monoidal public
