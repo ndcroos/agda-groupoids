@@ -3,6 +3,7 @@
 module Groupoids.Ordinary.Ambient.Cosmos.Copower where
 
 open import Groupoids.Basis
+  hiding (_⊛_)
 open import Groupoids.Ordinary.Ambient.Cosmos.Tensor.Coproduct.Indexed
 open import Groupoids.Ordinary.Ambient.Universe.Boot
 
