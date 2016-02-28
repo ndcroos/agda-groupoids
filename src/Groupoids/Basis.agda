@@ -9,6 +9,13 @@ open import Globular public
 open T public
   using (ι) -- ⊔⇑
 
+module ℕ where
+  open import Prelude.Natural
+  open Nat public
+    renaming (Nat to ℕ)
+open ℕ public
+  using (ℕ)
+
 pattern 1+[_] n = su (ℕ∞.ι n)
 pattern 2+[_] n = 1+[ su (ℕ∞.ι n) ]
 
