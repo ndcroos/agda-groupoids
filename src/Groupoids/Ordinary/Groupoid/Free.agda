@@ -9,7 +9,7 @@ open import Prelude.Natural
 module Free {n} (A : 𝔘 n 1 lzero) where
 
   infixl 1 _▸_
-  infixl 2 _++_
+  infixl 5 _++_
 
   data Path (σ : ● [ A ]) : (τ : ● [ A ]) → Set where
     []

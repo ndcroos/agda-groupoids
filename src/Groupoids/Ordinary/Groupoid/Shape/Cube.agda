@@ -17,7 +17,7 @@ module Cube where
   □₀ : Set
   □₀ = Nat
 
-  open Prelude.Bool.𝟚↑ public
+  open Prelude.Bool.𝟚 public
     renaming (𝟚 to Sign)
     renaming (ff to -)
     renaming (tt to +)
